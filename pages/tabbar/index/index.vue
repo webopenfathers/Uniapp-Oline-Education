@@ -54,7 +54,6 @@
 </template>
 
 <script>
-	import api from '@/api/request.js'
 	export default {
 		data() {
 			return {
@@ -128,18 +127,8 @@
 		},
 		methods: {
 			getData() {
-				api.request({
-					url: '/mobile/index'
-				}).then(data => {
-					let [error, res] = data
-					if (res.statusCode != 200 || res.data.msg === 'fail') {
-						uni.showToast({
-							title: res.data.data || '请求失败',
-							icon: 'none'
-						})
-						return
-					}
-					this.templates = res.data.data
+				this.$api.getIndexData().then(data => {
+					this.templates = data
 				})
 			}
 		}
