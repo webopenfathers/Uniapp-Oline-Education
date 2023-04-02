@@ -1,6 +1,6 @@
 <template>
 	<view class="container">
-		<view class="bg-main">
+		<view class="bg-main animate__animated animate__backInUp animate__fast">
 			123
 		</view>
 	</view>
