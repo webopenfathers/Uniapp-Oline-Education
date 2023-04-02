@@ -8,3 +8,9 @@
 .txet-main {
 	color: rgb(92, 204, 132);
 }
+
+/* 分割线的样式*/
+.divider{
+	height: 15px;
+	background-color: #f5f5f3;
+}

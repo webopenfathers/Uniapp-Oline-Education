@@ -9,8 +9,18 @@
 		</swiper>
 		<icon-nav :list="iconNav"></icon-nav>
 		<coupon-list></coupon-list>
-		
-		
+
+		<view class="divider"></view>
+
+		<view class="flex align-center px-2 py-3">
+			<text class="font-md font-weight-bold">拼团</text>
+		</view>
+		<scroll-view scroll-x="true" class="scroll-row">
+			<course-list></course-list>
+			<course-list></course-list>
+			<course-list></course-list>
+			<course-list></course-list>
+		</scroll-view>
 	</view>
 </template>
 
