@@ -2,6 +2,8 @@
 	"pages": [{
 		"path": "pages/tabbar/index/index",
 		"style": {
+			// 下拉刷新
+			"enablePullDownRefresh": true, 
 			"app-plus": {
 				"titleNView": false
 			}
@@ -13,16 +15,14 @@
 			"enablePullDownRefresh": false
 		}
 
-	}    ,{
-            "path" : "pages/home/home",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-    ],
+	}, {
+		"path": "pages/home/home",
+		"style": {
+			"navigationBarTitleText": "",
+			"enablePullDownRefresh": false
+		}
+
+	}],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uniapp在线教育",
@@ -36,8 +36,7 @@
 		"color": "#BBBAC7",
 		"selectedColor": "#2C2C2C",
 		"borderStyle": "black",
-		"list": [
-			{
+		"list": [{
 				"iconPath": "static/tabbar/index1.png",
 				"pagePath": "pages/tabbar/index/index",
 				"selectedIconPath": "static/tabbar/index1_selected.png",

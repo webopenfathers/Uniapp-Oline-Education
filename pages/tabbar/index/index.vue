@@ -50,17 +50,6 @@
 				</image>
 			</template>
 		</block>
-
-
-
-
-
-
-
-
-
-
-
 	</view>
 </template>
 
@@ -129,6 +118,10 @@
 				templates: []
 			}
 		},
+		// 监听下拉刷新
+		onPullDownRefresh() {
+			this.getData()
+		},
 		created() {
 			this.getData()
 		},
@@ -142,7 +135,7 @@
 					},
 					success: res => {
 						console.log(res);
-						if (res.statusCode != 200) {
+						if (res.statusCode != 200 || res.data.msg === 'fail') {
 							uni.showToast({
 								title: res.data.data || '请求失败',
 								icon: 'none'
@@ -154,10 +147,11 @@
 					fail: (err) => {
 						console.log(err);
 					},
-					complete: () => {}
+					complete: () => {
+						uni.stopPullDownRefresh()
+					}
 				});
 			}
-
 		}
 	}
 </script>
