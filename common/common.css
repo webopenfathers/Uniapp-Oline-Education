@@ -1,0 +1,10 @@
+/* 主色调 */
+/* 主背景色 */
+.bg-main {
+	background-color: rgba(92, 204, 132);
+}
+
+/* 主文字色 */
+.txet-main {
+	color: rgb(92, 204, 132);
+}

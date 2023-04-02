@@ -1,6 +1,8 @@
 <template>
 	<view class="container">
-	hello
+		<view class="bg-main">
+			123
+		</view>
 	</view>
 </template>
 
