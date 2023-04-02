@@ -1,5 +1,5 @@
 <template>
-	<view class="scroll-row-item course course-two">
+	<view class="scroll-row-item course " :class="'course-'+this.type">
 		<view class="position-relative">
 			<image :src="item.cover"></image>
 			<view class="text-white font-sm">
@@ -7,10 +7,10 @@
 			</view>
 		</view>
 		<view class="flex flex-column flex-shrink">
-			<text class="text-ellipsis font-md mt-1">{{item.title}}</text>
-<!-- 			<view class="font-sm text-light-muted my-1">
+			<text class="text-ellipsis font-md">{{item.title}}</text>
+			<view class="font-sm text-light-muted my-1">
 				10人已抢
-			</view> -->
+			</view>
 			<view class="flex flex-1 align-end">
 				<text class="font-md text-danger">￥{{item.price}}</text>
 				<text class="font-sm text-light-muted">￥{{item.t_price}}</text>
@@ -30,6 +30,10 @@
 		name: "course-list",
 		props: {
 			item: Object,
+			type: {
+				type: String,
+				default: 'two'
+			}
 		},
 		// 过滤器
 		filters: {
@@ -53,6 +57,10 @@
 		margin-left: 20rpx;
 		margin-bottom: 20rpx;
 	}
+	
+	.course-two>view:last-child>text:first-child{
+		margin-top: 10rpx;
+	}
 
 	.course-two image,
 	.course-two>view:first-child {
@@ -66,5 +74,22 @@
 		bottom: 10rpx;
 		background-color: rgba(0, 0, 0, 0.4);
 		padding: 0 10rpx;
+	}
+
+
+	.course-one {
+		display: flex !important;
+		padding: 20rpx 20rpx;
+	}
+
+	.course-one>view:first-child {
+		margin-right: 20rpx;
+	}
+
+	.course-one image,
+	.course-one>view:first-child {
+		width: 300rpx;
+		height: 170rpx;
+		flex-shrink: 1;
 	}
 </style>
