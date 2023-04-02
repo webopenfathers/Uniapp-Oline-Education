@@ -7,6 +7,7 @@
 					mode="aspectFill"></image>
 			</swiper-item>
 		</swiper>
+		<icon-nav :list="iconNav"></icon-nav>
 	</view>
 </template>
 
@@ -20,6 +21,40 @@
 					},
 					{
 						src:'/static/demo/banner/banner2.png'
+					}
+				],
+				iconNav:[
+					{
+						name:'活动',
+						src:"/static/demo/icon/hd.png"
+					},
+					{
+						name:'考试',
+						src:"/static/demo/icon/test.png"
+					},
+					{
+						name:'秒杀',
+						src:"/static/demo/icon/ms.png"
+					},
+					{
+						name:'拼团',
+						src:"/static/demo/icon/pt.png"
+					},
+					{
+						name:'直播',
+						src:"/static/demo/icon/course.png"
+					},
+					{
+						name:'专栏',
+						src:"/static/demo/icon/column.png"
+					},
+					{
+						name:'电子书',
+						src:"/static/demo/icon/book.png"
+					},
+					{
+						name:'社区',
+						src:"/static/demo/icon/ask.png"
 					}
 				]
 			}
