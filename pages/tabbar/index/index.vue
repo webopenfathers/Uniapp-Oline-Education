@@ -54,6 +54,7 @@
 </template>
 
 <script>
+	import api from '@/api/request.js'
 	export default {
 		data() {
 			return {
@@ -127,30 +128,19 @@
 		},
 		methods: {
 			getData() {
-				uni.request({
-					url: 'http://demonuxtapi.dishait.cn/mobile/index',
-					method: 'GET',
-					header: {
-						appid: 'bd9d01ecc75dbbaaefce'
-					},
-					success: res => {
-						console.log(res);
-						if (res.statusCode != 200 || res.data.msg === 'fail') {
-							uni.showToast({
-								title: res.data.data || '请求失败',
-								icon: 'none'
-							})
-							return
-						}
-						this.templates = res.data.data
-					},
-					fail: (err) => {
-						console.log(err);
-					},
-					complete: () => {
-						uni.stopPullDownRefresh()
+				api.request({
+					url: '/mobile/index'
+				}).then(data => {
+					let [error, res] = data
+					if (res.statusCode != 200 || res.data.msg === 'fail') {
+						uni.showToast({
+							title: res.data.data || '请求失败',
+							icon: 'none'
+						})
+						return
 					}
-				});
+					this.templates = res.data.data
+				})
 			}
 		}
 	}
