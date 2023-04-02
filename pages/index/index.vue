@@ -3,6 +3,8 @@
 		<view class="bg-main animate__animated animate__backInUp animate__fast">
 			123
 		</view>
+		
+		<text class="iconfont icon-shouye-"></text>
 	</view>
 </template>
 
