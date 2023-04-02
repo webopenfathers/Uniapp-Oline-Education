@@ -1,6 +1,11 @@
 {
 	"pages": [{
-		"path": "pages/tabbar/index/index"
+		"path": "pages/tabbar/index/index",
+		"style": {
+			"app-plus": {
+				"titleNView": false
+			}
+		}
 	}, {
 		"path": "pages/learn/learn",
 		"style": {
