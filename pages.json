@@ -3,23 +3,34 @@
 		"path": "pages/tabbar/index/index",
 		"style": {
 			// 下拉刷新
-			"enablePullDownRefresh": true, 
+			"enablePullDownRefresh": true,
 			"app-plus": {
 				"titleNView": false
 			}
 		}
 	}, {
-		"path": "pages/learn/learn",
+		"path": "pages/tabbar/learn/learn",
 		"style": {
 			"navigationBarTitleText": "",
 			"enablePullDownRefresh": false
 		}
 
 	}, {
-		"path": "pages/home/home",
+		"path": "pages/tabbar/home/home",
 		"style": {
 			"navigationBarTitleText": "",
 			"enablePullDownRefresh": false
+		}
+
+	}, {
+		"path": "pages/login/login",
+		"style": {
+			"navigationBarTitleText": "",
+			"enablePullDownRefresh": false,
+			"app-plus": {
+				// 取消原生导航栏
+				"titleNView": false
+			}
 		}
 
 	}],
