@@ -8,8 +8,7 @@
 		</view>
 		<view class="flex flex-column flex-shrink">
 			<text class="text-ellipsis font-md">{{item.title}}</text>
-			<view class="font-sm text-light-muted my-1">
-				10人已抢
+			<view v-if="item.try" class="font-sm text-light-muted my-1" v-html="item.try">
 			</view>
 			<view class="flex flex-1 align-end">
 				<text class="font-md text-danger">￥{{item.price}}</text>

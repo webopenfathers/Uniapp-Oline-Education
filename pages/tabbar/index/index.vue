@@ -26,19 +26,12 @@
 				<coupon-list v-else-if="item.type==='coupon'"></coupon-list>
 
 				<!-- 拼团模块 -->
-				<template v-else-if="item.type==='promotion'">
-					<view class="divider"></view>
-					<view class="flex align-center px-2 py-3">
-						<text class="font-md font-weight-bold">{{item.listType==='group'?'拼团':"秒杀"}}</text>
-					</view>
-					<scroll-view scroll-x="true" class="scroll-row">
-						<course-list v-for="(item,index) in item.data || groupList" :key="index"
-							:item='item'></course-list>
-					</scroll-view>
-				</template>
+				<view v-else-if="item.type==='promotion'">
+					<active-list :type="item.listType"></active-list>
+				</view>
 
 				<!-- 最新课程 -->
-				<template v-else-if="item.type==='list'">
+				<view v-else-if="item.type==='list'">
 					<view class="divider"></view>
 					<view class="flex align-center px-2 py-3 justify-between">
 						<text class="font-md font-weight-bold">{{item.title}}</text>
@@ -48,14 +41,14 @@
 						<course-list :type='item.listType' v-for="(item,index) in item.data" :key="index"
 							:item='item'></course-list>
 					</view>
-				</template>
+				</view>
 
 				<!-- 广告位 -->
-				<template v-else-if="item.type==='imageAd'">
+				<view v-else-if="item.type==='imageAd'">
 					<view class="divider"></view>
 					<image :src="item.data" mode="aspectFill" style="width: 750rpx;height: 360rpx;">
 					</image>
-				</template>
+				</view>
 			</block>
 		</view>
 	</view>
@@ -69,64 +62,6 @@
 		},
 		data() {
 			return {
-				groupList: [{
-						"group_id": 19,
-
-						"id": 12,
-
-						"title": "unicloud商城全栈开发",
-
-						"cover": "http://demo-mp3.oss-cn-shenzhen.aliyuncs.com/egg-edu-demo/79023e0596c23aff09e6.png",
-
-						"price": "4.00",
-
-						"t_price": "10.00",
-
-						"type": "media",
-
-						"start_time": "2021-04-15T16:00:00.000Z",
-
-						"end_time": "2022-05-16T16:00:00.000Z"
-					},
-					{
-						"group_id": 19,
-
-						"id": 12,
-
-						"title": "unicloud商城全栈开发",
-
-						"cover": "http://demo-mp3.oss-cn-shenzhen.aliyuncs.com/egg-edu-demo/79023e0596c23aff09e6.png",
-
-						"price": "4.00",
-
-						"t_price": "10.00",
-
-						"type": "media",
-
-						"start_time": "2021-04-15T16:00:00.000Z",
-
-						"end_time": "2022-05-16T16:00:00.000Z"
-					},
-					{
-						"group_id": 19,
-
-						"id": 12,
-
-						"title": "unicloud商城全栈开发",
-
-						"cover": "http://demo-mp3.oss-cn-shenzhen.aliyuncs.com/egg-edu-demo/79023e0596c23aff09e6.png",
-
-						"price": "4.00",
-
-						"t_price": "10.00",
-
-						"type": "media",
-
-						"start_time": "2021-04-15T16:00:00.000Z",
-
-						"end_time": "2022-05-16T16:00:00.000Z"
-					}
-				],
 				templates: [],
 				loading: false
 			}
