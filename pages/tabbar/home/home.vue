@@ -40,14 +40,15 @@
 			<!-- 列表 -->
 			<view class="px-3">
 				<uni-list :border="false">
-					<uni-list-item title="我的优惠券" show-arrow>
+					<uni-list-item :border="false" clickable title="我的优惠券" show-arrow>
 						<text slot="header" class="iconfont icon-9 mr-2" style="font-size: 20px;color:#4396ec ;"></text>
 					</uni-list-item>
-					<uni-list-item title="常见问题" show-arrow>
+					<uni-list-item :border="false" clickable title="常见问题" show-arrow>
 						<text slot="header" class="iconfont icon-help mr-2"
 							style="font-size: 20px;color:#4396ec ;"></text>
 					</uni-list-item>
-					<uni-list-item title="设置" show-arrow>
+					<uni-list-item :border="false" clickable title="设置" show-arrow
+						@click="navigateTo('/pages/setting/setting')">
 						<text slot="header" class="iconfont icon-leimupinleifenleileibie mr-2"
 							style="font-size: 20px;color:#4396ec ;"></text>
 					</uni-list-item>
@@ -91,9 +92,7 @@
 		},
 		methods: {
 			openLogin() {
-				uni.navigateTo({
-					url: '../../login/login'
-				})
+				this.navigateTo('../../login/login')
 			}
 		}
 	}

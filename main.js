@@ -18,6 +18,12 @@ Vue.prototype.$toast = function(msg) {
 	})
 }
 
+Vue.prototype.navigateTo=function(url){
+	uni.navigateTo({
+		url,
+	});
+}
+
 App.mpType = 'app'
 
 const app = new Vue({
