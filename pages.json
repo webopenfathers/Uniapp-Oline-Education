@@ -19,7 +19,18 @@
 		"path": "pages/tabbar/home/home",
 		"style": {
 			"navigationBarTitleText": "",
-			"enablePullDownRefresh": false
+			"enablePullDownRefresh": false,
+			"navigationBarBackgroundColor": "#5ccc84",
+			"navigationBarTextStyle": "white",
+			"app-plus": {
+				"titleNView": {
+					"titleText": "我的",
+					"titleAlign": "left",
+					"buttons": [{
+						"type": "menu"
+					}]
+				}
+			}
 		}
 
 	}, {
