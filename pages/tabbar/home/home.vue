@@ -17,7 +17,7 @@
 				</view>
 			</view>
 
-			<view class="flex align-center p-3" v-else>
+			<view class="flex align-center p-3" v-else @click="authJump('/pages/user-info/user-info')">
 				<!-- 头像部分 -->
 				<image :src="user.avatar" style="width: 120rpx;height: 120rpx" class="rounded-circle bg-light">
 				</image>
@@ -95,9 +95,7 @@
 			this.navigateTo('/pages/setting/setting')
 		},
 		methods: {
-			openLogin() {
-				this.navigateTo('../../login/login')
-			}
+
 		}
 	}
 </script>
