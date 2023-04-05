@@ -44,6 +44,16 @@
 			}
 		}
 
+	}, {
+		"path": "pages/forget/forget",
+		"style": {
+			"navigationBarTitleText": "",
+			"enablePullDownRefresh": false,
+			"app-plus": {
+				// 取消原生导航栏
+				"titleNView": false
+			}
+		}
 	}],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

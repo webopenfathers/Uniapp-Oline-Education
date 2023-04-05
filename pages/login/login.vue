@@ -31,7 +31,7 @@
 			<!-- 注册  忘记密码 -->
 			<view class="flex align-center justify-between my-3 font">
 				<text class="py-3 text-main" @click="changeType">{{type==='login'?'注册账号':'去登录'}}</text>
-				<text class="py-3 text-light-muted">忘记密码?</text>
+				<text class="py-3 text-light-muted" @click="openForget">忘记密码?</text>
 			</view>
 			<!-- 微信登录图标 -->
 			<view class="flex align-center justify-center wechatlogin">
@@ -63,6 +63,11 @@
 			}
 		},
 		methods: {
+			openForget() {
+				uni.navigateTo({
+					url: '../forget/forget',
+				});
+			},
 			handleCheckboxChange(e) {
 				this.confirm = !!e.detail.value.length
 			},
