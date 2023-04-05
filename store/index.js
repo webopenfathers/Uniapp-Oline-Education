@@ -32,6 +32,18 @@ export default new Vuex.Store({
 		},
 
 
+		// 退出登录
+		logout({
+			state
+		}) {
+			state.user = null
+			state.token = null
+
+
+			uni.removeStorageSync('user')
+		},
+
+
 		updateInfo({
 			state
 		}, phone) {

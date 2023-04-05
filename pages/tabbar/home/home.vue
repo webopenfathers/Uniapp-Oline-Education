@@ -2,7 +2,7 @@
 	<view class="animate__animated animate__fadeInDown animate__faster">
 		<view class="home-bg"></view>
 		<view class="position-relative">
-			<view class="flex p-3" v-if="!user">
+			<view class="flex p-3" v-if="!user" @click="navigateTo('/pages/login/login')">
 				<!-- 头像部分 -->
 				<image src="/static/noLogin.png" style="width: 120rpx;height: 120rpx" class="rounded-circle bg-light">
 				</image>
@@ -89,6 +89,9 @@
 					},
 				]
 			}
+		},
+		onNavigationBarButtonTap(){
+			this.navigateTo('/pages/setting/setting')
 		},
 		methods: {
 			openLogin() {
