@@ -1,7 +1,8 @@
 <template>
 	<view>
 		<uni-list :border="false">
-			<uni-list-item :border="false" title="账户安全" show-arrow></uni-list-item>
+			<uni-list-item clickable :border="false" title="账户安全" show-arrow
+				@click="authJump('/pages/user-safe/user-safe')"></uni-list-item>
 			<uni-list-item :border="false" title="清除缓存">
 				<text slot='footer'>1.00MB</text>
 			</uni-list-item>
