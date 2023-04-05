@@ -58,22 +58,21 @@
 				})
 			},
 			submit() {
-				// uni.showLoading({
-				// 	title: '提交中...',
-				// 	mask: false
-				// })
+				uni.showLoading({
+					title: '提交中...',
+					mask: false
+				})
 
-				// let data = Object.assign(this.form, {})
+				let data = Object.assign(this.form, {})
 
-				// this.$api.bindMobile(data).then(res => {
-				// 	this.$toast('绑定成功')
-				// 	this.$store.dispatch('updateInfo', data.phone)
-				// 	setTimeout(() => {
-				// 		this.back()
-				// 	}, 350)
-				// }).finally(() => {
-				// 	uni.hideLoading()
-				// })
+				this.$api.forget(data).then(res => {
+					this.$toast('找回成功')
+					setTimeout(() => {
+						this.back()
+					}, 350)
+				}).finally(() => {
+					uni.hideLoading()
+				})
 			}
 		}
 	}

@@ -34,5 +34,10 @@ export default {
 	// 绑定手机号
 	bindMobile(data) {
 		return api.post('/mobile/bind_mobile', data)
-	}
+	},
+
+	// 找回密码
+	forget(data) {
+		return api.post('/mobile/forget', data)
+	},
 }
