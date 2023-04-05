@@ -1,5 +1,5 @@
 <template>
-	<view>
+	<view class="animate__animated animate__fadeInDown animate__faster">
 		<view class="home-bg"></view>
 		<view class="position-relative">
 			<view class="flex p-3">
@@ -18,14 +18,21 @@
 			</view>
 
 			<!-- 下面导航 -->
-			<view class="p-3">
-				<view class="flex bg-white shadow rounded">
-					<view v-for="(item,index) in icons" :key="index"
-						class="flex-1 flex flex-column align-center justify-center py-3">
-						<text class="iconfont" :class="item.icon" style="font-size: 20px;color: #febd00;"></text>
-						<text class="font-sm mt-1 text-secondary">{{item.name}}</text>
-					</view>
-				</view>
+			<icons-card :icons="icons"></icons-card>
+			<!-- 列表 -->
+			<view class="px-3">
+				<uni-list :border="false">
+					<uni-list-item title="我的优惠券" show-arrow>
+						<text slot="header" class="iconfont icon-9 mr-2" style="font-size: 20px;color:#4396ec ;"></text>
+					</uni-list-item>
+					<uni-list-item title="常见问题" show-arrow>
+						<text slot="header" class="iconfont icon-help mr-2"
+							style="font-size: 20px;color:#4396ec ;"></text>
+					</uni-list-item>
+					<uni-list-item title="设置" show-arrow>
+						<text slot="header" class="iconfont icon-9 mr-2" style="font-size: 20px;color:#4396ec ;"></text>
+					</uni-list-item>
+				</uni-list>
 			</view>
 
 		</view>
@@ -45,20 +52,20 @@
 		data() {
 			return {
 				icons: [{
-						icon: "icon-xuexi",
-						name: '学习'
-					},
-					{
-						icon: "icon-xuexi",
+						icon: "icon-OrderHistory",
 						name: '订单'
 					},
 					{
-						icon: "icon-xuexi",
-						name: '订单'
+						icon: "icon-pinglun2",
+						name: '消息'
 					},
 					{
-						icon: "icon-xuexi",
-						name: '订单'
+						icon: "icon-shoucang1",
+						name: '收藏'
+					},
+					{
+						icon: "icon-e-learning-monitor",
+						name: '在学'
 					},
 				]
 			}
