@@ -1,3 +1,4 @@
+import store from '@/store/index.js'
 export default {
 	config: {
 		baseURL: 'http://demonuxtapi.dishait.cn',
@@ -9,7 +10,8 @@ export default {
 				options.url = this.baseURL + options.url
 				options.method = options.method || 'GET'
 				options.header = {
-					appid: this.appid
+					appid: this.appid,
+					token: store.state.token
 				}
 
 				// 权限相关验证

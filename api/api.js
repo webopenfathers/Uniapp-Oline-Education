@@ -29,5 +29,10 @@ export default {
 	// 获取手机验证码
 	getCaptcha(data) {
 		return api.post('/mobile/get_captcha', data)
+	},
+
+	// 绑定手机号
+	bindMobile(data) {
+		return api.post('/mobile/bind_mobile', data)
 	}
 }

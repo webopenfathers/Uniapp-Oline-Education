@@ -29,6 +29,16 @@ export default new Vuex.Store({
 
 			// 本地持久化存储
 			uni.setStorageSync('user', JSON.stringify(user))
+		},
+
+
+		updateInfo({
+			state
+		}, phone) {
+			state.user.phone = phone
+
+			// 本地持久化存储
+			uni.setStorageSync('user', JSON.stringify(state.user))
 		}
 	}
 })

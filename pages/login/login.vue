@@ -92,16 +92,14 @@
 					mask: false
 				})
 				let data = Object.assign(this.form, {})
-				if (this.type === 'reg') {
-					this.$api.reg(data).then(res => {
+
+
+				this.$api[this.type](data).then(user => {
+					if (this.type === 'reg') {
 						this.$toast('注册成功')
 						this.resetForm()
 						this.changeType()
-					}).finally(() => {
-						uni.hideLoading()
-					})
-				} else {
-					this.$api.login(data).then(user => {
+					} else {
 						this.$toast('登录成功')
 						this.$store.dispatch('login', user)
 						if (!user.phone) {
@@ -113,10 +111,10 @@
 						setTimeout(() => {
 							this.back()
 						}, 350)
-					}).finally(() => {
-						uni.hideLoading()
-					})
-				}
+					}
+				}).finally(() => {
+					uni.hideLoading()
+				})
 			}
 		}
 	}
