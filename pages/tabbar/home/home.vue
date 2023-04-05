@@ -2,7 +2,7 @@
 	<view class="animate__animated animate__fadeInDown animate__faster">
 		<view class="home-bg"></view>
 		<view class="position-relative">
-			<view class="flex p-3">
+			<view class="flex p-3" v-if="!user">
 				<!-- 头像部分 -->
 				<image src="/static/noLogin.png" style="width: 120rpx;height: 120rpx" class="rounded-circle bg-light">
 				</image>
@@ -15,6 +15,24 @@
 						登录解锁更多功能
 					</view>
 				</view>
+			</view>
+
+			<view class="flex align-center p-3" v-else>
+				<!-- 头像部分 -->
+				<image :src="user.avatar" style="width: 120rpx;height: 120rpx" class="rounded-circle bg-light">
+				</image>
+				<!-- 文字部分 -->
+				<view class="flex flex-column pl-3 flex-1 text-white">
+					<view class="font-md mb-2">
+						{{user.nickname || user.username || user.phone}}
+					</view>
+					<view class="font-sm">
+						{{user.desc || '暂无描述'}}
+					</view>
+				</view>
+
+				<!-- 齿轮 -->
+				<text class="iconfont icon-leimupinleifenleileibie text-white"></text>
 			</view>
 
 			<!-- 下面导航 -->
@@ -30,7 +48,8 @@
 							style="font-size: 20px;color:#4396ec ;"></text>
 					</uni-list-item>
 					<uni-list-item title="设置" show-arrow>
-						<text slot="header" class="iconfont icon-9 mr-2" style="font-size: 20px;color:#4396ec ;"></text>
+						<text slot="header" class="iconfont icon-leimupinleifenleileibie mr-2"
+							style="font-size: 20px;color:#4396ec ;"></text>
 					</uni-list-item>
 				</uni-list>
 			</view>
