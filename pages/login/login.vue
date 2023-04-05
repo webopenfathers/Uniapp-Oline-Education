@@ -14,18 +14,18 @@
 			</view>
 			<view class="login-form">
 				<uni-icons type="person"></uni-icons>
-				<input type="text" placeholder="请输入用户名" class="rounded font-md" />
+				<input v-model="form.username" type="text" placeholder="请输入用户名" class="rounded font-md" />
 			</view>
 			<view class="login-form">
 				<uni-icons type="locked"></uni-icons>
-				<input type="text" placeholder="请输入密码" class="rounded font-md" />
+				<input v-model="form.password" type="text" placeholder="请输入密码" class="rounded font-md" />
 			</view>
 			<view class="login-form" v-if="type==='reg'">
 				<uni-icons type="locked"></uni-icons>
-				<input type="text" placeholder="请输入确认密码" class="rounded font-md" />
+				<input v-model="form.repassword" type="text" placeholder="请输入确认密码" class="rounded font-md" />
 			</view>
 			<!-- 登录按钮 -->
-			<view class="bg-main btn" hover-class="bg-main-hover">
+			<view class="bg-main btn" hover-class="bg-main-hover" @click="submit">
 				{{type==='login'?'登录':'注册'}}
 			</view>
 			<!-- 注册  忘记密码 -->
@@ -48,10 +48,16 @@
 </template>
 
 <script>
+	import loginVue from './login.vue'
 	export default {
 		data() {
 			return {
-				type: 'login'
+				type: 'login',
+				form: {
+					username: '',
+					password: '',
+					repassword: ''
+				}
 			}
 		},
 		methods: {
@@ -63,6 +69,29 @@
 			},
 			changeType() {
 				this.type = this.type === 'login' ? 'reg' : "login"
+			},
+			resetForm() {
+				this.form = {
+					username: '',
+					password: '',
+					repassword: ''
+				}
+			},
+			submit() {
+				if (this.type === 'reg') {
+					uni.showLoading({
+						title: '提交中...',
+						mask: false
+					})
+					let data = Object.assign(this.form, {})
+					this.$api.reg(data).then(res => {
+						this.$toast('注册成功')
+						this.resetForm()
+						this.changeType()
+					}).finally(()=>{
+						uni.hideLoading()
+					})
+				}
 			}
 		}
 	}

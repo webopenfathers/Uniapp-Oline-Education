@@ -5,6 +5,12 @@ import api from '@/api/api.js'
 
 Vue.config.productionTip = false
 Vue.prototype.$api = api
+Vue.prototype.$toast = function(msg) {
+	uni.showToast({
+		title: msg,
+		icon: 'none'
+	})
+}
 
 App.mpType = 'app'
 
