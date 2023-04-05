@@ -20,7 +20,7 @@
 				<uni-icons type="locked"></uni-icons>
 				<input v-model="form.code" type="text" placeholder="请输入验证码" class="rounded font-md" />
 				<!-- 发送验证码 -->
-				<code-btn></code-btn>
+				<code-btn :phone="form.phone"></code-btn>
 			</view>
 			<!-- 登录按钮 -->
 			<view class="bg-main btn" hover-class="bg-main-hover" @click="submit">

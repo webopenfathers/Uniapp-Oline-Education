@@ -24,6 +24,10 @@ export default {
 	// 账号登录
 	login(data) {
 		return api.post('/mobile/login', data)
-	}
+	},
 
+	// 获取手机验证码
+	getCaptcha(data) {
+		return api.post('/mobile/get_captcha', data)
+	}
 }

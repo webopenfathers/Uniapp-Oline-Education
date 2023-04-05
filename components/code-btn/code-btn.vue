@@ -8,6 +8,12 @@
 	let timer = null
 	export default {
 		name: "code-btn",
+		props: {
+			phone: {
+				type: [Number, String],
+				default: ''
+			},
+		},
 		data() {
 			return {
 				time: 0
@@ -18,13 +24,22 @@
 				if (this.time > 0) {
 					return
 				}
-				this.time = 60
-				timer = setInterval(() => {
-					this.time--
-					if (this.time <= 0) {
-						clearInterval(timer)
+				this.$api.getCaptcha({
+					phone: this.phone
+				}).then(res => {
+					if (typeof res === 'number') {
+						this.$toast('验证码：' + res)
+					} else {
+						this.$toast('发送成功')
 					}
-				}, 1000)
+					this.time = 60
+					timer = setInterval(() => {
+						this.time--
+						if (this.time <= 0) {
+							clearInterval(timer)
+						}
+					}, 1000)
+				})
 			}
 		}
 	}
