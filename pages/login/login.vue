@@ -10,7 +10,7 @@
 		<view class="login">
 			<!-- title -->
 			<view class="flex">
-				<text class="title">登录</text>
+				<text class="title">{{type==='login'?'登录':'注册'}}</text>
 			</view>
 			<view class="login-form">
 				<uni-icons type="person"></uni-icons>
@@ -20,13 +20,17 @@
 				<uni-icons type="locked"></uni-icons>
 				<input type="text" placeholder="请输入密码" class="rounded font-md" />
 			</view>
+			<view class="login-form" v-if="type==='reg'">
+				<uni-icons type="locked"></uni-icons>
+				<input type="text" placeholder="请输入确认密码" class="rounded font-md" />
+			</view>
 			<!-- 登录按钮 -->
 			<view class="bg-main btn" hover-class="bg-main-hover">
-				登录
+				{{type==='login'?'登录':'注册'}}
 			</view>
 			<!-- 注册  忘记密码 -->
 			<view class="flex align-center justify-between my-3 font">
-				<text class="py-3 text-main">注册账号</text>
+				<text class="py-3 text-main" @click="changeType">{{type==='login'?'注册账号':'去登录'}}</text>
 				<text class="py-3 text-light-muted">忘记密码?</text>
 			</view>
 			<!-- 微信登录图标 -->
@@ -47,7 +51,7 @@
 	export default {
 		data() {
 			return {
-
+				type: 'login'
 			}
 		},
 		methods: {
@@ -56,6 +60,9 @@
 				uni.navigateBack({
 					delta: 1
 				})
+			},
+			changeType() {
+				this.type = this.type === 'login' ? 'reg' : "login"
 			}
 		}
 	}
