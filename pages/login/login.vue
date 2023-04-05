@@ -38,9 +38,11 @@
 				<uni-icons type="weixin" size="25" color="#5ccc84"></uni-icons>
 			</view>
 			<!-- 同意协议 -->
-			<checkbox-group class="flex align-center justify-center mt-4">
+			<checkbox-group v-if="type==='login'" @change='handleCheckboxChange'
+				class="flex align-center justify-center mt-4">
 				<label class="text-light-muted">
-					<checkbox color="#7fd49e" style="transform: scale(0.7);" /><text class="font">已阅读并同意用户协议&隐私声明</text>
+					<checkbox value='1' color="#7fd49e" style="transform: scale(0.7);" /><text
+						class="font">已阅读并同意用户协议&隐私声明</text>
 				</label>
 			</checkbox-group>
 		</view>
@@ -52,6 +54,7 @@
 	export default {
 		data() {
 			return {
+				confirm: false,
 				type: 'login',
 				form: {
 					username: '',
@@ -61,6 +64,10 @@
 			}
 		},
 		methods: {
+			handleCheckboxChange(e) {
+				this.confirm = !!e.detail.value.length
+			},
+
 			back() {
 				// 返回上一级
 				uni.navigateBack({
@@ -78,6 +85,9 @@
 				}
 			},
 			submit() {
+				if (!this.confirm && this.type === 'login') {
+					return this.$toast('请先阅读并同意用户协议&隐私声明')
+				}
 				uni.showLoading({
 					title: `${this.type==='login'?'登录中':'提交中'}...`,
 					mask: false
