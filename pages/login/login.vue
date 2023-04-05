@@ -50,7 +50,6 @@
 </template>
 
 <script>
-	import loginVue from './login.vue'
 	export default {
 		data() {
 			return {
@@ -105,6 +104,12 @@
 					this.$api.login(data).then(user => {
 						this.$toast('登录成功')
 						this.$store.dispatch('login', user)
+						if (!user.phone) {
+							uni.redirectTo({
+								url: '../bind-phone/bind-phone',
+							});
+							return
+						}
 						setTimeout(() => {
 							this.back()
 						}, 350)
@@ -118,80 +123,5 @@
 </script>
 
 <style>
-	.login-bg {
-		height: 220rpx;
-		background-image: linear-gradient(120deg, #3BFDAF 0%, #70D6F2 100%);
-	}
 
-	.login-back {
-		position: fixed;
-		top: 0;
-		left: 0;
-		width: 100rpx;
-		height: 100rpx;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		z-index: 100;
-	}
-
-	.login {
-		position: absolute;
-		top: 200rpx;
-		left: 0;
-		right: 0;
-		background-color: #FFF;
-		border-top-left-radius: 30rpx;
-		border-top-right-radius: 30rpx;
-		padding: 60rpx 70rpx 0 70rpx;
-	}
-
-	.login .title {
-		font-size: 22px;
-		margin-bottom: 50rpx;
-		color: #35404b;
-	}
-
-	.login-form {
-		position: relative;
-		margin-bottom: 50rpx;
-	}
-
-	.login-form .uni-icons {
-		position: absolute;
-		left: 0;
-		top: 0;
-		width: 100rpx;
-		height: 100rpx;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		color: #272727;
-	}
-
-	.login-form input {
-		height: 100rpx;
-		padding-left: 100rpx;
-		padding-right: 20rpx;
-		background-color: #f5f5f5;
-	}
-
-	.login .btn {
-		height: 100rpx;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		color: #fff;
-		border-radius: 10rpx;
-	}
-
-	.wechatlogin .uni-icons {
-		border: 1rpx solid #5ccc84;
-		width: 47px;
-		border-radius: 100%;
-		height: 47px;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-	}
 </style>
