@@ -41,7 +41,7 @@
 						if (res.cancel) {
 							return
 						}
-
+						this.$api.logout()
 						this.$store.dispatch('logout').then(res => {
 							this.$toast('退出登录成功')
 						})

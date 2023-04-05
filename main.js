@@ -18,7 +18,27 @@ Vue.prototype.$toast = function(msg) {
 	})
 }
 
-Vue.prototype.navigateTo=function(url){
+Vue.prototype.navigateTo = function(url) {
+	uni.navigateTo({
+		url,
+	});
+}
+
+Vue.prototype.authJump = function(url) {
+	// token不存在跳转登录页
+	if (!store.state.token) {
+		return uni.navigateTo({
+			url: '/pages/login/login',
+		});
+	}
+
+	//  token 存在但是手机号不存在跳转-绑定手机号
+	if (!store.state.user.phone) {
+		return uni.navigateTo({
+			url: '/pages/bind-phone/bind-phone',
+		});
+	}
+
 	uni.navigateTo({
 		url,
 	});

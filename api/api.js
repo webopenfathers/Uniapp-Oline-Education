@@ -40,4 +40,9 @@ export default {
 	forget(data) {
 		return api.post('/mobile/forget', data)
 	},
+	
+	// 退出登录
+	logout() {
+		return api.post('/mobile/logout')
+	}
 }

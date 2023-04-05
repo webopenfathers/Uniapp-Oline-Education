@@ -40,7 +40,8 @@
 			<!-- 列表 -->
 			<view class="px-3">
 				<uni-list :border="false">
-					<uni-list-item :border="false" clickable title="我的优惠券" show-arrow>
+					<uni-list-item :border="false" clickable title="我的优惠券" show-arrow
+						@click="authJump('/pages/my-coupon/my-coupon')">
 						<text slot="header" class="iconfont icon-9 mr-2" style="font-size: 20px;color:#4396ec ;"></text>
 					</uni-list-item>
 					<uni-list-item :border="false" clickable title="常见问题" show-arrow>
@@ -90,7 +91,7 @@
 				]
 			}
 		},
-		onNavigationBarButtonTap(){
+		onNavigationBarButtonTap() {
 			this.navigateTo('/pages/setting/setting')
 		},
 		methods: {

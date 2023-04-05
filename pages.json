@@ -74,6 +74,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/my-coupon/my-coupon",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
