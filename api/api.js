@@ -18,6 +18,12 @@ export default {
 	// 注册账号
 	reg(data) {
 		return api.post('/mobile/reg', data)
+	},
+
+
+	// 账号登录
+	login(data) {
+		return api.post('/mobile/login', data)
 	}
 
 }

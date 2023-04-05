@@ -78,17 +78,27 @@
 				}
 			},
 			submit() {
+				uni.showLoading({
+					title: `${this.type==='login'?'登录中':'提交中'}...`,
+					mask: false
+				})
+				let data = Object.assign(this.form, {})
 				if (this.type === 'reg') {
-					uni.showLoading({
-						title: '提交中...',
-						mask: false
-					})
-					let data = Object.assign(this.form, {})
 					this.$api.reg(data).then(res => {
 						this.$toast('注册成功')
 						this.resetForm()
 						this.changeType()
-					}).finally(()=>{
+					}).finally(() => {
+						uni.hideLoading()
+					})
+				} else {
+					this.$api.login(data).then(user => {
+						this.$toast('登录成功')
+						this.$store.dispatch('login', user)
+						setTimeout(() => {
+							this.back()
+						}, 350)
+					}).finally(() => {
 						uni.hideLoading()
 					})
 				}
