@@ -7,11 +7,28 @@ export default new Vuex.Store({
 		token: null
 	},
 	actions: {
+		// 初始化
+		init({
+			state
+		}) {
+			let user = uni.getStorageSync('user')
+			if (user) {
+				state.user = JSON.parse(user)
+				state.token = state.user.token
+			}
+		},
+
+
+
 		login({
 			state
 		}, user) {
 			state.user = user
 			state.token = user.token
+
+
+			// 本地持久化存储
+			uni.setStorageSync('user', JSON.stringify(user))
 		}
 	}
 })
