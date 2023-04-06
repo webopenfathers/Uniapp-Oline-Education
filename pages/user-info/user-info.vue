@@ -1,8 +1,8 @@
 <template>
 	<view>
 		<uni-list :border="false">
-			<uni-list-item clickable :border="false" title="头像">
-				<image slot='footer' src="/static/noLogin.png" style="width: 80rpx;height: 80rpx;border-radius: 100%;"
+			<uni-list-item clickable :border="false" title="头像" @click="changeAvatar">
+				<image slot='footer' :src="form.avatar" style="width: 80rpx;height: 80rpx;border-radius: 100%;"
 					class="bg-light"></image>
 			</uni-list-item>
 			<uni-list-item :border="false" title="昵称">
@@ -31,6 +31,7 @@
 		data() {
 			return {
 				form: {
+					avatar: '',
 					sex: '未知'
 				}
 			}
@@ -45,6 +46,20 @@
 
 		},
 		methods: {
+			// 修改头像
+			changeAvatar() {
+				uni.chooseImage({
+					count: 1,
+					success: (res) => {
+						console.log(res.tempFilePaths[0]);
+						this.$api.upload(res.tempFilePaths[0], (progress) => {
+							console.log(progress);
+						}).then(url => {
+							this.form.avatar = url
+						})
+					}
+				})
+			},
 			changeSex() {
 				let sexOptions = ['未知', '男', '女']
 				uni.showActionSheet({

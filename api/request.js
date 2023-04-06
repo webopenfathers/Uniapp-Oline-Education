@@ -68,5 +68,48 @@ export default {
 		options.method = 'POST'
 		options.data = data
 		return this.request(options)
+	},
+
+	// 上传文件
+	upload(url, data = {}, options = {}) {
+		options.url = url
+		return this.config.beforeRequest(options).then(opt => {
+			return new Promise((resolve, reject) => {
+				// 上传文件
+				let uploadTask = uni.uploadFile({
+					url: opt.url,
+					filePath: data.filePath,
+					name: data.name || 'files',
+					header: opt.header,
+					success: (res) => {
+						if (res.statusCode !== 200) {
+							reject('上传失败')
+							return uni.showToast({
+								title: '上传失败',
+								icon: 'none'
+							});
+						}
+
+						let message = JSON.parse(res.data)
+						resolve(message.data)
+					},
+					fail: (err) => {
+						console.log(err);
+						reject(err.message)
+					}
+				})
+
+
+				// 监听上传进度
+				uploadTask.onProgressUpdate((res) => {
+					// 调用回调函数
+					if (options.onProgress && typeof options.onProgress == 'function') {
+						options.onProgress(res.progress)
+					}
+				});
+
+
+			})
+		})
 	}
 }

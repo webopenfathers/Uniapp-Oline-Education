@@ -49,5 +49,14 @@ export default {
 	// 修改密码
 	updatePassword(data) {
 		return api.post('/mobile/update_password', data)
+	},
+
+	// 上传图片
+	upload(filePath, onProgress = null) {
+		return api.upload('/mobile/upload', {
+			filePath
+		}, {
+			onProgress
+		})
 	}
 }
