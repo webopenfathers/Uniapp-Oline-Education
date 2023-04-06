@@ -58,5 +58,9 @@ export default {
 		}, {
 			onProgress
 		})
+	},
+	// 修改资料
+	updateInfo(data) {
+		return api.post('/mobile/update_info', data)
 	}
 }

@@ -57,7 +57,9 @@
 
 				this.$api.bindMobile(data).then(res => {
 					this.$toast('绑定成功')
-					this.$store.dispatch('updateInfo', data.phone)
+					this.$store.dispatch('updateInfo', {
+						phone: data.phone
+					})
 					setTimeout(() => {
 						this.back()
 					}, 350)

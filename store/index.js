@@ -46,9 +46,8 @@ export default new Vuex.Store({
 
 		updateInfo({
 			state
-		}, phone) {
-			state.user.phone = phone
-
+		}, data) {
+			Object.keys(data).forEach(k => state.user[k] = data[k])
 			// 本地持久化存储
 			uni.setStorageSync('user', JSON.stringify(state.user))
 		}

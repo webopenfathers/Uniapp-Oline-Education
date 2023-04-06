@@ -6,7 +6,7 @@
 					class="bg-light"></image>
 			</uni-list-item>
 			<uni-list-item :border="false" title="昵称">
-				<input slot='footer' type="text" placeholder="未填写" class="text-right" />
+				<input slot='footer' v-model="form.nickname" type="text" placeholder="未填写" class="text-right" />
 			</uni-list-item>
 			<uni-list-item clickable :border="false" title="性别" @click="changeSex">
 				<text slot='footer'>{{form.sex}}</text>
@@ -18,7 +18,7 @@
 
 		<!-- 保存按钮 -->
 		<view class="p-3">
-			<main-button>退出登录</main-button>
+			<main-button @click='submit'>提交</main-button>
 		</view>
 	</view>
 </template>
@@ -32,6 +32,7 @@
 			return {
 				form: {
 					avatar: '',
+					nickname: '',
 					sex: '未知'
 				}
 			}
@@ -43,7 +44,11 @@
 		},
 
 		created() {
-
+			this.form = {
+				avatar: this.user.avatar,
+				nickname: this.user.nickname,
+				sex: this.user.sex
+			}
 		},
 		methods: {
 			// 修改头像
@@ -68,9 +73,20 @@
 						this.form.sex = sexOptions[res.tapIndex]
 					},
 				});
-
+			},
+			// 提交
+			submit() {
+				uni.showLoading({
+					title: '提交中...'
+				})
+				let data = Object.assign(this.form, {})
+				this.$api.updateInfo(data).then(res => {
+					this.$store.dispatch('updateInfo', data)
+					this.$toast('保存成功')
+				}).finally(() => {
+					uni.hideLoading()
+				})
 			}
-
 		}
 	}
 </script>
