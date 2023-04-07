@@ -74,7 +74,8 @@
 			return {
 				icons: [{
 						icon: "icon-OrderHistory",
-						name: '订单'
+						name: '订单',
+						path:'/pages/order-list/order-list'
 					},
 					{
 						icon: "icon-pinglun2",
