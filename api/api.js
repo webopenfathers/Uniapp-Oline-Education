@@ -62,5 +62,10 @@ export default {
 	// 修改资料
 	updateInfo(data) {
 		return api.post('/mobile/update_info', data)
+	},
+
+	// 获取订单列表
+	getOrderList(params) {
+		return api.get('/mobile/order/list', params)
 	}
 }

@@ -93,16 +93,14 @@
 			"enablePullDownRefresh": false
 		}
 
-	}    ,{
-            "path" : "pages/order-list/order-list",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "我的订单",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-    ],
+	}, {
+		"path": "pages/order-list/order-list",
+		"style": {
+			"navigationBarTitleText": "我的订单",
+			"enablePullDownRefresh": true
+		}
+
+	}],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uniapp在线教育",
