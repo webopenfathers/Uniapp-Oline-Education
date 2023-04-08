@@ -67,5 +67,10 @@ export default {
 	// 获取订单列表
 	getOrderList(params) {
 		return api.get('/mobile/order/list', params)
-	}
+	},
+
+	// 获取优惠券列表
+	getCoupon(params = {}) {
+		return api.get('/mobile/coupon', params)
+	},
 }
