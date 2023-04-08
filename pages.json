@@ -76,7 +76,7 @@
 		"path": "pages/my-coupon/my-coupon",
 		"style": {
 			"navigationBarTitleText": "我的优惠券",
-			"enablePullDownRefresh": false
+			"enablePullDownRefresh": true
 		}
 
 	}, {

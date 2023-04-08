@@ -77,6 +77,11 @@ export default {
 	// 领取优惠券
 	receiveCoupon(data) {
 		return api.post('/mobile/user_coupon/receive', data)
+	},
 
-	}
+	// 我的优惠券列表
+	getUserCoupon(params) {
+		return api.get('/mobile/user_coupon', params)
+	},
+
 }
