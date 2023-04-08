@@ -42,6 +42,7 @@ export default new Vuex.Store({
 
 
 			uni.removeStorageSync('user')
+			uni.removeStorageSync('historyKeyword')
 			uni.$emit('userLogout')
 		},
 
