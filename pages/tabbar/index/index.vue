@@ -23,7 +23,7 @@
 				<icon-nav v-else-if="item.type==='icons'" :list="item.data"></icon-nav>
 
 				<!-- 优惠券 -->
-				<coupon-list v-else-if="item.type==='coupon'"></coupon-list>
+				<coupon-list ref="couponList" v-else-if="item.type==='coupon'"></coupon-list>
 
 				<!-- 拼团模块 -->
 				<view v-else-if="item.type==='promotion'">
@@ -69,14 +69,30 @@
 		// 监听下拉刷新
 		onPullDownRefresh() {
 			this.getData()
+			this.refreshCouponList()
 		},
 		created() {
 			this.loading = true
 			this.getData()
+
+			// 监听全局的用户登录，刷新优惠券列表
+			uni.$on('userLogin', this.refreshCouponList)
+			// 监听全局的用户退出，刷新优惠券列表
+			uni.$on('userLogout', this.refreshCouponList)
+		},
+		destroyed() {
+			// 页面摧毁，取消事件
+			uni.$off('userLogin', this.refreshCouponList)
+			// 页面摧毁，取消事件
+			uni.$off('userLogout', this.refreshCouponList)
 		},
 		methods: {
+			refreshCouponList() {
+				if (this.$refs.couponList && this.$refs.couponList[0]) {
+					this.$refs.couponList[0].getData()
+				}
+			},
 			getData() {
-
 				this.$api.getIndexData().then(data => {
 					this.templates = data
 				}).finally(() => {

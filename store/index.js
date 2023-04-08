@@ -19,7 +19,7 @@ export default new Vuex.Store({
 		},
 
 
-
+		// 登录
 		login({
 			state
 		}, user) {
@@ -29,6 +29,7 @@ export default new Vuex.Store({
 
 			// 本地持久化存储
 			uni.setStorageSync('user', JSON.stringify(user))
+			uni.$emit('userLogin', user)
 		},
 
 
@@ -41,6 +42,7 @@ export default new Vuex.Store({
 
 
 			uni.removeStorageSync('user')
+			uni.$emit('userLogout')
 		},
 
 
