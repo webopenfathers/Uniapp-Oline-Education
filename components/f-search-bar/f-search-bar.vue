@@ -4,7 +4,7 @@
 		justify-center 
 		align-center 
 		py-2 
-		rounded">
+		rounded" @click="open">
 			<uni-icons color="#928E8A" type="search" size="20"></uni-icons>
 			<text class="ml-2">{{placeholder}}</text>
 		</view>
@@ -22,6 +22,13 @@
 			return {
 
 			};
+		},
+		methods: {
+			open() {
+				uni.navigateTo({
+					url: '/pages/search/search'
+				});
+			}
 		}
 	}
 </script>
