@@ -73,4 +73,10 @@ export default {
 	getCoupon(params = {}) {
 		return api.get('/mobile/coupon', params)
 	},
+
+	// 领取优惠券
+	receiveCoupon(data) {
+		return api.post('/mobile/user_coupon/receive', data)
+
+	}
 }
