@@ -7,7 +7,7 @@
 			<!-- 角标-定位 -->
 			<view class="text-white font px-1"
 				style="position: absolute;right: 20rpx;bottom: 20rpx;background-color: rgba(0,0,0,0.4);">
-				图文
+				{{detail.type | formatType}}
 			</view>
 		</view>
 		<!-- 2 -->
@@ -24,8 +24,7 @@
 		<view class="divider"></view>
 		<!-- 3 -->
 		<uni-card title="课程简介" isFull>
-			<rich-text :nodes="detail.try">
-			</rich-text>
+			<mp-html :content="detail.try"></mp-html>
 		</uni-card>
 		<!-- 4-底部按钮 -->
 		<view class="height:75px"></view>
@@ -37,42 +36,77 @@
 
 <script>
 	export default {
+		filters: {
+			formatType(t) {
+				let c = {
+					media: '图文',
+					audio: '音频',
+					video: '视频'
+				}
+				return c[t]
+			}
+		},
 		data() {
 			return {
 				detail: {
-					"id": 12,
+					"id": 0,
 
-					"title": "unicloud商城全栈开发",
+					"title": "",
 
-					"cover": "http://demo-mp3.oss-cn-shenzhen.aliyuncs.com/egg-edu-demo/79023e0596c23aff09e6.png",
+					"cover": "",
 
-					"try": "<p>unicloud商城全栈开发</p>",
+					"try": "",
 
-					"price": "10.00",
+					"price": "",
 
-					"t_price": "20.00",
+					"t_price": "",
 
 					"type": "media",
 
 					"sub_count": 0,
 
-					"content": "<p>unicloud商城全栈开发</p>",
+					"content": "",
 
-					"isbuy": true,
-
-					"isfava": true
+					"isbuy": false,
 				}
 			}
 		},
 		// 可以接收参数
 		onLoad(e) {
-			this.detail.id = e.id,
-				uni.setNavigationBarTitle({
-					title: this.detail.title
-				})
+			this.detail.id = e.id
+			if (!this.detail.id) {
+				this.$toast('非法参数')
+				setTimeout(() => {
+					uni.navigateBack({
+						delta: 1
+					})
+				}, 700)
+				return
+			}
+			this.getData()
+
 		},
 		methods: {
+			getData() {
+				this.$api.readCourse({
+					id: this.detail.id
+				}).then(res => {
+					this.detail = res
+					uni.setNavigationBarTitle({
+						title: this.detail.title
+					})
+				}).catch(err => {
+					if (err === '该记录不存在') {
+						setTimeout(() => {
+							uni.navigateBack({
+								delta: 1
+							});
+						}, 700)
+					}
+				}).finally(() => {
 
+				})
+			}
 		}
 	}
 </script>

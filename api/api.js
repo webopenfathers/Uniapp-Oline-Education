@@ -87,5 +87,10 @@ export default {
 	// 搜索结果页
 	search(params) {
 		return api.get('/mobile/search', params)
+	},
+
+	// 查看课程详情
+	readCourse(params) {
+		return api.get('/mobile/course/read', params)
 	}
 }
