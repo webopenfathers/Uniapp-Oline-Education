@@ -38,8 +38,8 @@
 						<text class="font-sm text-light-muted" v-if="item.showMore">查看更多</text>
 					</view>
 					<view>
-						<course-list :type='item.listType' v-for="(item,index) in item.data" :key="index"
-							:item='item'></course-list>
+						<course-list :type='item.listType' v-for="(item2,index2) in item.data" :key="index2"
+							:item='item2'></course-list>
 					</view>
 				</view>
 

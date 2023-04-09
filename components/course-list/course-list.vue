@@ -1,12 +1,12 @@
 <template>
-	<view class="scroll-row-item course " :class="'course-'+this.type">
+	<view class="scroll-row-item course " :class="'course-'+this.type" @click="openDetail">
 		<view class="position-relative">
 			<image :src="item.cover"></image>
 			<view class="text-white font-sm">
 				{{item.type|formatType}}
 			</view>
 		</view>
-		<view class="flex flex-column flex-shrink">
+		<view class="flex flex-column flex-shrink" style="width: 400rpx;">
 			<text class="text-ellipsis font-md">{{item.title}}</text>
 			<view v-if="item.try" class="font-sm text-light-muted my-1" v-html="item.try">
 			</view>
@@ -44,6 +44,13 @@
 			return {
 
 			};
+		},
+		methods: {
+			openDetail() {
+				uni.navigateTo({
+					url: '/pages/course/course?id=' + this.item.id,
+				});
+			}
 		}
 	}
 </script>
@@ -56,8 +63,8 @@
 		margin-left: 20rpx;
 		margin-bottom: 20rpx;
 	}
-	
-	.course-two>view:last-child>text:first-child{
+
+	.course-two>view:last-child>text:first-child {
 		margin-top: 10rpx;
 	}
 
