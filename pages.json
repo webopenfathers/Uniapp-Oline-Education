@@ -114,12 +114,28 @@
 						"borderRadius": "50px",
 						"placeholder": "输入搜索关键词"
 					},
-					"buttons": [
-						{
-							"text": "搜索",
-							"fontSize": "15px"
-						}
-					]
+					"buttons": [{
+						"text": "搜索",
+						"fontSize": "15px"
+					}]
+				}
+			}
+		}
+
+	}, {
+		"path": "pages/search-result/search-result",
+		"style": {
+			"navigationBarTitleText": "",
+			"enablePullDownRefresh": false,
+			"app-plus": {
+				"titleNView": {
+					"searchInput": {
+						"align": "left",
+						"backgroundColor": "#f6f9fb",
+						"borderRadius": "50px",
+						"placeholder": "输入搜索关键词",
+						"disabled": true
+					}
 				}
 			}
 		}

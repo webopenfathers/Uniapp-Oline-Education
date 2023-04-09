@@ -9,7 +9,7 @@
 			<!-- 脚标组件 -->
 			<view class="flex flex-wrap px-3" style="margin-right: -30rpx;">
 				<uni-badge style="margin-right: 25rpx;margin-bottom: 25rpx;" size="normal" v-for="(item,index) in list"
-					:key="index" type="success" :text="item"></uni-badge>
+					:key="index" type="success" :text="item" @click="handleSearchEvent(item)"></uni-badge>
 			</view>
 		</view>
 	</view>
@@ -43,11 +43,20 @@
 		},
 		methods: {
 			// 搜索
-			handleSearchEvent() {
+			handleSearchEvent(value = '') {
+				if (value) {
+					this.keyword = value
+				}
 				if (this.keyword === '') {
 					return this.$toast('请输入关键词')
 				}
 				// 跳转搜索结果页
+				uni.navigateTo({
+					url: '/pages/search-result/search-result?keyword=' + this.keyword,
+					success: res => {},
+					fail: () => {},
+					complete: () => {}
+				});
 				this.addHistory()
 			},
 			addHistory() {
