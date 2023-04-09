@@ -10,6 +10,11 @@
 				{{detail.type | formatType}}
 			</view>
 		</view>
+
+		<video v-else-if="detail.type=='video'" controls :src="detail.content" style="width: 100%;height: 420rpx;"
+			:poster="detail.cover"></video>
+
+
 		<view class="animate__animated animate__fadeIn animate__faster">
 			<!-- 2 -->
 			<view class="flex flex-column p-3">
@@ -25,8 +30,8 @@
 			<!-- 分割线 -->
 			<view class="divider"></view>
 			<!-- 3 -->
-			<uni-card :title="detail.isbuy?'课程内容':'课程简介'" isFull>
-				<mp-html :content="detail.isbuy?detail.content:detail.try">
+			<uni-card :title="(detail.isbuy && detail.type==='media')?'课程内容':'课程简介'" isFull>
+				<mp-html :content="(detail.isbuy && detail.type==='media')?detail.content:detail.try">
 					<view class="flex justify-center py-3 text-light-muted">
 						加载中...
 					</view>
