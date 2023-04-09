@@ -3,10 +3,10 @@
 		<!-- tab栏 -->
 		<tab :current="current" :tabs="tabs" @change='clickTab'></tab>
 		<!-- 左右滑动的内容区域 -->
-		<swiper :duration="200" class="flex-1 flex flex-column">
+		<swiper :current="current" :duration="200" class="flex-1 flex flex-column" @change="swiperChange">
 			<swiper-item class="flex" v-for="(t,tI) in tabs" :key="tI">
 				<!-- 垂直方向滚动条 -->
-				<scroll-view scroll-y="true" class=" flex-1">
+				<scroll-view scroll-y="true" class=" flex-1" @scrolltolower="handleLoadMore(t)">
 					<!-- 课程列表 -->
 					<course-list type='one' v-for="(item,index) in t.list" :key="index" :item='item'></course-list>
 					<!-- 上拉显示更多 -->
@@ -28,73 +28,22 @@
 				tabs: [{
 					name: '课程',
 					loadStatus: 'more',
-					list: [{
-							"id": 12,
-
-							"title": "unicloud商城全栈开发",
-
-							"cover": "http://demo-mp3.oss-cn-shenzhen.aliyuncs.com/egg-edu-demo/79023e0596c23aff09e6.png",
-
-							"price": "10.00",
-
-							"t_price": "10.00",
-
-							"type": "media"
-
-						},
-						{
-							"id": 538,
-
-							"title": "VueCli 实战商城后台管理系统",
-
-							"cover": "http://demo-mp3.oss-cn-shenzhen.aliyuncs.com/egg-edu-demo/efa10a1e149fa44d0a51.png",
-
-							"price": "10.00",
-
-							"t_price": "10.00",
-
-							"type": "media"
-
-						},
-						{
-							"id": 542,
-
-							"title": "uni-app实战视频点播app小程序",
-
-							"cover": "http://demo-mp3.oss-cn-shenzhen.aliyuncs.com/egg-edu-demo/9ef188863ea44740d24d.png",
-
-							"price": "99.00",
-
-							"t_price": "99.00",
-
-							"type": "audio"
-
-						},
-						{
-							"id": 543,
-
-							"title": "uni-app多端企业网盘全栈开发",
-
-							"cover": "http://demo-mp3.oss-cn-shenzhen.aliyuncs.com/egg-edu-demo/ff517a15e651ba374920.png",
-
-							"price": "99.00",
-
-							"t_price": "99.00",
-
-							"type": "video"
-
-						}
-					],
+					list: [],
 					page: 1,
+					type: 'course'
 				}, {
 					name: "专栏",
 					loadStatus: 'more',
 					list: [],
 					page: 1,
+					type: 'column'
 				}],
-
-
+				keyword: ''
 			}
+		},
+		onLoad(e) {
+			this.keyword = e.keyword
+			this.getData()
 		},
 		// 点击搜索框返回上一页
 		onNavigationBarSearchInputClicked() {
@@ -104,7 +53,42 @@
 		},
 		methods: {
 			clickTab(index) {
-				this.current = index
+				this.swiperChange({
+					detail: {
+						current: index
+					}
+				})
+			},
+			swiperChange(e) {
+				this.current = e.detail.current
+				let tab = this.tabs[this.current]
+				// 防止重复加载
+				if (tab.loadStatus == 'more' && tab.page == 1) {
+					this.getData()
+				}
+			},
+			getData() {
+				let tab = this.tabs[this.current]
+				tab.loadStatus = 'loading'
+				this.$api.search({
+					keyword: this.keyword,
+					page: tab.page,
+					type: tab.type
+				}).then(res => {
+					console.log(res);
+					tab.list = tab.page == 1 ? res.rows : [...tab.lis, ...res.rows]
+					tab.loadStatus = res.rows.length < 10 ? 'noMore' : 'more'
+				}).catch(err => {
+					tab.loadStatus = 'more'
+					if (tab.page > 1) {
+						tab.page = tab.page - 1
+					}
+				})
+			},
+			handleLoadMore(t) {
+				if (t.loadStatus != 'more') return
+				t.page = t.page + 1
+				this.getData()
 			}
 		}
 	}

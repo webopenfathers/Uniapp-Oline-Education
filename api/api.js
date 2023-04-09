@@ -84,4 +84,8 @@ export default {
 		return api.get('/mobile/user_coupon', params)
 	},
 
+	// 搜索结果页
+	search(params) {
+		return api.get('/mobile/search', params)
+	}
 }
