@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<!-- 1 -->
-		<view class="position-relative">
+		<view v-if="!detail.isbuy" class="position-relative">
 			<!-- 封面 -->
 			<image :src="detail.cover" style="width: 100%;height: 420rpx;" class="bg-light"></image>
 			<!-- 角标-定位 -->
@@ -10,26 +10,35 @@
 				{{detail.type | formatType}}
 			</view>
 		</view>
-		<!-- 2 -->
-		<view class="flex flex-column p-3">
-			<text class="mb-1" style="font-size: 38rpx;">{{detail.title}}</text>
-			<text class="font-sm text-light-muted">{{detail.sub_count}} 人学过</text>
-			<view class="flex mt-2 align-end">
-				<text class="text-danger font-lg">￥{{detail.price}}</text>
-				<text class="font-sm text-light-muted ml-1 text-through">￥{{detail.t_price}}</text>
-			</view>
-		</view>
+		<view class="animate__animated animate__fadeIn animate__faster">
+			<!-- 2 -->
+			<view class="flex flex-column p-3">
+				<text class="mb-1" style="font-size: 38rpx;">{{detail.title}}</text>
+				<text class="font-sm text-light-muted">{{detail.sub_count}} 人学过</text>
 
-		<!-- 分割线 -->
-		<view class="divider"></view>
-		<!-- 3 -->
-		<uni-card title="课程简介" isFull>
-			<mp-html :content="detail.try"></mp-html>
-		</uni-card>
-		<!-- 4-底部按钮 -->
-		<view class="height:75px"></view>
-		<view class="fixed-bottom p-2 border-top bg-white">
-			<main-button>立即订购￥{{detail.price}}</main-button>
+				<view v-if="!detail.isbuy" class="flex mt-2 align-end">
+					<text class="text-danger font-lg">￥{{detail.price}}</text>
+					<text class="font-sm text-light-muted ml-1 text-through">￥{{detail.t_price}}</text>
+				</view>
+			</view>
+
+			<!-- 分割线 -->
+			<view class="divider"></view>
+			<!-- 3 -->
+			<uni-card :title="detail.isbuy?'课程内容':'课程简介'" isFull>
+				<mp-html :content="detail.isbuy?detail.content:detail.try">
+					<view class="flex justify-center py-3 text-light-muted">
+						加载中...
+					</view>
+				</mp-html>
+			</uni-card>
+			<!-- 4-底部按钮 -->
+			<template v-if="!detail.isbuy && firstLoad">
+				<view class="height:75px"></view>
+				<view class="fixed-bottom p-2 border-top bg-white">
+					<main-button>立即订购￥{{detail.price}}</main-button>
+				</view>
+			</template>
 		</view>
 	</view>
 </template>
@@ -48,6 +57,7 @@
 		},
 		data() {
 			return {
+				firstLoad: false,
 				detail: {
 					"id": 0,
 
@@ -104,7 +114,7 @@
 						}, 700)
 					}
 				}).finally(() => {
-
+					this.firstLoad = true
 				})
 			}
 		}
