@@ -11,6 +11,8 @@
 			</view>
 		</view>
 
+		<f-audio :poster='detail.cover' v-else-if="detail.type==='audio'" :src='detail.content'></f-audio>
+
 		<video v-else-if="detail.type=='video'" controls :src="detail.content" style="width: 100%;height: 420rpx;"
 			:poster="detail.cover"></video>
 
