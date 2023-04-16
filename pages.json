@@ -149,6 +149,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/column/column",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

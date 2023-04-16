@@ -47,8 +47,12 @@
 		},
 		methods: {
 			openDetail() {
+				let url = '/pages/course/course?id=' + this.item.id
+				if (!this.item.type) {
+					url = '/pages/column/column?id=' + this.item.id
+				}
 				uni.navigateTo({
-					url: '/pages/course/course?id=' + this.item.id,
+					url,
 				});
 			}
 		}

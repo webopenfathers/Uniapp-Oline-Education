@@ -92,5 +92,11 @@ export default {
 	// 查看课程详情
 	readCourse(params) {
 		return api.get('/mobile/course/read', params)
+	},
+
+	// 获取专栏详情页
+	readColumn(params) {
+		return api.get('/mobile/column/read', params)
 	}
+
 }
