@@ -11,7 +11,7 @@
 	}, {
 		"path": "pages/tabbar/learn/learn",
 		"style": {
-			"navigationBarTitleText": "",
+			"navigationBarTitleText": "学习进度",
 			"enablePullDownRefresh": false
 		}
 
