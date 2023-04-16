@@ -44,7 +44,8 @@
 			<view class="p-3">
 				<view class="border rounded bg-light text-muted p-2">共 {{list.length}} 节</view>
 			</view>
-			<menu-item v-for="(item,index) in list" :key="index" :title="item.title" :index="index">
+			<menu-item @click='openPlay(item)' v-for="(item,index) in list" :key="index" :title="item.title"
+				:index="index">
 
 				<view class="flex">
 					<text class=" mr-1 border text-danger rounded border-danger font-sm px-1 mt-1">
@@ -130,10 +131,17 @@
 				}, 700)
 				return
 			}
+		},
+		onShow() {
 			this.getData()
-
 		},
 		methods: {
+			openPlay(item) {
+				if (item.price != 0 && !this.detail.isbuy) {
+					return this.$toast('请先购买该专栏')
+				}
+				this.authJump(`/pages/course/course?id=${item.id}&column_id=${this.detail.id}`)
+			},
 			clickTab(index) {
 				this.current = index
 			},

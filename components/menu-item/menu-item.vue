@@ -1,6 +1,6 @@
 <template>
 	<!-- 目录部分 -->
-	<view class="flex align-center p-3 border-bottom" hover-class="bg-light">
+	<view class="flex align-center p-3 border-bottom" hover-class="bg-light" @click="$emit('click')">
 		<text class="flex-shrink text-muted" style="width:90rpx">{{(index+1)|formatIndex}}</text>
 		<view class="flex flex-column  align-start">
 			{{title}}

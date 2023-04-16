@@ -85,7 +85,8 @@
 					"content": "",
 
 					"isbuy": false,
-				}
+				},
+				column_id: 0
 			}
 		},
 		// 可以接收参数
@@ -100,13 +101,17 @@
 				}, 700)
 				return
 			}
+			if (e.column_id) {
+				this.column_id = e.column_id
+			}
 			this.getData()
 
 		},
 		methods: {
 			getData() {
 				this.$api.readCourse({
-					id: this.detail.id
+					id: this.detail.id,
+					column_id: this.column_id
 				}).then(res => {
 					this.detail = res
 					uni.setNavigationBarTitle({
