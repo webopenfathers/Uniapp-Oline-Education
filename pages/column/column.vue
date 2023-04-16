@@ -11,7 +11,10 @@
 			</view>
 		</view>
 
-		<view class="animate__animated animate__fadeIn animate__faster">
+		<!-- tab栏 -->
+		<tab :current="current" :tabs="tabs" @change='clickTab'></tab>
+		<!-- 简介 -->
+		<view v-if="current===0" class="animate__animated animate__fadeIn animate__faster">
 			<!-- 2 -->
 			<view class="flex flex-column p-3">
 				<text class="mb-1" style="font-size: 38rpx;">{{detail.title}}</text>
@@ -33,22 +36,64 @@
 					</view>
 				</mp-html>
 			</uni-card>
-			<!-- 4-底部按钮 -->
-			<template v-if="!detail.isbuy && firstLoad">
-				<view class="height:75px"></view>
-				<view class="fixed-bottom p-2 border-top bg-white">
-					<main-button>立即订购￥{{detail.price}}</main-button>
-				</view>
-			</template>
 		</view>
+
+		<!--目录 -->
+		<view v-else class="animate__animated animate__fadeIn animate__faster">
+			<!-- 共多少节 -->
+			<view class="p-3">
+				<view class="border rounded bg-light text-muted p-2">共 {{list.length}} 节</view>
+			</view>
+			<menu-item v-for="(item,index) in list" :key="index" :title="item.title" :index="index">
+
+				<view class="flex">
+					<text class=" mr-1 border text-danger rounded border-danger font-sm px-1 mt-1">
+						{{item.type | formatType}}
+					</text>
+					<text v-if="item.price==0" class="border text-danger rounded border-danger font-sm px-1 mt-1">
+						免费试看
+					</text>
+				</view>
+
+
+			</menu-item>
+		</view>
+
+
+		<!-- 4-底部按钮 -->
+		<template v-if="!detail.isbuy && firstLoad">
+			<view class="height:75px"></view>
+			<view class="fixed-bottom p-2 border-top bg-white">
+				<main-button>立即订购￥{{detail.price}}</main-button>
+			</view>
+		</template>
 	</view>
 </template>
 
 <script>
+	let opt = {
+		media: "图文",
+		audio: '音频',
+		video: '视频',
+		column: "专栏"
+	}
 	export default {
+
+		// 过滤器
+		filters: {
+			formatType(K) {
+				return opt[K]
+			}
+		},
 		data() {
 			return {
 				firstLoad: false,
+				current: 0,
+				tabs: [{
+					name: '简介',
+				}, {
+					name: "目录",
+				}],
 				detail: {
 					"id": 0,
 
@@ -69,7 +114,8 @@
 					"content": "",
 
 					"isbuy": false,
-				}
+				},
+				list: []
 			}
 		},
 		// 可以接收参数
@@ -88,11 +134,15 @@
 
 		},
 		methods: {
+			clickTab(index) {
+				this.current = index
+			},
 			getData() {
 				this.$api.readColumn({
 					id: this.detail.id
 				}).then(res => {
 					this.detail = res
+					this.list = res.column_courses
 					uni.setNavigationBarTitle({
 						title: this.detail.title
 					})
