@@ -7,14 +7,15 @@
 		</view>
 		<!-- 进度条 -->
 		<view class="f-audio-slider mb-5">
-			<slider activeColor="#5ccc84" block-color="#5ccc84" :block-size="15" />
+			<slider @changing="onchanging" @change="onchange" :max="duration" :value="position" activeColor="#5ccc84"
+				block-color="#5ccc84" :block-size="15" />
 			<!-- 当前时间和剩余时间 -->
 			<text class="current-time">{{currentTime | formatTime}}</text>
 			<text class="duration">{{duration | formatTime}}</text>
 		</view>
 
 		<view class="f-audio-btn flex align-center justify-center pb-5">
-			<text class="iconfont icon-ziyuan11"></text>
+			<text class="iconfont icon-ziyuan11" :style="loopStatus?'color:rgba(92,204,132);':''" @click="loop"></text>
 			<text class="iconfont  mx-3" :class="isPlaying?'icon-tianchongxing- ':'icon-bofang2'" @click="play"></text>
 			<text class="iconfont icon-shoucang"></text>
 		</view>
@@ -43,8 +44,16 @@
 				return tool.formatSeconds(s)
 			}
 		},
+		computed: {
+			position() {
+				return this.isPlayEnd ? 0 : this.currentTime
+			}
+		},
 		created() {
 			this.createAudio()
+		},
+		beforeDestroy() {
+			if (this._audioContext != null && this.isPlaying) this.stop()
 		},
 		data() {
 			return {
@@ -56,7 +65,10 @@
 				// 当前时间
 				currentTime: 0,
 				// 总时长
-				duration: 0
+				duration: 1,
+				_isChanging: false,
+				// 循环播放
+				loopStatus: false
 			};
 		},
 		methods: {
@@ -69,11 +81,15 @@
 				this._audioContext.onPlay(() => {
 
 				})
+				// 更刚进入获取总时长
+				this._audioContext.onCanplay(() => {
+					this.duration = this._audioContext.duration
+				})
 				// 监听播放进度
 				this._audioContext.onTimeUpdate((e) => {
+					if (this._isChanging) return
 					this.currentTime = this._audioContext.currentTime
 					this.duration = this._audioContext.duration
-
 				})
 				// 监听播放结束
 				this._audioContext.onEnded(() => {
@@ -99,6 +115,25 @@
 			pause() {
 				this._audioContext.pause()
 				this.isPlaying = false
+			},
+			// 进度条改变事件e
+			onchange(e) {
+				this._audioContext.seek(e.detail.value)
+				// 拖动结束设为false
+				this._isChanging = false
+			},
+			onchanging() {
+				// 拖动中设为true
+				this._isChanging = true
+			},
+			stop() {
+				this._audioContext.stop()
+				this.isPlaying = false
+			},
+			loop() {
+				this.loopStatus = !this.loopStatus
+				this._audioContext.loop = this.loopStatus
+				this.$toast((this.loopStatus ? '开启' : '关闭') + '循环播放')
 			}
 		}
 	}
