@@ -97,6 +97,9 @@ export default {
 	// 获取专栏详情页
 	readColumn(params) {
 		return api.get('/mobile/column/read', params)
+	},
+	// 学习进度列表
+	getUserHistory(params){
+		return api.get('/mobile/user_history/list', params)
 	}
-
 }
