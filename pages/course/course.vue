@@ -11,7 +11,8 @@
 			</view>
 		</view>
 
-		<f-audio :poster='detail.cover' v-else-if="detail.type==='audio'" :src='detail.content'></f-audio>
+		<f-audio @onProgress='onAudioProgressUpdate' :poster='detail.cover' v-else-if="detail.type==='audio'"
+			:src='detail.content'></f-audio>
 
 		<video v-else-if="detail.type=='video'" controls :src="detail.content" style="width: 100%;height: 420rpx;"
 			:poster="detail.cover" @timeupdate="onVideoTimeUpdate"></video>
@@ -128,6 +129,9 @@
 			this.updateUserHistory()
 		},
 		methods: {
+			onAudioProgressUpdate(p) {
+				this.progress = p
+			},
 			// 视频学习进度e
 			onVideoTimeUpdate(e) {
 				let {

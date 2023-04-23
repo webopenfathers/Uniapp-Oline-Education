@@ -90,6 +90,9 @@
 					if (this._isChanging) return
 					this.currentTime = this._audioContext.currentTime
 					this.duration = this._audioContext.duration
+					if (this.duration > 0) {
+						this.$emit('onProgress', ((this.currentTime / this.duration) * 100).toFixed(2))
+					}
 				})
 				// 监听播放结束
 				this._audioContext.onEnded(() => {
