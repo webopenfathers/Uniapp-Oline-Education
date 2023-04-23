@@ -70,6 +70,10 @@
 		},
 		onShow() {
 			if (this.token) {
+				this.tabs.forEach(item=>{
+					item.page=1
+					item.loadStatus='more'
+				})
 				this.getData()
 			}
 		},

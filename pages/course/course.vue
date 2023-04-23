@@ -33,11 +33,14 @@
 			<view class="divider"></view>
 			<!-- 3 -->
 			<uni-card :title="(detail.isbuy && detail.type==='media')?'课程内容':'课程简介'" isFull>
-				<mp-html :content="(detail.isbuy && detail.type==='media')?detail.content:detail.try">
-					<view class="flex justify-center py-3 text-light-muted">
-						加载中...
-					</view>
-				</mp-html>
+				<view id="media">
+					<mp-html :content="(detail.isbuy && detail.type==='media')?detail.content:detail.try"
+						@ready="onMediaReady">
+						<view class="flex justify-center py-3 text-light-muted">
+							加载中...
+						</view>
+					</mp-html>
+				</view>
 			</uni-card>
 			<!-- 4-底部按钮 -->
 			<template v-if="!detail.isbuy && firstLoad">
@@ -51,6 +54,8 @@
 </template>
 
 <script>
+	// 窗口高度
+	let windowHeight = uni.getAccountInfoSync().windowHeight
 	export default {
 		filters: {
 			formatType(t) {
@@ -86,7 +91,19 @@
 
 					"isbuy": false,
 				},
-				column_id: 0
+				column_id: 0,
+				scrollTop: 0,
+				mediaHeight: 0,
+				progress: 0
+			}
+		},
+		// 图文-根据滚动状态来更新进度
+		// 监听页面滚动的生命周期
+		onPageScroll(e) {
+			if (this.detail.isbuy && this.detail.type == 'media' && e.scrollTop > this.scrollTop) {
+				// 只记录最大值
+				this.scrollTop = e.scrollTop
+				this.sumMediaProgress()
 			}
 		},
 		// 可以接收参数
@@ -108,6 +125,21 @@
 
 		},
 		methods: {
+			onMediaReady() {
+				const Query = uni.createSelectorQuery().in(this)
+				Query.select('#media').boundingClientRect(data => {
+					this.mediaHeight = parseInt(data.height)
+					this.sumMediaProgress()
+				}).exec()
+			},
+			// 计算图文课程学习进度
+			sumMediaProgress() {
+				if (this.mediaHeight > 0) {
+					// 
+					this.progress = (((this.scrollTop + windowHeight) / this.mediaHeight) * 100).toFixed(2)
+					this.progress = this.progress > 100 ? 100 : this.progress
+				}
+			},
 			getData() {
 				this.$api.readCourse({
 					id: this.detail.id,

@@ -101,5 +101,10 @@ export default {
 	// 学习进度列表
 	getUserHistory(params){
 		return api.get('/mobile/user_history/list', params)
-	}
+	},
+	
+	// 更新学习进度
+	updateUserHistory(data){
+		return api.post('/mobile/user_history/update', data)
+	},
 }
