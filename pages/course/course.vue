@@ -55,7 +55,7 @@
 
 <script>
 	// 窗口高度
-	let windowHeight = uni.getAccountInfoSync().windowHeight
+	let windowHeight = uni.getSystemInfoSync().windowHeight
 	export default {
 		filters: {
 			formatType(t) {
@@ -124,7 +124,20 @@
 			this.getData()
 
 		},
+		beforeDestroy() {
+			this.updateUserHistory()
+		},
 		methods: {
+			updateUserHistory() {
+				if (!this.detail.isbuy) return
+				let d = {
+					id: this.detail.id,
+					type: 'course',
+					progress: this.progress
+				}
+				// 调用更新接口
+				this.$api.updateUserHistory(d)
+			},
 			onMediaReady() {
 				const Query = uni.createSelectorQuery().in(this)
 				Query.select('#media').boundingClientRect(data => {
