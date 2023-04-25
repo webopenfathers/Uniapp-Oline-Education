@@ -146,10 +146,19 @@
 			},
 			updateUserHistory() {
 				if (!this.detail.isbuy) return
-				let d = {
-					id: this.detail.id,
-					type: 'course',
-					progress: this.progress
+				let d = {}
+				if (this.column_id == 0) {
+					d = {
+						id: this.detail.id,
+						type: 'course',
+						progress: this.progress
+					}
+				} else {
+					d = {
+						id: this.column_id,
+						type: 'column',
+						detail_id: this.detail.id
+					}
 				}
 				// 调用更新接口
 				this.$api.updateUserHistory(d)
