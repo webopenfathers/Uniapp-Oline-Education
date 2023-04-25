@@ -158,6 +158,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/test-list/test-list",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "考场列表",
+                "enablePullDownRefresh": true
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
