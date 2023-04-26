@@ -1,6 +1,7 @@
 <template>
 	<view>
-		<timer-box></timer-box>
+		<timer-box @end='end'></timer-box>
+		123
 	</view>
 </template>
 
@@ -12,7 +13,9 @@
 			}
 		},
 		methods: {
-
+			end() {
+				console.log('自动提交试卷');
+			}
 		}
 	}
 </script>

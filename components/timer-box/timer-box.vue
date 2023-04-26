@@ -3,10 +3,12 @@
 		<view class="timer-box">
 			考试时间 {{time_out | formatTime}}
 		</view>
+		<view style="height: 85rpx;"></view>
 	</view>
 </template>
 
 <script>
+	let timer = null
 	export default {
 		name: "timer-box",
 		filters: {
@@ -33,6 +35,26 @@
 		},
 		mounted() {
 			this.time_out = this.expire * 60
+			if (this.time_out > 0) {
+				timer = setInterval(() => {
+					this.handleTimeOut()
+				}, 1000)
+			}
+		},
+		beforeDestroy() {
+			if (timer) {
+				clearInterval(timer)
+			}
+		},
+		methods: {
+			handleTimeOut() {
+				if (this.time_out === 0) {
+					this.$emit('end')
+					clearInterval(timer)
+					return
+				}
+				this.time_out--
+			}
 		}
 	}
 </script>
