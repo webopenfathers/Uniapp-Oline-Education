@@ -99,12 +99,17 @@ export default {
 		return api.get('/mobile/column/read', params)
 	},
 	// 学习进度列表
-	getUserHistory(params){
+	getUserHistory(params) {
 		return api.get('/mobile/user_history/list', params)
 	},
-	
+
 	// 更新学习进度
-	updateUserHistory(data){
+	updateUserHistory(data) {
 		return api.post('/mobile/user_history/update', data)
 	},
+
+	// 考场列表
+	getTestList(params) {
+		return api.get('/mobile/testpaper/list', params)
+	}
 }
