@@ -140,34 +140,35 @@
 			}
 		}
 
-	}    ,{
-            "path" : "pages/course/course",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-        ,{
-            "path" : "pages/column/column",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-        ,{
-            "path" : "pages/test-list/test-list",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "考场列表",
-                "enablePullDownRefresh": true
-            }
-            
-        }
-    ],
+	}, {
+		"path": "pages/course/course",
+		"style": {
+			"navigationBarTitleText": "",
+			"enablePullDownRefresh": false
+		}
+
+	}, {
+		"path": "pages/column/column",
+		"style": {
+			"navigationBarTitleText": "",
+			"enablePullDownRefresh": false
+		}
+
+	}, {
+		"path": "pages/test-list/test-list",
+		"style": {
+			"navigationBarTitleText": "考场列表",
+			"enablePullDownRefresh": true
+		}
+
+	}, {
+		"path": "pages/test-detail/test-detail",
+		"style": {
+			"navigationBarTitleText": "开始考试",
+			"enablePullDownRefresh": false
+		}
+
+	}],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uniapp在线教育",
