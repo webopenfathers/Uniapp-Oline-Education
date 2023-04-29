@@ -4,16 +4,25 @@
 		<timer-box @end='end'></timer-box>
 		<!-- 题目卡片 -->
 		<uni-card isFull :title="q.type | formatType" :extra="'第'+current+'题'">
-			<view class="">
+			<view class="mb-2">
 				<mp-html :content="q.title">
 					<view class="flex justify-center py-3 text-light-muted">
 						加载中...
 					</view>
 				</mp-html>
 			</view>
-			<view class="">
-				内容
+			<!-- 答题区--问答题-->
+			<textarea v-if="q.type==='answer'" v-model="q.user_value[0]" placeholder="请输入答案..." class="border p-2 w-100"
+				style="box-sizing: border-box;" />
+			<!-- 答题区--填空题-->
+			<view v-if="q.type==='completion'">
+				<textarea v-for="(item,index) in q.user_value" :key="index" v-model="q.user_value[index]"
+					placeholder="请输入答案..." class="border p-2 w-100 mb-2" style="box-sizing: border-box;" />
+				<!-- 按钮 -->
+				<main-button @click='addCompletion'>添加填空</main-button>
 			</view>
+
+
 		</uni-card>
 		<!-- 底部操作条 -->
 		<test-actions :current='current' :total='total' @on-page='onPage'></test-actions>
@@ -157,6 +166,10 @@
 			},
 			onPage(current) {
 				this.current = current
+			},
+			// 添加填空
+			addCompletion() {
+				this.list[this.current - 1].user_value.push('')
 			}
 		}
 	}

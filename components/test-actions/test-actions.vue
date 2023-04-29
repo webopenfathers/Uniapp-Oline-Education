@@ -1,5 +1,6 @@
 <template>
 	<view>
+		<view style="height: 50px;"></view>
 		<view class="test-actions">
 			<view :class="current<=1?'text-light-muted':''" class="iconfont icon-shangyibu" hover-class="bg-light"
 				@click="pre"></view>
