@@ -15,7 +15,8 @@
 				</view>
 				<view slot="actions" class="flex justify-end mb-1">
 					<!-- actions 底部-->
-					<main-button b-class="px-3" b-style="height:80rpx" :disabled='item.is_test' @click='startTest'>
+					<main-button b-class="px-3" b-style="height:80rpx" :disabled='item.is_test'
+						@click='startTest(item.id)'>
 						<text class="font">{{item.is_test?'你考过了':'参加考试'}}</text>
 					</main-button>
 				</view>
@@ -55,7 +56,7 @@
 			this.handleLoadMore()
 		},
 		methods: {
-			startTest() {
+			startTest(id) {
 				uni.showModal({
 					content: '是否要开始考试',
 					success: (res) => {
@@ -63,7 +64,7 @@
 							return
 						}
 						uni.navigateTo({
-							url: '/pages/test-detail/test-detail',
+							url: '/pages/test-detail/test-detail?id=' + id,
 						});
 					}
 				});

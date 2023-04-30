@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<!-- 倒计时 -->
-		<timer-box @end='end'></timer-box>
+		<timer-box :expire="expire" @end='end'></timer-box>
 		<!-- 题目卡片 -->
 		<uni-card isFull :title="q.type | formatType" :extra="'第'+current+'题'">
 			<view class="mb-2">
@@ -61,112 +61,15 @@
 		},
 		data() {
 			return {
-				current: 1,
-				total: 4,
-				list: [{
-						"id": 42,
-
-						"score": 25,
-
-						"question_id": 73,
-
-						"title": "说说你的看法",
-
-						"remark": "问题解析",
-
-						"type": "answer",
-
-						"user_value": [
-							""
-						]
-
-					},
-					{
-						"id": 43,
-
-						"score": 25,
-
-						"question_id": 72,
-
-						"title": "请问我年龄多大",
-
-						"remark": "问题解析",
-
-						"type": "completion",
-
-						"user_value": [
-							""
-						]
-
-					},
-					{
-						"id": 44,
-
-						"score": 0,
-
-						"question_id": 71,
-
-						"title": "请问我是男生还是女生",
-
-						"remark": "问题解析",
-
-						"type": "trueOrfalse",
-
-						"options": [
-							"正确",
-							"错误"
-						],
-
-						"user_value": -1
-
-					},
-					{
-						"id": 45,
-
-						"score": 25,
-
-						"question_id": 70,
-
-						"title": "你的名字叫什么",
-
-						"remark": "问题解析",
-
-						"type": "checkbox",
-
-						"options": [
-							"张三",
-							"李四",
-							"王五",
-							"王五哈"
-						],
-
-						"user_value": []
-
-					},
-					{
-						"id": 46,
-
-						"score": 25,
-
-						"question_id": 65,
-
-						"title": "你的名字叫什么",
-
-						"remark": "问题解析",
-
-						"type": "checkbox",
-
-						"options": [
-							"张三",
-							"李四",
-							"王五",
-							"王五哈"
-						],
-
-						"user_value": []
-
-					}
-				],
+				current: 0,
+				total: 0,
+				list: [],
+				id: 0,
+				// 过期时间
+				expire: 60,
+				// 考试标题
+				title: '',
+				user_test_id: ''
 			}
 		},
 		computed: {
@@ -176,7 +79,39 @@
 			}
 
 		},
+		onLoad(e) {
+			if (!e.id) {
+				this.$toast('非法参数')
+				setTimeout(() => {
+					uni.navigateBack({
+						delta: 1
+					});
+				}, 600)
+				return
+			}
+			this.id = e.id
+			this.getData()
+		},
 		methods: {
+			getData() {
+				uni.showLoading({
+					title: '加载中...',
+				});
+				this.$api.readTestPaper({
+					id: this.id
+				}).then(res => {
+					this.expire = res.expire
+					this.title = res.title
+					this.list = res.testpaper_questions
+					this.user_test_id = res.user_test_id
+					this.total = this.list.length
+					if (this.total > 0) {
+						this.current = 1
+					}
+				}).finally(() => {
+					uni.hideLoading()
+				})
+			},
 			end() {
 				console.log('自动提交试卷');
 			},

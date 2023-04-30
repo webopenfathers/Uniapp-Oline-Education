@@ -111,5 +111,10 @@ export default {
 	// 考场列表
 	getTestList(params) {
 		return api.get('/mobile/testpaper/list', params)
+	},
+
+	// 开始考试
+	readTestPaper(params) {
+		return api.get('/mobile/testpaper/read', params)
 	}
 }
