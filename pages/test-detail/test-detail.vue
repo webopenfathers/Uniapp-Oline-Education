@@ -37,7 +37,7 @@
 
 		</uni-card>
 		<!-- 底部操作条 -->
-		<test-actions :current='current' :total='total' @on-page='onPage'></test-actions>
+		<test-actions @submit='beforeSubmit' :current='current' :total='total' @on-page='onPage'></test-actions>
 	</view>
 </template>
 
@@ -76,8 +76,20 @@
 			// 当前题目
 			q() {
 				return this.list[this.current - 1] || {}
+			},
+			// 那些没有填的题目
+			undo() {
+				let arr = []
+				this.list.forEach((item, index) => {
+					// 问答题没有填
+					if (((item.type === 'answer' || item.type === 'completion') && !item.user_value[0]) || ((item
+							.type === 'trueOrfalse' || item.type === 'radio') && item.user_value == -1) || (item
+							.type === 'checkbox' && item.user_value.length === 0)) {
+						arr.push(index + 1)
+					}
+				})
+				return arr
 			}
-
 		},
 		onLoad(e) {
 			if (!e.id) {
@@ -93,6 +105,32 @@
 			this.getData()
 		},
 		methods: {
+			// 交卷之前判断那些题目没有完成
+			beforeSubmit() {
+				if (this.undo.length > 0) {
+					return uni.showModal({
+						content: `还有题目没有完成：第${this.undo.join(',')}题`,
+						showCancel: false
+					});
+				}
+
+				uni.showModal({
+					content: '是否要交卷',
+					cancelText: '继续做题',
+					confirmText: '现在交卷',
+					success: res => {
+						if (res.confirm) {
+							this.submit()
+						}
+					},
+				});
+
+			},
+			// 交卷
+			submit() {
+
+
+			},
 			getData() {
 				uni.showLoading({
 					title: '加载中...',
