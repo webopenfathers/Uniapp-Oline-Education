@@ -69,7 +69,8 @@
 				expire: 60,
 				// 考试标题
 				title: '',
-				user_test_id: ''
+				user_test_id: '',
+				isback: false,
 			}
 		},
 		computed: {
@@ -104,6 +105,31 @@
 			this.id = e.id
 			this.getData()
 		},
+		onBackPress() {
+			// return false ----直接返回
+			// return true---不返回
+			// 真正返回
+			if (this.isback) {
+				// 通知考场列表刷新数据
+				uni.$emit('refreshTestList', '')
+				return false
+			}
+			// 拦截返回
+			uni.showModal({
+				content: '是否要放弃这场考试？',
+				cancelText: '继续做题',
+				confirmText: '放弃',
+				success: res => {
+					if (res.confirm) {
+						this.isback = true
+						uni.navigateBack({
+							delta: 1
+						})
+					}
+				},
+			});
+			return true
+		},
 		methods: {
 			// 交卷之前判断那些题目没有完成
 			beforeSubmit() {
@@ -128,7 +154,24 @@
 			},
 			// 交卷
 			submit() {
-
+				uni.showLoading({
+					title: '交卷中...',
+					mask: false
+				})
+				this.$api.submitTest({
+					user_test_id: this.user_test_id,
+					value: this.list.map(o => o.user_value)
+				}).then(res => {
+					this.$toast('交卷成功')
+					this.isback = true
+					setTimeout(() => {
+						uni.navigateBack({
+							delta: 1
+						});
+					}, 500)
+				}).finally(() => {
+					uni.hideLoading()
+				})
 
 			},
 			getData() {

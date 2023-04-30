@@ -116,5 +116,10 @@ export default {
 	// 开始考试
 	readTestPaper(params) {
 		return api.get('/mobile/testpaper/read', params)
+	},
+
+	// 考试交卷
+	submitTest(data) {
+		return api.post('/mobile/user_test/save', data)
 	}
 }

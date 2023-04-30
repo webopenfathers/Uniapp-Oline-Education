@@ -44,18 +44,25 @@
 		},
 		created() {
 			this.getData()
+			uni.$on('refreshTestList', this.refresh)
+		},
+		destroyed() {
+			uni.$off('refreshTestList', this.refresh)
 		},
 		// 下拉刷新
 		onPullDownRefresh() {
-			this.page = 1
-			this.getData().finally(() => {
-				uni.stopPullDownRefresh()
-			})
+			this.refresh()
 		},
 		onReachBottom() {
 			this.handleLoadMore()
 		},
 		methods: {
+			refresh() {
+				this.page = 1
+				this.getData().finally(() => {
+					uni.stopPullDownRefresh()
+				})
+			},
 			startTest(id) {
 				uni.showModal({
 					content: '是否要开始考试',
