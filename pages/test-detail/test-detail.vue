@@ -28,6 +28,12 @@
 					:label="item" :checked="q.user_value===index"></test-option>
 			</view>
 
+			<!-- 答题区--多选组件 -->
+			<view v-else-if="q.type==='checkbox'">
+				<test-option @click='handleDo' v-for="(item,index) in q.options" :key="index" :index="index"
+					:label="item" :checked="index | formatChecked(q.user_value)"></test-option>
+			</view>
+
 
 		</uni-card>
 		<!-- 底部操作条 -->
@@ -47,6 +53,10 @@
 		filters: {
 			formatType(type) {
 				return typeOptions[type]
+			},
+			// 判断传过来的数组中，是否包含索引
+			formatChecked(v, arr) {
+				return arr.includes(v)
 			}
 		},
 		data() {
@@ -178,7 +188,17 @@
 				this.list[this.current - 1].user_value.push('')
 			},
 			handleDo(e) {
-				this.list[this.current - 1].user_value = e
+				if (this.q.type === 'radio' || this.q.type === 'trueOrfalse') {
+					this.list[this.current - 1].user_value = e
+					return
+				}
+
+				let index = this.q.user_value.findIndex(checked => checked == e)
+				if (index === -1) {
+					this.q.user_value.push(e)
+				} else {
+					this.q.user_value.splice(index, 1)
+				}
 			}
 		}
 	}
