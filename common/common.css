@@ -17,6 +17,10 @@
 	color: rgb(92, 204, 132);
 }
 
+.border-main {
+	border-color: rgb(92, 204, 132);
+}
+
 /* 分割线的样式*/
 .divider {
 	height: 15px;

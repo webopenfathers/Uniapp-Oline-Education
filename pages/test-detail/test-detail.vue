@@ -15,11 +15,17 @@
 			<textarea v-if="q.type==='answer'" v-model="q.user_value[0]" placeholder="请输入答案..." class="border p-2 w-100"
 				style="box-sizing: border-box;" />
 			<!-- 答题区--填空题-->
-			<view v-if="q.type==='completion'">
+			<view v-else-if="q.type==='completion'">
 				<textarea v-for="(item,index) in q.user_value" :key="index" v-model="q.user_value[index]"
 					placeholder="请输入答案..." class="border p-2 w-100 mb-2" style="box-sizing: border-box;" />
 				<!-- 按钮 -->
 				<main-button @click='addCompletion'>添加填空</main-button>
+			</view>
+
+			<!-- 答题区--单选组件 -->
+			<view v-else-if="q.type==='trueOrfalse' || q.type==='radio'" class="">
+				<test-option @click='handleDo' v-for="(item,index) in q.options" :key="index" :index="index"
+					:label="item" :checked="q.user_value===index"></test-option>
 			</view>
 
 
@@ -170,6 +176,9 @@
 			// 添加填空
 			addCompletion() {
 				this.list[this.current - 1].user_value.push('')
+			},
+			handleDo(e) {
+				this.list[this.current - 1].user_value = e
 			}
 		}
 	}
