@@ -168,7 +168,16 @@
 			"enablePullDownRefresh": false
 		}
 
-	}],
+	}    ,{
+            "path" : "pages/my-test/my-test",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "我的考试记录",
+                "enablePullDownRefresh": true
+            }
+            
+        }
+    ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uniapp在线教育",
