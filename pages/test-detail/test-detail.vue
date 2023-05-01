@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<!-- 倒计时 -->
-		<timer-box :expire="expire" @end='end'></timer-box>
+		<timer-box v-if="expire>0" :expire="expire" @end='end'></timer-box>
 		<!-- 题目卡片 -->
 		<uni-card isFull :title="q.type | formatType" :extra="'第'+current+'题'">
 			<view class="mb-2">
@@ -66,7 +66,7 @@
 				list: [],
 				id: 0,
 				// 过期时间
-				expire: 60,
+				expire: 0,
 				// 考试标题
 				title: '',
 				user_test_id: '',
