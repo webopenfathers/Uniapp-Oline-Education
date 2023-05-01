@@ -194,7 +194,14 @@
 				})
 			},
 			end() {
-				console.log('自动提交试卷');
+				// console.log('自动提交试卷');
+				this.isback = true
+				this.$toast('考试结束')
+				setTimeout(() => {
+					uni.navigateBack({
+						delta: 1
+					});
+				}, 600)
 			},
 			onPage(current) {
 				this.current = current
