@@ -27,6 +27,11 @@
 							url: '/pages/test-list/test-list'
 						})
 						break;
+					case 'bbs':
+						uni.navigateTo({
+							url: '/pages/bbs/bbs'
+						})
+						break
 					default:
 						break;
 				}

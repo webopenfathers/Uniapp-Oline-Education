@@ -168,16 +168,39 @@
 			"enablePullDownRefresh": false
 		}
 
-	}    ,{
-            "path" : "pages/my-test/my-test",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "我的考试记录",
-                "enablePullDownRefresh": true
-            }
-            
-        }
-    ],
+	}, {
+		"path": "pages/my-test/my-test",
+		"style": {
+			"navigationBarTitleText": "我的考试记录",
+			"enablePullDownRefresh": true
+		}
+
+	}, {
+		"path": "pages/bbs/bbs",
+		"style": {
+			"navigationBarTitleText": "",
+			"enablePullDownRefresh": true,
+			"app-plus": {
+				"titleNView": {
+					"searchInput": {
+						"align": "center",
+						"backgroundColor": "#f5f5f4",
+						"placeholder": "输入搜索帖子",
+						"placeholderColor": "#999",
+						"borderRadius": "3px",
+						"disabled": false
+					},
+					"buttons": [{
+						"fontSrc": "/static/iconfont.ttf",
+						"text": "\ue682",
+						"fontSize": "20px",
+						"float": "right"
+					}]
+				}
+			}
+		}
+
+	}],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uniapp在线教育",
