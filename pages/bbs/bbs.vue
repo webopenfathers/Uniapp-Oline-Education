@@ -22,6 +22,8 @@
 		</view>
 
 		<view class="divider"></view>
+
+		<post-list></post-list>
 	</view>
 </template>
 
