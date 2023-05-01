@@ -126,5 +126,10 @@ export default {
 	// 我的考试记录
 	getMyTestList(params) {
 		return api.get('/mobile/user_test/list', params)
+	},
+	
+	// 社区列表
+	getBbsList(params){
+		return api.get('/mobile/bbs', params)
 	}
 }

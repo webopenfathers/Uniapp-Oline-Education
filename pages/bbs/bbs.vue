@@ -1,14 +1,25 @@
 <template>
 	<view>
-		<scroll-view scroll-x="true" class="px-1 pt-2 scroll-row">
+		<scroll-view scroll-x="true" class="px-1 pt-2 scroll-row" @scrolltolower="handleBbsLoadMore">
 			<view v-for="(item,index) in bbs" :key="index" class="border px-3 py-1 scroll-row-item  rounded mx-1 mb-2"
 				:class="activeIndex===index?'bg-main text-white':'bg-light text-muted'">{{item.title}}</view>
 
 			<!-- 向右滑动加载更多 -->
-			<view class="scroll-row-item">
+			<view v-if="bbsLoadStatus=='loading'" class="scroll-row-item">
 				<uni-load-more :status="bbsLoadStatus" :icon-size="13"></uni-load-more>
 			</view>
 		</scroll-view>
+
+		<view class="divider"></view>
+
+		<view class="flex py-2">
+			<view class="flex-1 flex justify-center align-center text-muted font-md">
+				<text class="font-weight-bold mr-2">总帖子</text>{{postCount}}
+			</view>
+			<view class="flex-1 flex justify-center align-center text-muted font-md">
+				<text class="font-weight-bold mr-2">总用户</text>{{userCount}}
+			</view>
+		</view>
 
 		<view class="divider"></view>
 	</view>
@@ -18,60 +29,46 @@
 	export default {
 		data() {
 			return {
-				bbsLoadStatus:'loading',
+				userCount: 0,
+				postCount: 0,
+				bbsLoadStatus: 'loading',
 				activeIndex: 0,
-				bbs: [{
-						"id": 29,
-
-						"title": "新的社区"
-
-					},
-					{
-						"id": 28,
-
-						"title": "新的社区"
-
-					},
-					{
-						"id": 27,
-
-						"title": "新的社区223"
-
-					},
-					{
-						"id": 26,
-
-						"title": "新的社区1"
-
-					},
-					{
-						"id": 24,
-
-						"title": "新的社区"
-
-					},
-					{
-						"id": 5,
-
-						"title": "第一个社区"
-
-					},
-					{
-						"id": 4,
-
-						"title": "第二个社区"
-
-					},
-					{
-						"id": 1,
-
-						"title": "第一个社区"
-
-					}
-				],
+				bbs: [],
+				bbsQuery: {
+					page: 1
+				}
 			}
 		},
+		onLoad() {
+			this.getBbs()
+		},
 		methods: {
+			handleBbsLoadMore() {
+				if (this.bbsLoadStatus !== 'more') return
+				this.bbsQuery.page++
+				this.getBbs()
+			},
+			getBbs() {
+				this.bbsLoadStatus = 'loading'
+				this.$api.getBbsList(this.bbsQuery).then(res => {
+					this.postCount = res.postCount
+					this.userCount = res.userCount
+					let bbs = this.bbsQuery.page === 1 ? res.rows : [...this.bbs, ...res.rows]
+					if (this.bbsQuery.page === 1) {
+						bbs.unshift({
+							id: 0,
+							title: "全部"
+						})
+					}
+					this.bbs = bbs
+					this.bbsLoadStatus = res.rows.length < 10 ? 'noMore' : 'more'
+				}).catch(err => {
+					this.bbsLoadStatus = 'more'
+					if (this.bbsQuery.page > 1) {
+						this.bbsQuery.page -= 1
+					}
+				})
+			}
 
 		}
 	}
