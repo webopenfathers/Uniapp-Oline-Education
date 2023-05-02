@@ -8,7 +8,8 @@
 			</view>
 		</picker>
 		<!-- 发表帖子 -->
-		<uni-card isFull extra="移除" note="Tips" v-for="(item,index) in form" :key="index">
+		<uni-card isFull extra="移除" note="Tips" v-for="(item,index) in form" :key="index"
+			@click-extra='deleteForm(index)'>
 			<textarea v-model="item.text" placeholder=" 请填写帖子内容" class="bg-light font-md rounded p-2"
 				style="width: 100%;box-sizing: border-box;" />
 
@@ -32,12 +33,24 @@
 		data() {
 			return {
 				activeIndex: -1,
-				menus: ['123', '321'],
+				menus: [],
+				menusId: [],
 				form: [{
 					text: '',
 					images: []
 				}]
 			}
+		},
+		onLoad() {
+			this.$api.getBbsList({
+				page: 1,
+				limit: 100
+			}).then(res => {
+				res.rows.forEach(o => {
+					this.menus.push(o.title)
+					this.menusId.push(o.id)
+				})
+			})
 		},
 		methods: {
 			addForm() {
@@ -48,6 +61,17 @@
 			},
 			handleChange(e) {
 				this.activeIndex = e.detail.value
+			},
+			deleteForm(index) {
+				uni.showModal({
+					content: '是否要移除该区块?',
+					success: (res) => {
+						if (res.cancel) {
+							return
+						}
+						this.form.splice(index, 1)
+					}
+				});
 			}
 		}
 	}
