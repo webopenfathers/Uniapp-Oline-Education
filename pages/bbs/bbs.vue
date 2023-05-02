@@ -25,7 +25,7 @@
 
 		<view class="divider"></view>
 
-		<post-list v-for="(item,index) in list" :key="index" :item="item"></post-list>
+		<post-list v-for="(item,index) in list" :key="index" :item="item" @support='handleSupport'></post-list>
 		<uni-load-more :status="loadStatus" :icon-size="13"></uni-load-more>
 	</view>
 </template>
@@ -55,13 +55,34 @@
 			this.getBbs()
 			this.getData()
 		},
+		// 下拉
 		onPullDownRefresh() {
 			this.refresh()
 		},
+		// 上拉
 		onReachBottom() {
 			this.handleLoadMore()
 		},
+		// 输入框输入
+		onNavigationBarSearchInputConfirmed(e) {
+			this.listQuery.keyword = e.text
+			this.refresh()
+		},
 		methods: {
+			handleSupport(id) {
+				let item = this.list.find(o => o.id == id)
+				if (!item) return
+
+				let k = !item.issupport ? 'supportPost' : 'unSupportPost'
+				let msg = !item.issupport ? '点赞成功' : '取消点赞'
+				this.$api[k]({
+					post_id: item.id
+				}).then(res => {
+					item.support_count = !item.issupport ? (item.support_count + 1) : (item.support_count - 1)
+					item.issupport = !item.issupport
+					this.$toast(msg)
+				})
+			},
 			// 下拉刷新
 			refresh() {
 				this.listQuery.page = 1

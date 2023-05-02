@@ -36,11 +36,12 @@
 				<view class="flex align-center">
 					<view class="flex align-center pr-2">
 						<text style="font-size: 23px;" class="iconfont icon-pinglun2"></text>
-						<text class="ml-1">{{item.common_count}}</text>
+						<text class="ml-1">{{item.common_count==0?'评论':item.common_count}}</text>
 					</view>
-					<view class="flex align-center">
+					<view class="flex align-center" :class="item.issupport?' text-danger':''"
+						@click="$emit('support',item.id)">
 						<text style="font-size: 23px;" class="iconfont icon-dianzan2"></text>
-						<text class="ml-1">{{item.support_count}}</text>
+						<text class="ml-1">{{item.support_count===0?'点赞':item.support_count}}</text>
 					</view>
 				</view>
 				<text class="text-light-muted font">{{item.created_time}}</text>

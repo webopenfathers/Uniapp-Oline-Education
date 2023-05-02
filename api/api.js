@@ -136,5 +136,17 @@ export default {
 	// 帖子列表
 	getPostList(params) {
 		return api.get('/mobile/post/list', params)
-	}
+	},
+
+	// 点赞帖子
+	supportPost(data) {
+		return api.post('/mobile/post/support', data)
+	},
+
+	// 取消点赞帖子
+	unSupportPost(data) {
+		return api.post('/mobile/post/unsupport', data)
+	},
+
+
 }
