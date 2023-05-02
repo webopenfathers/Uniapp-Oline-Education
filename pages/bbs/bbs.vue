@@ -2,7 +2,9 @@
 	<view>
 		<scroll-view scroll-x="true" class="px-1 pt-2 scroll-row" @scrolltolower="handleBbsLoadMore">
 			<view v-for="(item,index) in bbs" :key="index" class="border px-3 py-1 scroll-row-item  rounded mx-1 mb-2"
-				:class="activeIndex===index?'bg-main text-white':'bg-light text-muted'">{{item.title}}</view>
+				:class="activeIndex===index?'bg-main text-white':'bg-light text-muted'" @click="changeBbs(index)">
+				{{item.title}}
+			</view>
 
 			<!-- 向右滑动加载更多 -->
 			<view v-if="bbsLoadStatus=='loading'" class="scroll-row-item">
@@ -53,11 +55,32 @@
 			this.getBbs()
 			this.getData()
 		},
+		onPullDownRefresh() {
+			this.refresh()
+		},
+		onReachBottom() {
+			this.handleLoadMore()
+		},
 		methods: {
+			// 下拉刷新
+			refresh() {
+				this.listQuery.page = 1
+				this.getData().finally(() => {
+					uni.stopPullDownRefresh()
+				})
+			},
+			changeBbs(index) {
+				if (this.activeIndex === index) return
+				this.activeIndex = index
+				this.listQuery.bbs_id = this.bbs[index].id
+				this.listQuery.page = 1
+				this.list = []
+				this.getData()
+			},
 			getData() {
 				this.loadStatus = 'loading'
 				let page = this.listQuery.page
-				this.$api.getPostList(this.listQuery).then(res => {
+				return this.$api.getPostList(this.listQuery).then(res => {
 					this.list = page === 1 ? res.rows : [...this.list, ...res.rows]
 					this.loadStatus = res.rows.length < 10 ? 'noMore' : 'more'
 				}).catch(err => {
@@ -66,6 +89,12 @@
 						this.listQuery.page -= 1
 					}
 				})
+			},
+			// 上拉加载更多
+			handleLoadMore() {
+				if (this.loadStatus !== 'more') return
+				this.listQuery.page++
+				this.getData()
 			},
 			handleBbsLoadMore() {
 				if (this.bbsLoadStatus !== 'more') return

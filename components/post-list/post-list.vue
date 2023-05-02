@@ -21,7 +21,7 @@
 			<!-- 标题 -->
 			<view class="py-2">
 				<text>{{item.desc.text}}</text>
-				<view class="flxe flex-wrap">
+				<view class="flex flex-wrap">
 					<view v-for="(ele,EIndex) in item.desc.images" :key="EIndex"
 						class="flex justify-center align-center mt-1" style="width: 33.33%">
 						<image style="height: 220rpx;width: 220rpx;" class="rounded" :src="ele" mode="aspectFill">
@@ -34,11 +34,11 @@
 			<!-- 下面评论、点赞 -->
 			<view class="flex align-center justify-between mt-2">
 				<view class="flex align-center">
-					<view class="flxe align-center pr-2">
+					<view class="flex align-center pr-2">
 						<text style="font-size: 23px;" class="iconfont icon-pinglun2"></text>
 						<text class="ml-1">{{item.common_count}}</text>
 					</view>
-					<view class="flxe align-center">
+					<view class="flex align-center">
 						<text style="font-size: 23px;" class="iconfont icon-dianzan2"></text>
 						<text class="ml-1">{{item.support_count}}</text>
 					</view>
