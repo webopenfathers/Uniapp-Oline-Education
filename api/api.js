@@ -127,9 +127,14 @@ export default {
 	getMyTestList(params) {
 		return api.get('/mobile/user_test/list', params)
 	},
-	
+
 	// 社区列表
-	getBbsList(params){
+	getBbsList(params) {
 		return api.get('/mobile/bbs', params)
+	},
+
+	// 帖子列表
+	getPostList(params) {
+		return api.get('/mobile/post/list', params)
 	}
 }

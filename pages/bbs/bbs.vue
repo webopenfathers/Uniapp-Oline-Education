@@ -23,7 +23,8 @@
 
 		<view class="divider"></view>
 
-		<post-list></post-list>
+		<post-list v-for="(item,index) in list" :key="index" :item="item"></post-list>
+		<uni-load-more :status="loadStatus" :icon-size="13"></uni-load-more>
 	</view>
 </template>
 
@@ -38,13 +39,34 @@
 				bbs: [],
 				bbsQuery: {
 					page: 1
-				}
+				},
+				listQuery: {
+					page: 1,
+					keyword: '',
+					bbs_id: 0
+				},
+				list: [],
+				loadStatus: 'loading'
 			}
 		},
 		onLoad() {
 			this.getBbs()
+			this.getData()
 		},
 		methods: {
+			getData() {
+				this.loadStatus = 'loading'
+				let page = this.listQuery.page
+				this.$api.getPostList(this.listQuery).then(res => {
+					this.list = page === 1 ? res.rows : [...this.list, ...res.rows]
+					this.loadStatus = res.rows.length < 10 ? 'noMore' : 'more'
+				}).catch(err => {
+					this.loadStatus = 'more'
+					if (this.listQuery.page > 1) {
+						this.listQuery.page -= 1
+					}
+				})
+			},
 			handleBbsLoadMore() {
 				if (this.bbsLoadStatus !== 'more') return
 				this.bbsQuery.page++
