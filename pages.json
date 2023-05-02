@@ -200,6 +200,21 @@
 			}
 		}
 
+	}, {
+		"path": "pages/add-post/add-post",
+		"style": {
+			"navigationBarTitleText": "新增帖子",
+			"enablePullDownRefresh": false,
+			"app-plus": {
+				"titleNView": {
+					"buttons": [{
+						"text": "发布",
+						"fontSize": "14px"
+					}]
+				}
+			}
+		}
+
 	}],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

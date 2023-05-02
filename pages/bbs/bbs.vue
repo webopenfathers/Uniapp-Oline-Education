@@ -68,6 +68,12 @@
 			this.listQuery.keyword = e.text
 			this.refresh()
 		},
+		// 监听按钮点击
+		onNavigationBarButtonTap() {
+			uni.navigateTo({
+				url: '/pages/add-post/add-post',
+			});
+		},
 		methods: {
 			handleSupport(id) {
 				let item = this.list.find(o => o.id == id)
