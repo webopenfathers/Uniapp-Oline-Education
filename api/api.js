@@ -148,5 +148,8 @@ export default {
 		return api.post('/mobile/post/unsupport', data)
 	},
 
-
+	// 发布帖子
+	addPost(data) {
+		return api.post('/mobile/post/save', data)
+	}
 }

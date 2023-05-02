@@ -54,6 +54,11 @@
 		onLoad() {
 			this.getBbs()
 			this.getData()
+
+			uni.$on('refreshBbs', this.refresh)
+		},
+		beforeDestroy() {
+			uni.$off('refreshBbs', this.refresh)
 		},
 		// 下拉
 		onPullDownRefresh() {

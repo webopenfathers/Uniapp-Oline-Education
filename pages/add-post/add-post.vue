@@ -8,14 +8,14 @@
 			</view>
 		</picker>
 		<!-- 发表帖子 -->
-		<uni-card isFull extra="移除" note="Tips" v-for="(item,index) in form" :key="index"
+		<uni-card isFull :extra="index===0?'':'移除'" v-for="(item,index) in form" :key="index"
 			@click-extra='deleteForm(index)'>
 			<textarea v-model="item.text" placeholder=" 请填写帖子内容" class="bg-light font-md rounded p-2"
 				style="width: 100%;box-sizing: border-box;" />
 
 			<!-- 多图组件 -->
-			<view class="">
-				上传组件
+			<view style="margin:0 -20px">
+				<upload-image :list="item.images" @change='handleUploadImage($event,item)'></upload-image>
 			</view>
 		</uni-card>
 
@@ -52,7 +52,38 @@
 				})
 			})
 		},
+		onNavigationBarButtonTap() {
+			this.submit()
+		},
 		methods: {
+			submit() {
+				if (this.activeIndex == -1) {
+					return this.$toast('请先选择社区')
+				}
+				uni.showLoading({
+					title: '发布中...',
+					mask: false
+				});
+
+				this.$api.addPost({
+					bbs_id: this.menusId[this.activeIndex],
+					content: this.form
+				}).then(res => {
+					this.$toast('发布成功')
+					setTimeout(() => {
+						uni.$emit('refreshBbs')
+						uni.navigateBack({
+							delta: 1
+						});
+					},500)
+				}).finally(() => {
+					uni.hideLoading()
+				})
+			},
+			handleUploadImage(imageList, item) {
+				item.images = imageList.map(o => o.path)
+				console.log(item.images);
+			},
 			addForm() {
 				this.form.push({
 					text: '',
