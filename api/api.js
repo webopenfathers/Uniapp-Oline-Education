@@ -167,4 +167,9 @@ export default {
 	replyPost(data) {
 		return api.post('/mobile/post/reply', data)
 	},
+
+	// 我的帖子列表
+	getMyPost(params) {
+		return api.get('/mobile/mypost', params)
+	}
 }

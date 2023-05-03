@@ -1,31 +1,12 @@
 <template>
 	<view>
-		<view v-for="(item,index) in list" :key="index">
-			<uni-card isFull>
-				<!-- 头部 -->
-				<view class="flex justify-between">
-					<text class="h4 font-weight-bold">{{item.testpaper.title}}</text>
-					<text class="font-sm"
-						:class="item.answer_status?'text-success':'text-danger'">{{item.answer_status?'考试完成':'考试中'}}</text>
-				</view>
-				<!-- 身体 -->
-				<view class="flex my-3">
-					<text class="flex-1">题目总数: {{item.testpaper.question_count}}</text>
-					<text class="flex-1"
-						:class="item.read_status===0?'text-danger':''">最终得分：{{item.read_status?item.score:'正在阅卷'}}</text>
-				</view>
-				<view slot="actions" class="flex text-light-muted py-2">
-					{{item.created_time}}
-				</view>
-			</uni-card>
-
-
-			<!-- 分割线 -->
-			<view class="divider"></view>
-		</view>
-
-		<!-- 上拉显示更多 -->
-		<uni-load-more :status="loadStatus"></uni-load-more>
+		<template>
+			<view>
+				<post-list v-for="(item,index) in list" :key="index" :item="item" @support='handleSupport'></post-list>
+				<!-- 上拉显示更多 -->
+				<uni-load-more :status="loadStatus"></uni-load-more>
+			</view>
+		</template>
 	</view>
 </template>
 
@@ -50,6 +31,21 @@
 			this.handleLoadMore()
 		},
 		methods: {
+			// 点赞
+			handleSupport(id) {
+				let item = this.list.find(o => o.id == id)
+				if (!item) return
+
+				let k = !item.issupport ? 'supportPost' : 'unSupportPost'
+				let msg = !item.issupport ? '点赞成功' : '取消点赞'
+				this.$api[k]({
+					post_id: item.id
+				}).then(res => {
+					item.support_count = !item.issupport ? (item.support_count + 1) : (item.support_count - 1)
+					item.issupport = !item.issupport
+					this.$toast(msg)
+				})
+			},
 			refresh() {
 				this.page = 1
 				this.getData().finally(() => {
@@ -66,7 +62,7 @@
 			},
 			getData() {
 				let page = this.page
-				return this.$api.getMyTestList({
+				return this.$api.getMyPost({
 					page: this.page,
 					limit: this.limit
 				}).then(res => {
