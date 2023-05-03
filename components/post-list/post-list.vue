@@ -19,7 +19,7 @@
 			</view>
 
 			<!-- 标题 -->
-			<view class="py-2">
+			<view v-if="!iscontent" class="py-2" @click="open">
 				<text>{{item.desc.text}}</text>
 				<view class="flex flex-wrap">
 					<view v-for="(ele,EIndex) in item.desc.images" :key="EIndex"
@@ -30,9 +30,15 @@
 				</view>
 			</view>
 
+			<view v-else class="flex flex-column p-2" v-for="(item2,index2) in item.content" :key="index2">
+				<text class="mb-1">{{item2.text}}</text>
+				<image v-for="(img,imgI) in item2.images" :key="imgI" :src="img" mode="widthFix"
+					style="max-width: 100%;"></image>
+			</view>
+
 
 			<!-- 下面评论、点赞 -->
-			<view class="flex align-center justify-between mt-2">
+			<view v-if="!iscontent" class="flex align-center justify-between mt-2">
 				<view class="flex align-center">
 					<view class="flex align-center pr-2">
 						<text style="font-size: 23px;" class="iconfont icon-pinglun2"></text>
@@ -59,11 +65,22 @@
 				type: Object,
 				default: {}
 			},
+			iscontent: {
+				type: Boolean,
+				default: false
+			}
 		},
 		data() {
 			return {
 
 			};
+		},
+		methods: {
+			open() {
+				uni.navigateTo({
+					url: '/pages/post-detail/post-detail?id=' + this.item.id,
+				});
+			}
 		}
 	}
 </script>

@@ -215,7 +215,16 @@
 			}
 		}
 
-	}],
+	}    ,{
+            "path" : "pages/post-detail/post-detail",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "帖子详情",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+    ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uniapp在线教育",

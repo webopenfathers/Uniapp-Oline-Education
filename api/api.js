@@ -151,5 +151,10 @@ export default {
 	// 发布帖子
 	addPost(data) {
 		return api.post('/mobile/post/save', data)
+	},
+
+	// 查看帖子
+	readPost(params) {
+		return api.get('/mobile/post/read', params)
 	}
 }
