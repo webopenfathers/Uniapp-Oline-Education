@@ -42,7 +42,7 @@
 				<view class="flex align-center">
 					<view class="flex align-center pr-2">
 						<text style="font-size: 23px;" class="iconfont icon-pinglun2"></text>
-						<text class="ml-1">{{item.common_count==0?'评论':item.common_count}}</text>
+						<text class="ml-1">{{item.comment_count==0?'评论':item.comment_count}}</text>
 					</view>
 					<view class="flex align-center" :class="item.issupport?' text-danger':''"
 						@click="$emit('support',item.id)">
