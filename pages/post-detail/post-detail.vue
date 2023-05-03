@@ -49,13 +49,17 @@
 		<!-- 底部操作条 -->
 		<view style="height: 50px;z-index: 1;" class="fixed-bottom bg-white flex align-center px-3">
 			<!-- 输入框样式 -->
-			<view class=" border rounded flex-1 px-2 py-1 text-light-muted bg-light mr-2">说一句吧</view>
+			<view class=" border rounded flex-1 px-2 py-1 text-light-muted bg-light mr-2" @click="openComment">说一句吧
+			</view>
 			<!-- 点赞按钮 -->
-			<view class="flex align-center" :class="detail.issupport?'text-danger':''">
+			<view class="flex align-center" :class="detail.issupport?'text-danger':''" @click="handleSupport">
 				<text class="iconfont icon-dianzan2" style="font-size: 20px;"></text>
 				<text class="ml-1">{{detail.support_count||'点赞'}}</text>
 			</view>
 		</view>
+
+		<!-- 弹出 -->
+		<comment-popup ref="comment"></comment-popup>
 	</view>
 </template>
 
@@ -119,6 +123,24 @@
 			this.getCommentList()
 		},
 		methods: {
+			openComment() {
+				this.$refs.comment.open()
+			},
+			// 点赞
+			handleSupport() {
+				let item = this.detail
+				let k = !item.issupport ? 'supportPost' : 'unSupportPost'
+				let msg = !item.issupport ? '点赞成功' : '取消点赞'
+				this.$api[k]({
+					post_id: item.id
+				}).then(res => {
+					item.support_count = !item.issupport ? (item.support_count + 1) : (item.support_count - 1)
+					item.issupport = !item.issupport
+					this.$toast(msg)
+					uni.$emit('refreshBbs')
+				})
+			},
+			// 加载更多
 			loadMore() {
 				if (this.loadStatus != 'more') {
 					return
