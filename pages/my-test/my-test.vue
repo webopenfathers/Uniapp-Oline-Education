@@ -14,7 +14,7 @@
 					<text class="flex-1"
 						:class="item.read_status===0?'text-danger':''">最终得分：{{item.read_status?item.score:'正在阅卷'}}</text>
 				</view>
-				<view slot="actions" class="flex text-light-muted py-2">
+				<view slot="actions" class="flex text-light-muted py-3">
 					{{item.created_time}}
 				</view>
 			</uni-card>
