@@ -8,7 +8,7 @@
 						class="mr-2 bg-light">
 					</image>
 					<view class="">
-						<view class="text-primary font-weight-bold">{{item.name}}</view>
+						<view class="text-primary font-weight-bold">{{item.user.name}}</view>
 						<text class="text-muted font">{{item.user.sex}}</text>
 					</view>
 				</view>
@@ -49,6 +49,9 @@
 						<text style="font-size: 23px;" class="iconfont icon-dianzan2"></text>
 						<text class="ml-1">{{item.support_count===0?'点赞':item.support_count}}</text>
 					</view>
+					<!-- 删除帖子功能 -->
+					<button v-if="showDelete" type="warn" size="mini" class="ml-3"
+						@click="$emit('delete',item.id)">删除</button>
 				</view>
 				<text class="text-light-muted font">{{item.created_time}}</text>
 			</view>
@@ -66,6 +69,10 @@
 				default: {}
 			},
 			iscontent: {
+				type: Boolean,
+				default: false
+			},
+			showDelete: {
 				type: Boolean,
 				default: false
 			}

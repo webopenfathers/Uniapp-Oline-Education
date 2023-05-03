@@ -171,5 +171,10 @@ export default {
 	// 我的帖子列表
 	getMyPost(params) {
 		return api.get('/mobile/mypost', params)
+	},
+
+	// 删除我的帖子
+	deletePost(data) {
+		return api.post('/mobile/post/delete', data)
 	}
 }

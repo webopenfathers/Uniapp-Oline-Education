@@ -2,7 +2,8 @@
 	<view>
 		<template>
 			<view>
-				<post-list v-for="(item,index) in list" :key="index" :item="item" @support='handleSupport'></post-list>
+				<post-list showDelete v-for="(item,index) in list" :key="index" :item="item" @support='handleSupport'
+					@delete='handleDelete'></post-list>
 				<!-- 上拉显示更多 -->
 				<uni-load-more :status="loadStatus"></uni-load-more>
 			</view>
@@ -31,6 +32,29 @@
 			this.handleLoadMore()
 		},
 		methods: {
+			// 删除帖子
+			handleDelete(id) {
+				uni.showModal({
+					content: '是否要删除该帖子?',
+					success: (res) => {
+						if (res.confirm) {
+							uni.showLoading({
+								title: '删除中...',
+								mask: false
+							});
+							this.$api.deletePost({
+								id
+							}).then(res2 => {
+								this.$toast('删除成功')
+								this.page = 1
+								this.refresh()
+							}).finally(() => {
+								uni.hideLoading()
+							})
+						}
+					}
+				});
+			},
 			// 点赞
 			handleSupport(id) {
 				let item = this.list.find(o => o.id == id)
