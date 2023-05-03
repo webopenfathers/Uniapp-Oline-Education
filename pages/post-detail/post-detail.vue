@@ -1,11 +1,53 @@
 <template>
 	<view>
 		<post-list :item="detail" iscontent></post-list>
+
+		<view class="px-2">
+			<!--评论列表 -->
+			<view class="comment-list" v-for="(item,index) in comments" :key="index">
+				<image class="face" :src="item.user.avatar" mode="aspectFill"></image>
+				<view class="flex-1">
+					<view class="top">
+						<text>{{item.user.name}}</text>
+					</view>
+					<view class="content">
+						{{item.content}}
+					</view>
+					<view class="date">
+						{{item.created_time | formatTime }}
+					</view>
+
+					<!-- 回复部分 -->
+					<view class="bg-light px-2 mt-2" v-if="item.post_comments && item.post_comments.length>0">
+						<view class="comment-list" v-for="(item2,index2) in item.post_comments" :key="index2">
+							<image class="face" :src="item2.user.avatar" mode="aspectFill"></image>
+							<view class="flex-1">
+								<view class="top">
+									<text>{{item2.user.name}}</text>
+								</view>
+								<view class="content">
+									{{item2.content}}
+								</view>
+								<view class="date">
+									{{item2.created_time | formatTime }}
+								</view>
+							</view>
+						</view>
+					</view>
+				</view>
+			</view>
+		</view>
 	</view>
 </template>
 
 <script>
+	import tool from '@/common/tool.js'
 	export default {
+		filters: {
+			formatTime(value) {
+				return tool.getHumanTime(value)
+			}
+		},
 		data() {
 			return {
 				detail: {
@@ -35,7 +77,10 @@
 					},
 
 					"issupport": false
-				}
+				},
+				page: 1,
+				comments: [],
+				loadStatus: 'more'
 			}
 		},
 		onLoad(e) {
@@ -45,19 +90,66 @@
 					delta: 1
 				});
 			}
-
+			this.detail.id = e.id
 			this.$api.readPost({
 				id: e.id
 			}).then(res => {
 				this.detail = res
 			})
+
+			this.getCommentList()
 		},
 		methods: {
-
+			getCommentList() {
+				this.$api.getPostComments({
+					post_id: this.detail.id,
+					page: this.page
+				}).then(res => {
+					let {
+						rows
+					} = res
+					this.comments = this.page == 1 ? rows : [...this.comments, ...rows]
+					this.loadStatus = rows.length < 10 ? 'noMore' : 'more'
+				}).catch(err => {
+					this.loadStatus = 'more'
+					if (this.page > 1) {
+						this.page = this.page - 1
+					}
+				})
+			}
 		}
 	}
 </script>
 
 <style>
+	.comment-list {
+		display: flex;
+		flex-wrap: nowrap;
+		width: 100%;
+		padding: 20rpx 0;
 
+	}
+
+	.comment-list .face {
+		border-radius: 100%;
+		width: 70rpx;
+		height: 70rpx;
+		flex-shrink: 0;
+		margin-right: 20rpx;
+		background-color: #eee;
+	}
+
+	.comment-list .top {
+		color: #007aff;
+		font-size: 24rpx;
+	}
+
+	.comment-list .content {
+		padding: 8rpx 0;
+	}
+
+	.comment-list .date {
+		color: #666;
+		font-size: 24rpx;
+	}
 </style>

@@ -156,5 +156,10 @@ export default {
 	// 查看帖子
 	readPost(params) {
 		return api.get('/mobile/post/read', params)
+	},
+
+	// 查看帖子评论
+	getPostComments(params) {
+		return api.get('/mobile/post_comment', params)
 	}
 }
