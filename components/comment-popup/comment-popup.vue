@@ -6,7 +6,7 @@
 				<view style="height: 100rpx;width: 100%; box-sizing: border-box;"
 					class="flex align-center  border-bottom px-3">
 					<text class="flex-1">发表</text>
-					<button type="primary" size="mini" :disabled="content==''">发送</button>
+					<button type="primary" size="mini" :disabled="content==''" @click="send">发送</button>
 				</view>
 
 				<!-- 文本域 -->
@@ -28,6 +28,11 @@
 		methods: {
 			open() {
 				this.$refs.popup.open()
+			},
+			send() {
+				this.$emit('send', this.content)
+				this.$refs.popup.close()
+				this.content = ''
 			}
 		}
 	}

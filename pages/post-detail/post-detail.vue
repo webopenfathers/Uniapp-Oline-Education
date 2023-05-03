@@ -10,7 +10,7 @@
 					<view class="top">
 						<text>{{item.user.name}}</text>
 					</view>
-					<view class="content">
+					<view class="content" @click="openComment({reply_id:item.id,reply_user:item.user})">
 						{{item.content}}
 					</view>
 					<view class="date">
@@ -24,8 +24,9 @@
 							<view class="flex-1">
 								<view class="top">
 									<text>{{item2.user.name}}</text>
+									<text>@{{item2.reply_user.username}}</text>
 								</view>
-								<view class="content">
+								<view class="content" @click="openComment({reply_id:item.id,reply_user:item2.user})">
 									{{item2.content}}
 								</view>
 								<view class="date">
@@ -49,7 +50,8 @@
 		<!-- 底部操作条 -->
 		<view style="height: 50px;z-index: 1;" class="fixed-bottom bg-white flex align-center px-3">
 			<!-- 输入框样式 -->
-			<view class=" border rounded flex-1 px-2 py-1 text-light-muted bg-light mr-2" @click="openComment">说一句吧
+			<view class=" border rounded flex-1 px-2 py-1 text-light-muted bg-light mr-2" @click="openComment(false)">
+				说一句吧
 			</view>
 			<!-- 点赞按钮 -->
 			<view class="flex align-center" :class="detail.issupport?'text-danger':''" @click="handleSupport">
@@ -59,7 +61,7 @@
 		</view>
 
 		<!-- 弹出 -->
-		<comment-popup ref="comment"></comment-popup>
+		<comment-popup ref="comment" @send='sendComment'></comment-popup>
 	</view>
 </template>
 
@@ -103,7 +105,11 @@
 				},
 				page: 1,
 				comments: [],
-				loadStatus: 'more'
+				loadStatus: 'more',
+				commentForm: {
+					reply_id: 0,
+					reply_user: null
+				}
 			}
 		},
 		onLoad(e) {
@@ -123,7 +129,36 @@
 			this.getCommentList()
 		},
 		methods: {
-			openComment() {
+			sendComment(content) {
+				// 一级评论
+				let d = {
+					post_id: this.detail.id,
+					content,
+					reply_id: 0
+				}
+
+				if (this.commentForm.reply_user) {
+					d.reply_id = this.commentForm.reply_id
+					d.reply_user = this.commentForm.reply_user
+				}
+				this.$api.replyPost(d).then(res => {
+					this.$toast('评论成功')
+					this.page = 1
+					this.getCommentList()
+					uni.$emit('refreshBbs')
+				})
+			},
+			openComment(u) {
+				if (u) {
+					this.commentForm.reply_id = u.reply_id
+					this.commentForm.reply_user = u.reply_user
+					this.commentForm.reply_user.username = u.reply_user.name
+				} else {
+					this.commentForm = {
+						reply_id: 0,
+						reply_user: null
+					}
+				}
 				this.$refs.comment.open()
 			},
 			// 点赞
