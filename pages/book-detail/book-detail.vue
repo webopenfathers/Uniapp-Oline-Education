@@ -135,10 +135,10 @@
 		},
 		methods: {
 			openPlay(item) {
-				if (item.price != 0 && !this.detail.isbuy) {
-					return this.$toast('请先购买该专栏')
+				if (item.isfree === 0 && !this.detail.isbuy) {
+					return this.$toast('请先购买该电子书')
 				}
-				this.authJump(`/pages/course/course?id=${item.id}&column_id=${this.detail.id}`)
+				this.authJump(`/pages/book/book?id=${item.id}&book_id=${this.detail.id}`)
 			},
 			clickTab(index) {
 				this.current = index

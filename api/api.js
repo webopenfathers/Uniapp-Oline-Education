@@ -186,5 +186,10 @@ export default {
 	// 查看电子书详情
 	readBook(params) {
 		return api.get('/mobile/book/read', params)
+	},
+
+	// 产看电子书章节和内容
+	getBookDetailContent(params) {
+		return api.get('/mobile/book/detail', params)
 	}
 }
