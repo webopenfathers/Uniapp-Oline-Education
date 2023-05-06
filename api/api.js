@@ -176,5 +176,10 @@ export default {
 	// 删除我的帖子
 	deletePost(data) {
 		return api.post('/mobile/post/delete', data)
+	},
+
+	// 电子书列表
+	getBookList(params) {
+		return api.get('/mobile/book/list', params)
 	}
 }

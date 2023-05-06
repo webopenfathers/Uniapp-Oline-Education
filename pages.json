@@ -233,6 +233,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/book-list/book-list",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "电子书列表",
+                "enablePullDownRefresh": true
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

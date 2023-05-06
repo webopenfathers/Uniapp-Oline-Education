@@ -31,7 +31,12 @@
 						uni.navigateTo({
 							url: '/pages/bbs/bbs'
 						})
-						break
+						break;
+					case 'book':
+						uni.navigateTo({
+							url: '/pages/book-list/book-list'
+						})
+						break;
 					default:
 						break;
 				}
