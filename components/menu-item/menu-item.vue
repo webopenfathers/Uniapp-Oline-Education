@@ -1,8 +1,9 @@
 <template>
 	<!-- 目录部分 -->
 	<view class="flex align-center p-3 border-bottom" hover-class="bg-light" @click="$emit('click')">
-		<text class="flex-shrink text-muted" style="width:90rpx">{{(index+1)|formatIndex}}</text>
-		<view class="flex flex-column  align-start">
+		<text class="flex-shrink" style="width:90rpx"
+			:class="active?'text-main':'text-muted'">{{(index+1)|formatIndex}}</text>
+		<view class="flex flex-column  align-start" :class="active?'text-main':'text-muted'">
 			{{title}}
 			<slot></slot>
 		</view>
@@ -17,7 +18,11 @@
 				type: String,
 				default: ''
 			},
-			index: Number
+			index: Number,
+			active: {
+				type: Boolean,
+				default: false
+			}
 		},
 		data() {
 			return {

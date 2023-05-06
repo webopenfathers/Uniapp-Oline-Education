@@ -1,5 +1,22 @@
 <template>
 	<view>
+
+		<!-- 侧边抽屉 -->
+		<uni-drawer ref="showLeft" mode='left' :mask-click="true">
+			<scroll-view style="height: 100%;" scroll-y="true">
+				<menu-item v-for="(item,index) in menus" :key="index" :title="item.title" :index="index"
+					:active="activeId===item.id">
+					<view class="flex">
+						<text v-if="item.isfree" class="border text-danger rounded border-danger font-sm px-1 mt-1">
+							免费试看
+						</text>
+					</view>
+				</menu-item>
+			</scroll-view>
+		</uni-drawer>
+
+
+		<!-- 内容区域 -->
 		<uni-card isFull>
 			<mp-html :content="content">
 				<view class="flex justify-center py-3 text-light-muted">
@@ -7,6 +24,12 @@
 				</view>
 			</mp-html>
 		</uni-card>
+
+
+
+		<!-- 底部操作条 -->
+		<test-actions :current='current' :showSubmit='false' :total='menus.length' @open='handleOpenLeft'
+			@on-page='onPage'></test-actions>
 	</view>
 </template>
 
@@ -17,7 +40,8 @@
 				book_id: 0,
 				activeId: 0,
 				menus: [],
-				content: ''
+				content: '',
+				current: 0
 			}
 		},
 		onLoad(e) {
@@ -35,6 +59,18 @@
 			this.getData()
 		},
 		methods: {
+			close() {
+				this.$refs.showLeft.close()
+			},
+			open() {
+				this.$refs.showLeft.open()
+			},
+			handleOpenLeft() {
+				this.open()
+			},
+			onPage(current) {
+
+			},
 			back() {
 				setTimeout(() => {
 					uni.navigateBack({
@@ -53,6 +89,8 @@
 						return this.back()
 					}
 
+					let index = this.menus.findIndex(o => o.id === this.activeId)
+					this.current = index + 1
 					this.content = res.content
 					// 动态设置title
 					uni.setNavigationBarTitle({
