@@ -5,7 +5,7 @@
 		<uni-drawer ref="showLeft" mode='left' :mask-click="true">
 			<scroll-view style="height: 100%;" scroll-y="true">
 				<menu-item v-for="(item,index) in menus" :key="index" :title="item.title" :index="index"
-					:active="activeId===item.id">
+					:active="activeId===item.id" @click='changeCurrent(index)'>
 					<view class="flex">
 						<text v-if="item.isfree" class="border text-danger rounded border-danger font-sm px-1 mt-1">
 							免费试看
@@ -69,7 +69,8 @@
 				this.open()
 			},
 			onPage(current) {
-
+				this.current = current
+				this.getContent()
 			},
 			back() {
 				setTimeout(() => {
@@ -99,6 +100,19 @@
 				}).catch(err => {
 
 				})
+			},
+			changeCurrent(index) {
+				this.current = index + 1
+				this.getContent()
+				this.close()
+			},
+			getContent() {
+				let item = this.menus[this.current - 1]
+				if (item) {
+					this.activeId = item.id
+					this.content = ''
+					this.getData()
+				}
 			}
 		}
 	}
