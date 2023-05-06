@@ -15,7 +15,8 @@
 
 			<!-- 多图组件 -->
 			<view style="margin:0 -20px">
-				<upload-image :list="item.images" @change='handleUploadImage($event,item)'></upload-image>
+				<upload-image ref="uploadImage" :list="item.images"
+					@change='handleUploadImage($event,item)'></upload-image>
 			</view>
 		</uni-card>
 
@@ -55,11 +56,28 @@
 		onNavigationBarButtonTap() {
 			this.submit()
 		},
+
+		onBackPress() {
+			// return true 不允许返回
+			return !this.beforeBackOrSubmit()
+		},
 		methods: {
+			beforeBackOrSubmit() {
+				let els = this.$refs.uploadImage
+				let isuploadSuccess = true
+				for (let i = 0; i < els.length; i++) {
+					isuploadSuccess = isuploadSuccess && els[i].validate()
+				}
+
+				return isuploadSuccess
+			},
 			submit() {
 				if (this.activeIndex == -1) {
 					return this.$toast('请先选择社区')
 				}
+
+				if (!this.beforeBackOrSubmit()) return
+
 				uni.showLoading({
 					title: '发布中...',
 					mask: false
@@ -75,7 +93,7 @@
 						uni.navigateBack({
 							delta: 1
 						});
-					},500)
+					}, 500)
 				}).finally(() => {
 					uni.hideLoading()
 				})

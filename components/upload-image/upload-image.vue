@@ -70,7 +70,6 @@
 			this.imageList = this.list.map(url => {
 				return {
 					path: url,
-					progress: 100
 				}
 			}) || []
 		},
