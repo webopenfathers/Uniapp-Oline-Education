@@ -242,6 +242,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/book-detail/book-detail",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "电子书详情",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

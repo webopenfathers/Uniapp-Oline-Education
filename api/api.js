@@ -181,5 +181,10 @@ export default {
 	// 电子书列表
 	getBookList(params) {
 		return api.get('/mobile/book/list', params)
+	},
+
+	// 查看电子书详情
+	readBook(params) {
+		return api.get('/mobile/book/read', params)
 	}
 }
