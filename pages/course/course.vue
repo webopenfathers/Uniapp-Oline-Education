@@ -18,6 +18,10 @@
 			:poster="detail.cover" @timeupdate="onVideoTimeUpdate"></video>
 
 
+		<!-- 活动条 -->
+		<active-bar></active-bar>
+
+
 		<view class="animate__animated animate__fadeIn animate__faster">
 			<!-- 2 -->
 			<view class="flex flex-column p-3">
@@ -93,7 +97,10 @@
 				column_id: 0,
 				scrollTop: 0,
 				mediaHeight: 0,
-				progress: 0
+				progress: 0,
+				group_id: 0,
+				// 拼团/秒杀详情
+				activeData: null
 			}
 		},
 		// 图文-根据滚动状态来更新进度
@@ -119,6 +126,10 @@
 			}
 			if (e.column_id) {
 				this.column_id = e.column_id
+			}
+
+			if (e.group_id) {
+				this.group_id = e.group_id
 			}
 			this.getData()
 
@@ -179,9 +190,16 @@
 			getData() {
 				this.$api.readCourse({
 					id: this.detail.id,
-					column_id: this.column_id
+					column_id: this.column_id,
+					group_id: this.group_id
 				}).then(res => {
 					this.detail = res
+					if (res.group) {
+						this.activeData = {
+							type: 'group',
+							data: res.data
+						}
+					}
 					uni.setNavigationBarTitle({
 						title: this.detail.title
 					})

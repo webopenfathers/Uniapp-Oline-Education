@@ -58,9 +58,13 @@
 		},
 		methods: {
 			openDetail() {
-				let url = '/pages/course/course?id=' + this.item.id
+				let params = `id=${this.item.id}`
+				if (this.item.group_id) {
+					params += `&group_id=${this.item.group_id}`
+				}
+				let url = '/pages/course/course?' + params
 				if (!this.item.type || this.item.type === 'column') {
-					url = '/pages/column/column?id=' + this.item.id
+					url = '/pages/column/column?' + params
 				}
 				uni.navigateTo({
 					url,
