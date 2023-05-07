@@ -54,7 +54,7 @@
 		methods: {
 			openDetail() {
 				let url = '/pages/course/course?id=' + this.item.id
-				if (!this.item.type) {
+				if (!this.item.type || this.item.type === 'column') {
 					url = '/pages/column/column?id=' + this.item.id
 				}
 				uni.navigateTo({

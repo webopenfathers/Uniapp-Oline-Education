@@ -35,7 +35,7 @@
 					<view class="divider"></view>
 					<view class="flex align-center px-2 py-3 justify-between">
 						<text class="font-md font-weight-bold">{{item.title}}</text>
-						<text class="font-sm text-light-muted" v-if="item.showMore">查看更多</text>
+						<text class="font-sm text-light-muted" v-if="item.showMore" @click="openCourseList">查看更多</text>
 					</view>
 					<view>
 						<course-list :type='item.listType' v-for="(item2,index2) in item.data" :key="index2"
@@ -99,6 +99,11 @@
 					this.loading = false
 					uni.stopPullDownRefresh()
 				})
+			},
+			openCourseList() {
+				uni.navigateTo({
+					url: '/pages/list/list?module=course',
+				});
 			}
 		}
 	}

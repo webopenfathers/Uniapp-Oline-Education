@@ -211,5 +211,15 @@ export default {
 	// 获取我的收藏列表
 	getMyFavaList(params) {
 		return api.get('/mobile/user_fava', params)
+	},
+
+	// 获取课程列表
+	getCourseList(params) {
+		return api.get('/mobile/course/list', params)
+	},
+
+	// 获取专栏列表
+	getColumnList(params) {
+		return api.get('/mobile/column/list', params)
 	}
 }
