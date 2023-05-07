@@ -1,7 +1,8 @@
 <template>
 	<view>
-		<view v-for="(item,index) in list" :key="index">
-			<course-list :item="item" type="one"></course-list>
+		<view class="flex flex-wrap">
+			<course-list v-for="(item,index) in list" :key="index" :item="item"
+				:type="module==='course' || module==='column'?'one':'two'" :tag='tag'></course-list>
 		</view>
 
 
@@ -25,11 +26,22 @@
 			if (e.module) this.module = e.module
 			let t = {
 				course: '课程',
-				column: '专栏'
+				column: '专栏',
+				flashsale: '秒杀',
+				group: '拼团'
 			}
 			uni.setNavigationBarTitle({
 				title: t[this.module] + '列表'
 			})
+		},
+		computed: {
+			tag() {
+				if (this.module === 'course' || this.module === 'column') {
+					return ''
+				}
+
+				return this.module == 'group' ? '拼团价' : '秒杀价'
+			}
 		},
 		created() {
 			this.getData()
@@ -57,7 +69,9 @@
 				let page = this.page
 				let fun = {
 					course: 'getCourseList',
-					column: 'getColumnList'
+					column: 'getColumnList',
+					flashsale: 'getFlashSale',
+					group: 'getGroup'
 				}
 				return this.$api[fun[this.module]]({
 					page: this.page,

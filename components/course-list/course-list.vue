@@ -6,7 +6,7 @@
 				{{item.type|formatType}}
 			</view>
 		</view>
-		<view class="flex flex-column flex-shrink" style="width: 400rpx;">
+		<view class="flex flex-column flex-shrink" style="width: 380rpx;">
 			<text class="text-ellipsis font-md">{{item.title}}</text>
 			<!-- 插槽 -->
 			<!--<slot name="desc">
@@ -16,6 +16,7 @@
 			</slot> -->
 			<view class="flex flex-1 align-end" v-if="item.price">
 				<slot>
+					<text class="font text-danger" v-if="tag">{{tag}}:</text>
 					<text class="font-md text-danger">￥{{item.price}}</text>
 					<text class="font-sm text-light-muted">￥{{item.t_price}}</text>
 				</slot>
@@ -38,6 +39,10 @@
 			type: {
 				type: String,
 				default: 'two'
+			},
+			tag: {
+				type: String,
+				default: ''
 			}
 		},
 		// 过滤器

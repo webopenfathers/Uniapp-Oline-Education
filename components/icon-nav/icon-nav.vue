@@ -37,12 +37,10 @@
 							url: '/pages/book-list/book-list'
 						})
 						break;
-					case 'column':
-						uni.navigateTo({
-							url: '/pages/list/list?module=column'
-						})
-						break;
 					default:
+						uni.navigateTo({
+							url: '/pages/list/list?module=' + item.module
+						})
 						break;
 				}
 			}
