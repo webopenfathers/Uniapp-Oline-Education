@@ -79,7 +79,8 @@
 					},
 					{
 						icon: "icon-pinglun2",
-						name: '消息'
+						name: '消息',
+						path:'/pages/msg-list/msg-list'
 					},
 					{
 						icon: "icon-shoucang1",

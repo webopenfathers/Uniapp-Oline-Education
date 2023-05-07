@@ -191,5 +191,10 @@ export default {
 	// 产看电子书章节和内容
 	getBookDetailContent(params) {
 		return api.get('/mobile/book/detail', params)
+	},
+
+	// 公告列表
+	getMsgList(params) {
+		return api.get('/mobile/notice/list', params)
 	}
 }

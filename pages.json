@@ -260,6 +260,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/msg-list/msg-list",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "消息列表",
+                "enablePullDownRefresh": true
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
