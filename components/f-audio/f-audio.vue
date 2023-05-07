@@ -17,7 +17,7 @@
 		<view class="f-audio-btn flex align-center justify-center pb-5">
 			<text class="iconfont icon-ziyuan11" :style="loopStatus?'color:rgba(92,204,132);':''" @click="loop"></text>
 			<text class="iconfont  mx-3" :class="isPlaying?'icon-tianchongxing- ':'icon-bofang2'" @click="play"></text>
-			<text class="iconfont icon-shoucang"></text>
+			<text class="iconfont icon-shoucang1"></text>
 		</view>
 	</view>
 </template>

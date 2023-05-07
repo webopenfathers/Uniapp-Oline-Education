@@ -196,5 +196,15 @@ export default {
 	// 公告列表
 	getMsgList(params) {
 		return api.get('/mobile/notice/list', params)
+	},
+
+	// 收藏
+	collect(data) {
+		return api.post('/mobile/collect', data)
+	},
+
+	// 取消收藏
+	uncollect(data) {
+		return api.post('/mobile/uncollect', data)
 	}
 }
