@@ -206,5 +206,10 @@ export default {
 	// 取消收藏
 	uncollect(data) {
 		return api.post('/mobile/uncollect', data)
+	},
+
+	// 获取我的收藏列表
+	getMyFavaList(params) {
+		return api.get('/mobile/user_fava', params)
 	}
 }

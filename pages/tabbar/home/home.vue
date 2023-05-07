@@ -75,16 +75,17 @@
 				icons: [{
 						icon: "icon-OrderHistory",
 						name: '订单',
-						path:'/pages/order-list/order-list'
+						path: '/pages/order-list/order-list'
 					},
 					{
 						icon: "icon-pinglun2",
 						name: '消息',
-						path:'/pages/msg-list/msg-list'
+						path: '/pages/msg-list/msg-list'
 					},
 					{
 						icon: "icon-shoucang1",
-						name: '收藏'
+						name: '收藏',
+						path: '/pages/fava-list/fava-list'
 					},
 					{
 						icon: "icon-e-learning-monitor",

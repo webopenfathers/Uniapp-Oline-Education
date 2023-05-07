@@ -9,12 +9,12 @@
 		<view class="flex flex-column flex-shrink" style="width: 400rpx;">
 			<text class="text-ellipsis font-md">{{item.title}}</text>
 			<!-- 插槽 -->
-			<slot name="desc">
+			<!--<slot name="desc">
 				<view v-if="item.try" class="font-sm text-light-muted my-1" v-html="item.try">
 
 				</view>
-			</slot>
-			<view class="flex flex-1 align-end">
+			</slot> -->
+			<view class="flex flex-1 align-end" v-if="item.price">
 				<slot>
 					<text class="font-md text-danger">￥{{item.price}}</text>
 					<text class="font-sm text-light-muted">￥{{item.t_price}}</text>
