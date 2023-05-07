@@ -25,7 +25,8 @@
 
 				<view class="flex align-center justify-between">
 					<text class="font-sm text-light-muted">{{detail.sub_count}} 人学过</text>
-					<collect-btn :isfava="detail.isfava" :goods_id="detail.id" type="course"></collect-btn>
+					<collect-btn @success='detail.isfava=$event' :isfava="detail.isfava" :goods_id="detail.id"
+						type="course"></collect-btn>
 				</view>
 
 

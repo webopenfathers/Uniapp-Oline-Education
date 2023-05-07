@@ -18,7 +18,11 @@
 			<!-- 2 -->
 			<view class="flex flex-column p-3">
 				<text class="mb-1" style="font-size: 38rpx;">{{detail.title}}</text>
-				<text class="font-sm text-light-muted">{{detail.sub_count}} 人学过</text>
+				<view class="flex align-center justify-between">
+					<text class="font-sm text-light-muted">{{detail.sub_count}} 人学过</text>
+					<collect-btn @success='detail.isfava=$event' :isfava="detail.isfava" :goods_id="detail.id"
+						type="column"></collect-btn>
+				</view>
 
 				<view v-if="!detail.isbuy" class="flex mt-2 align-end">
 					<text class="text-danger font-lg">￥{{detail.price}}</text>
@@ -96,25 +100,17 @@
 					name: "目录",
 				}],
 				detail: {
-					"id": 0,
-
-					"title": "",
-
-					"cover": "",
-
-					"try": "",
-
-					"price": "",
-
-					"t_price": "",
-
-					"type": "media",
-
-					"sub_count": 0,
-
-					"content": "",
-
-					"isbuy": false,
+					id: 0,
+					title: "",
+					cover: "",
+					try: "",
+					price: "",
+					t_price: "",
+					type: "media",
+					sub_count: 0,
+					content: "",
+					isbuy: false,
+					isfava: false
 				},
 				list: []
 			}

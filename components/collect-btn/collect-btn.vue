@@ -14,7 +14,7 @@
 				default: false
 			},
 			goods_id: {
-				type: String,
+				type: Number,
 				default: 0
 			},
 			type: {
@@ -33,11 +33,15 @@
 					title: '操作中...',
 					mask: false
 				});
-				this.$api.collect({
+
+				let fun = this.isfava ? 'uncollect' : 'collect'
+				let msg = this.isfava ? '取消收藏' : '收藏'
+				this.$api[fun]({
 					goods_id: this.goods_id,
 					type: this.type
 				}).then(res => {
-					this.$toast('收藏成功')
+					this.$toast(msg + '成功')
+					this.$emit('success', fun === 'uncollect' ? false : true)
 				}).finally(() => {
 					uni.hideLoading()
 				})
