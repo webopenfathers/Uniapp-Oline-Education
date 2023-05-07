@@ -11,6 +11,11 @@
 			</view>
 		</view>
 
+
+		<!-- 活动条 -->
+		<active-bar v-if="activeData && !detail.isbuy" :endTime="activeData.data.end_time"
+			:price="activeData.data.price">{{activeData.data.t_num}}人拼团</active-bar>
+
 		<!-- tab栏 -->
 		<tab :current="current" :tabs="tabs" @change='clickTab'></tab>
 		<!-- 简介 -->
@@ -112,7 +117,10 @@
 					isbuy: false,
 					isfava: false
 				},
-				list: []
+				list: [],
+				group_id: 0,
+				// 拼团/秒杀详情
+				activeData: null
 			}
 		},
 		// 可以接收参数
@@ -126,6 +134,10 @@
 					})
 				}, 700)
 				return
+			}
+
+			if (e.group_id) {
+				this.group_id = e.group_id
 			}
 		},
 		onShow() {
@@ -143,9 +155,17 @@
 			},
 			getData() {
 				this.$api.readColumn({
-					id: this.detail.id
+					id: this.detail.id,
+					group_id: this.group_id
 				}).then(res => {
 					this.detail = res
+
+					if (res.group) {
+						this.activeData = {
+							type: 'group',
+							data: res.group
+						}
+					}
 					this.list = res.column_courses
 					uni.setNavigationBarTitle({
 						title: this.detail.title

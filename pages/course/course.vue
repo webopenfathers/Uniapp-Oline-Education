@@ -19,7 +19,8 @@
 
 
 		<!-- 活动条 -->
-		<active-bar></active-bar>
+		<active-bar v-if="activeData && !detail.isbuy" :endTime="activeData.data.end_time"
+			:price="activeData.data.price">{{activeData.data.t_num}}人拼团</active-bar>
 
 
 		<view class="animate__animated animate__fadeIn animate__faster">
@@ -197,7 +198,7 @@
 					if (res.group) {
 						this.activeData = {
 							type: 'group',
-							data: res.data
+							data: res.group
 						}
 					}
 					uni.setNavigationBarTitle({

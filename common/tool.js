@@ -77,4 +77,29 @@ export default {
 		return formatStr;
 	},
 
+
+	dateCount(endTime) {
+		// 现在时间
+		let now = new Date()
+		//截止时间
+		let until = new Date(endTime)
+		// 计算时会发生隐式转换，调用valueOf()方法，转化成时间戳的形式
+		let days = (until - now) / 1000 / 3600 / 24
+		// 下面都是简单的数学计算 
+		let day = Math.floor(days)
+		let hours = (days - day) * 24
+		let hour = Math.floor(hours)
+		let minutes = (hours - hour) * 60
+		let minute = Math.floor(minutes)
+		let seconds = (minutes - minute) * 60
+		let second = Math.floor(seconds)
+		let back = '剩余时间：' + day + '天' + hour + '小时' + minute + '分钟' + second + '秒'
+		return {
+			day,
+			hour,
+			minute,
+			second
+		}
+	},
+
 }
