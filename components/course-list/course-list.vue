@@ -62,6 +62,11 @@
 				if (this.item.group_id) {
 					params += `&group_id=${this.item.group_id}`
 				}
+
+				if (this.item.flashsale_id) {
+					params += `&flashsale_id=${this.item.flashsale_id}`
+				}
+
 				let url = '/pages/course/course?' + params
 				if (!this.item.type || this.item.type === 'column') {
 					url = '/pages/column/column?' + params

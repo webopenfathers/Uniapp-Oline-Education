@@ -20,7 +20,12 @@
 
 		<!-- 活动条 -->
 		<active-bar v-if="activeData && !detail.isbuy" :endTime="activeData.data.end_time"
-			:price="activeData.data.price">{{activeData.data.t_num}}人拼团</active-bar>
+			:price="activeData.data.price" :t_price="detail.price">
+
+			<text v-if="activeData.type=='group'">{{activeData.data.p_num}}人拼团</text>
+			<text v-else>{{activeData.data.used_num}}人已抢/剩{{activeData.data.s_num-activeData.data.used_num}}名</text>
+
+		</active-bar>
 
 
 		<view class="animate__animated animate__fadeIn animate__faster">
@@ -101,7 +106,8 @@
 				progress: 0,
 				group_id: 0,
 				// 拼团/秒杀详情
-				activeData: null
+				activeData: null,
+				flashsale_id: 0
 			}
 		},
 		// 图文-根据滚动状态来更新进度
@@ -131,6 +137,10 @@
 
 			if (e.group_id) {
 				this.group_id = e.group_id
+			}
+
+			if (e.flashsale_id) {
+				this.flashsale_id = e.flashsale_id
 			}
 			this.getData()
 
@@ -192,13 +202,21 @@
 				this.$api.readCourse({
 					id: this.detail.id,
 					column_id: this.column_id,
-					group_id: this.group_id
+					group_id: this.group_id,
+					flashsale_id: this.flashsale_id
 				}).then(res => {
 					this.detail = res
 					if (res.group) {
 						this.activeData = {
 							type: 'group',
 							data: res.group
+						}
+					}
+
+					if (res.flashsale) {
+						this.activeData = {
+							type: 'flashsale',
+							data: res.flashsale
 						}
 					}
 					uni.setNavigationBarTitle({

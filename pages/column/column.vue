@@ -14,7 +14,10 @@
 
 		<!-- 活动条 -->
 		<active-bar v-if="activeData && !detail.isbuy" :endTime="activeData.data.end_time"
-			:price="activeData.data.price">{{activeData.data.t_num}}人拼团</active-bar>
+			:price="activeData.data.price" :t_price="detail.price">
+			<text v-if="activeData.type=='group'">{{activeData.data.p_num}}人拼团</text>
+			<text v-else>{{activeData.data.used_num}}人已抢/剩{{activeData.data.s_num-activeData.data.used_num}}名</text>
+		</active-bar>
 
 		<!-- tab栏 -->
 		<tab :current="current" :tabs="tabs" @change='clickTab'></tab>
@@ -120,7 +123,8 @@
 				list: [],
 				group_id: 0,
 				// 拼团/秒杀详情
-				activeData: null
+				activeData: null,
+				flashsale_id: 0
 			}
 		},
 		// 可以接收参数
@@ -139,6 +143,10 @@
 			if (e.group_id) {
 				this.group_id = e.group_id
 			}
+
+			if (e.flashsale_id) {
+				this.flashsale_id = e.flashsale_id
+			}
 		},
 		onShow() {
 			this.getData()
@@ -156,7 +164,8 @@
 			getData() {
 				this.$api.readColumn({
 					id: this.detail.id,
-					group_id: this.group_id
+					group_id: this.group_id,
+					flashsale_id: this.flashsale_id
 				}).then(res => {
 					this.detail = res
 
@@ -166,6 +175,15 @@
 							data: res.group
 						}
 					}
+
+					if (res.flashsale) {
+						this.activeData = {
+							type: 'flashsale',
+							data: res.flashsale
+						}
+					}
+
+
 					this.list = res.column_courses
 					uni.setNavigationBarTitle({
 						title: this.detail.title
