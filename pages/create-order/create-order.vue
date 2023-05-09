@@ -5,7 +5,7 @@
 		<view class="divider"></view>
 
 		<uni-list>
-			<uni-list-item title="优惠券" :showArrow="true">
+			<uni-list-item title="优惠券" :showArrow="true" @click="chooseCoupon" :clickable="true">
 				<view slot="footer" class="font-sm">
 					{{coupon_count?`请选择优惠券(${coupon_count}张)`:'暂无可用'}}
 
@@ -63,8 +63,22 @@
 					delta: 1
 				});
 			})
+
+
+			// 全局监听
+			uni.$on('chooseCoupon', this.handleChooseCoupon)
+		},
+		beforeDestroy() {
+			uni.$off('chooseCoupon', this.handleChooseCoupon)
 		},
 		methods: {
+			handleChooseCoupon(e) {
+				console.log(e);
+			},
+			chooseCoupon() {
+				if (this.coupon_count == 0) return
+				this.authJump(`/pages/my-coupon/my-coupon?goods_id=${this.id}&type=${this.type}`)
+			},
 			getUserableCouponCount() {
 				uni.showLoading({
 					title: '加载中...',

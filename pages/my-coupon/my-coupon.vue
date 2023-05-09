@@ -7,7 +7,7 @@
 				<text class="font-sm">适用{{item.typeName}}：{{item.title}}</text>
 			</view>
 			<view hover-class="bg-hover-warning" class=" flex justify-center align-center bg-warning"
-				style="width: 200rpx;">
+				style="width: 200rpx;" @click="onClickCoupon(item)">
 				{{item.btn}}
 			</view>
 		</view>
@@ -24,11 +24,19 @@
 				loadStatus: 'loading',
 				page: 1,
 				limit: 10,
-				list: []
+				list: [],
+				goods_id: null,
+				type: null
 			}
 		},
 		created() {
 			this.getData()
+		},
+		onLoad(e) {
+			if (e.goods_id && e.type) {
+				this.goods_id = e.goods_id
+				this.type = e.type
+			}
 		},
 		// 下拉刷新
 		onPullDownRefresh() {
@@ -75,9 +83,29 @@
 					v.expired = end < now
 					v.btn = v.used === 1 ? '已使用' : (v.expired ? '已过期' : '立即使用')
 					v.typeName = v.type === 'course' ? '课程' : "专栏"
+
+					if ((this.type && this.goods_id && v.btn == '立即使用') && (v.type != this.type || v.goods_id !=
+							this.goods_id)) {
+						v.btn = '不可用'
+					}
 				})
 
 				return list
+			},
+			onClickCoupon(item) {
+				if (item.btn != '立即使用') {
+					return
+				}
+				if (this.type && this.goods_id) {
+					uni.$emit('chooseCoupon', {
+						user_coupon_id: item.id,
+						price: parseFloat(item.price)
+					})
+
+					return uni.navigateBack({
+						delta: 1
+					});
+				}
 			}
 		}
 	}
