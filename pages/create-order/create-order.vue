@@ -7,7 +7,7 @@
 		<uni-list>
 			<uni-list-item title="优惠券" :showArrow="true" @click="chooseCoupon" :clickable="true">
 				<view slot="footer" class="font-sm">
-					{{coupon_count?`请选择优惠券(${coupon_count}张)`:'暂无可用'}}
+					{{ coupon_desc }}
 
 				</view>
 			</uni-list-item>
@@ -19,7 +19,7 @@
 
 		<view class="height:75px"></view>
 		<view class="fixed-bottom p-2 border-top bg-white">
-			<main-button v-if="detail.price">立即购买￥{{detail.price}}</main-button>
+			<main-button v-if="detail.price">立即购买￥{{price}}</main-button>
 		</view>
 	</view>
 </template>
@@ -37,7 +37,9 @@
 				},
 				id: 0,
 				type: null,
-				coupon_count: 0
+				coupon_count: 0,
+				user_coupon_id: 0,
+				coupon_price: 0
 			}
 		},
 		onLoad(e) {
@@ -71,9 +73,22 @@
 		beforeDestroy() {
 			uni.$off('chooseCoupon', this.handleChooseCoupon)
 		},
+		computed: {
+			price() {
+				let p = ((this.detail.price * 1000 - this.coupon_price * 1000) / 1000).toFixed(2)
+				return p <= 0 ? 0 : p
+			},
+			coupon_desc() {
+				if (this.coupon_price) {
+					return `减${this.coupon_price}元`
+				}
+				return this.coupon_count ? `请选择优惠券(${this.coupon_count}张)` : '暂无可用'
+			}
+		},
 		methods: {
 			handleChooseCoupon(e) {
-				console.log(e);
+				this.user_coupon_id = e.user_coupon_id
+				this.coupon_price = e.price
 			},
 			chooseCoupon() {
 				if (this.coupon_count == 0) return
