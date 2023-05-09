@@ -19,7 +19,7 @@
 					<text class="font text-danger" v-if="tag">{{tag}}:</text>
 					<text class="font-md text-danger" v-if="item.price==0">免费</text>
 					<text class="font-md text-danger" v-else>￥{{item.price}}</text>
-					<text class="font-sm text-light-muted">￥{{item.t_price}}</text>
+					<text class="font-sm text-light-muted" v-if="item.t_price">￥{{item.t_price}}</text>
 				</slot>
 			</view>
 		</view>

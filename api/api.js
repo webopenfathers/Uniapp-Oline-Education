@@ -228,5 +228,10 @@ export default {
 	// 立即学习
 	learn(data) {
 		return api.post('/mobile/order/learn', data)
+	},
+
+	// 下单前获取产品信息
+	readGoods(params) {
+		return api.get('/mobile/goods/read', params)
 	}
 }

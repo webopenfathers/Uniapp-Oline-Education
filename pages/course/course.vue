@@ -166,6 +166,11 @@
 					})
 					return
 				}
+
+				// 创建订单
+				let type = 'course'
+				let id = this.detail.id
+				this.authJump(`/pages/create-order/create-order?id=${id}&type=${type}`)
 			},
 			onAudioProgressUpdate(p) {
 				this.progress = p
