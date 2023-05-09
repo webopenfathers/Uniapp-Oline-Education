@@ -233,5 +233,10 @@ export default {
 	// 下单前获取产品信息
 	readGoods(params) {
 		return api.get('/mobile/goods/read', params)
+	},
+
+	// 获取指定课程/专栏的可用优惠券
+	getUserableCouponCount(params) {
+		return api.get('/mobile/user_coupon/count', params)
 	}
 }
