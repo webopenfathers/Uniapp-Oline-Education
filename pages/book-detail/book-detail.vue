@@ -76,7 +76,7 @@
 		<template v-if="!detail.isbuy && firstLoad">
 			<view class="height:75px"></view>
 			<view class="fixed-bottom p-2 border-top bg-white">
-				<main-button>立即订购￥{{detail.price}}</main-button>
+				<main-button @click='submit'>{{detail.price==0?'立即学习':'立即订购￥'+detail.price}}</main-button>
 			</view>
 		</template>
 	</view>
@@ -134,6 +134,24 @@
 			this.getData()
 		},
 		methods: {
+			submit() {
+				// 立即学习
+				if (this.detail.price == 0) {
+					uni.showLoading({
+						title: '加载中...',
+						mask: false
+					})
+					this.$api.learn({
+						goods_id: this.detail.id,
+						type: 'book'
+					}).then(res => {
+						this.getData()
+					}).finally(() => {
+						uni.hideLoading()
+					})
+					return
+				}
+			},
 			openPlay(item) {
 				if (item.isfree === 0 && !this.detail.isbuy) {
 					return this.$toast('请先购买该电子书')

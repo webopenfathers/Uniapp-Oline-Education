@@ -223,5 +223,10 @@ export default {
 	// 获取专栏列表
 	getColumnList(params) {
 		return api.get('/mobile/column/list', params)
+	},
+
+	// 立即学习
+	learn(data) {
+		return api.post('/mobile/order/learn', data)
 	}
 }

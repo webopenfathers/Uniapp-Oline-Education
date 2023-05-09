@@ -17,7 +17,8 @@
 			<view class="flex flex-1 align-end" v-if="item.price">
 				<slot>
 					<text class="font text-danger" v-if="tag">{{tag}}:</text>
-					<text class="font-md text-danger">￥{{item.price}}</text>
+					<text class="font-md text-danger" v-if="item.price==0">免费</text>
+					<text class="font-md text-danger" v-else>￥{{item.price}}</text>
 					<text class="font-sm text-light-muted">￥{{item.t_price}}</text>
 				</slot>
 			</view>

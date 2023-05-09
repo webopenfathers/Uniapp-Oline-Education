@@ -7,7 +7,8 @@
 			<text class="text-ellipsis font-md">{{item.title}}</text>
 			<view class="flex flex-1 align-end">
 				<slot>
-					<text class="font-md text-danger">￥{{item.price}}</text>
+					<text class="font-md text-danger" v-if="item.price==0">免费</text>
+					<text class="font-md text-danger" v-else>￥{{item.price}}</text>
 					<text class="font-sm text-light-muted">￥{{item.t_price}}</text>
 					<view class="border flex align-center justify-center rounded-circle 
 					px-2 py-1 ml-auto text-muted">
@@ -34,7 +35,7 @@
 		methods: {
 			openDetail() {
 				uni.navigateTo({
-					url:'/pages/book-detail/book-detail?id='+this.item.id,
+					url: '/pages/book-detail/book-detail?id=' + this.item.id,
 				});
 			}
 		}
