@@ -19,7 +19,7 @@
 
 		<view class="height:75px"></view>
 		<view class="fixed-bottom p-2 border-top bg-white">
-			<main-button v-if="detail.price">立即购买￥{{price}}</main-button>
+			<main-button @click='submit' v-if="detail.price">立即购买￥{{price}}</main-button>
 		</view>
 	</view>
 </template>
@@ -86,6 +86,28 @@
 			}
 		},
 		methods: {
+			submit() {
+				uni.showLoading({
+					title: '创建订单中...',
+					mask: false
+				})
+				this.$api.createOrder({
+					goods_id: this.detail.id,
+					type: this.type,
+					user_coupon_id: this.user_coupon_id
+				}).then(res => {
+					// H5支付---条件编译
+					// #ifdef H5
+					uni.navigateTo({
+						url: `/pages/h5pay/h5pay?no=${res.no}`,
+					});
+					// #endif
+
+
+				}).finally(() => {
+					uni.hideLoading()
+				})
+			},
 			handleChooseCoupon(e) {
 				this.user_coupon_id = e.user_coupon_id
 				this.coupon_price = e.price

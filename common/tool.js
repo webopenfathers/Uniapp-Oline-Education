@@ -102,4 +102,9 @@ export default {
 		}
 	},
 
+	// 是否在微信浏览器中
+	isInWechat() {
+		return String(navigator.userAgent.toLowerCase().match(/MicroMessenger/i)) === "micromessenger"
+	}
+
 }

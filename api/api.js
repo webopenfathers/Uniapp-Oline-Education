@@ -238,5 +238,10 @@ export default {
 	// 获取指定课程/专栏的可用优惠券
 	getUserableCouponCount(params) {
 		return api.get('/mobile/user_coupon/count', params)
+	},
+
+	// 创建订单
+	createOrder(data) {
+		return api.post('/mobile/order/save', data)
 	}
 }

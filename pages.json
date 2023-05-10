@@ -296,6 +296,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/h5pay/h5pay",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "微信H5支付",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
