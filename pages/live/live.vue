@@ -1,53 +1,60 @@
 <template>
 	<view>
-		<!-- 1 -->
-		<view class="position-relative">
-			<!-- 封面 -->
-			<image :src="detail.cover" style="width: 100%;height: 420rpx;" class="bg-light"></image>
-			<view
-				class="position-absolute top-0 left-0 right-0 bottom-0 text-white flex flex-column align-center justify-center"
-				style="background-color: rgba(0, 0, 0, 0.5);">
-				<text class="mb-1">开始时间：{{detail.start_time}}</text>
-				<text>结束时间：{{detail.end_time}}</text>
-			</view>
-		</view>
+		<uni-load-more v-if="!firstLoad" status="loading"></uni-load-more>
 
-		<view class="animate__animated animate__fadeIn animate__faster">
-			<!-- 2 -->
-			<view class="flex flex-column p-3">
-				<text class="mb-1" style="font-size: 38rpx;">{{detail.title}}</text>
-
-				<view class="flex align-center justify-between">
-					<text class="font-sm text-light-muted">{{detail.sub_count}} 人学过</text>
-				</view>
-
-
-				<view class="flex mt-2 align-end">
-					<text class="text-danger font-lg">￥{{detail.price}}</text>
-					<text class="font-sm text-light-muted ml-1 text-through">￥{{detail.t_price}}</text>
+		<view v-else-if="!detail.isbuy" class="animate__animated animate__fadeIn animate__faster">
+			<!-- 1 -->
+			<view class="position-relative">
+				<!-- 封面 -->
+				<image :src="detail.cover" style="width: 100%;height: 420rpx;" class="bg-light"></image>
+				<view
+					class="position-absolute top-0 left-0 right-0 bottom-0 text-white flex flex-column align-center justify-center"
+					style="background-color: rgba(0, 0, 0, 0.5);">
+					<text class="mb-1">开始时间：{{detail.start_time}}</text>
+					<text>结束时间：{{detail.end_time}}</text>
 				</view>
 			</view>
 
-			<!-- 分割线 -->
-			<view class="divider"></view>
-			<!-- 3 -->
-			<uni-card title="直播介绍" isFull>
-				<view id="media">
-					<mp-html :content="detail.try">
-						<view class="flex justify-center py-3 text-light-muted">
-							加载中...
-						</view>
-					</mp-html>
+			<view class="animate__animated animate__fadeIn animate__faster">
+				<!-- 2 -->
+				<view class="flex flex-column p-3">
+					<text class="mb-1" style="font-size: 38rpx;">{{detail.title}}</text>
+
+					<view class="flex align-center justify-between">
+						<text class="font-sm text-light-muted">{{detail.sub_count}} 人学过</text>
+					</view>
+
+
+					<view class="flex mt-2 align-end">
+						<text class="text-danger font-lg">￥{{detail.price}}</text>
+						<text class="font-sm text-light-muted ml-1 text-through">￥{{detail.t_price}}</text>
+					</view>
 				</view>
-			</uni-card>
-			<!-- 4-底部按钮 -->
-			<template v-if="firstLoad">
-				<view class="height:75px"></view>
-				<view class="fixed-bottom p-2 border-top bg-white">
-					<main-button @click='submit'>{{detail.price==0?'立即学习':'立即订购￥'+detail.price}}</main-button>
-				</view>
-			</template>
+
+				<!-- 分割线 -->
+				<view class="divider"></view>
+				<!-- 3 -->
+				<uni-card title="直播介绍" isFull>
+					<view id="media">
+						<mp-html :content="detail.try">
+							<view class="flex justify-center py-3 text-light-muted">
+								加载中...
+							</view>
+						</mp-html>
+					</view>
+				</uni-card>
+				<!-- 4-底部按钮 -->
+				<template v-if="firstLoad">
+					<view class="height:75px"></view>
+					<view class="fixed-bottom p-2 border-top bg-white">
+						<main-button @click='submit'>{{detail.price==0?'立即学习':'立即订购￥'+detail.price}}</main-button>
+					</view>
+				</template>
+			</view>
 		</view>
+
+
+		<live-play :detail='detail' v-else></live-play>
 	</view>
 </template>
 
