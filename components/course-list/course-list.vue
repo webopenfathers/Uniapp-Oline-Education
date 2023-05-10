@@ -69,6 +69,10 @@
 				if (!this.item.type || this.item.type === 'column') {
 					url = '/pages/column/column?' + params
 				}
+				if (this.item.type === 'live') {
+					url = '/pages/live/live?' + params
+				}
+
 				uni.navigateTo({
 					url,
 				});

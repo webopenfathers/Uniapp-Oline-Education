@@ -96,6 +96,7 @@
 							} else {
 								o.status = '直播中'
 							}
+							o.type = 'live'
 							return o
 						})
 					}

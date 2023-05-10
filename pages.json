@@ -305,6 +305,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/live/live",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "直播详情页",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

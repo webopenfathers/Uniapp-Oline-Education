@@ -253,6 +253,11 @@ export default {
 	// 获取直播列表
 	getLive(params) {
 		return api.get('/mobile/live/list', params)
+	},
+
+	// 查看直播间
+	readLive(params) {
+		return api.get('/mobile/live/read', params)
 	}
 
 }
