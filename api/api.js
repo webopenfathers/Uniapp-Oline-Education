@@ -243,5 +243,11 @@ export default {
 	// 创建订单
 	createOrder(data) {
 		return api.post('/mobile/order/save', data)
+	},
+
+	// 微信支付
+	wxpay(data) {
+		return api.post('/mobile/order/wxpay', data)
 	}
+
 }
