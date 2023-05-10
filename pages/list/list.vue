@@ -2,7 +2,12 @@
 	<view>
 		<view class="flex flex-wrap">
 			<course-list v-for="(item,index) in list" :key="index" :item="item"
-				:type="module==='course' || module==='column'?'one':'two'" :tag='tag'></course-list>
+				:type="module==='course' || module==='column'?'one':'two'" :tag='tag'>
+				<text v-if="module=='live'" slot='desc' class="font-sm my-1"
+					:class="item.status=='直播中'?'text-danger':'text-light-muted'">
+					{{item.status}}
+				</text>
+			</course-list>
 		</view>
 
 
@@ -28,7 +33,8 @@
 				course: '课程',
 				column: '专栏',
 				flashsale: '秒杀',
-				group: '拼团'
+				group: '拼团',
+				live: '直播'
 			}
 			uni.setNavigationBarTitle({
 				title: t[this.module] + '列表'
@@ -36,7 +42,7 @@
 		},
 		computed: {
 			tag() {
-				if (this.module === 'course' || this.module === 'column') {
+				if (this.module === 'course' || this.module === 'column' || this.module === 'live') {
 					return ''
 				}
 
@@ -71,12 +77,31 @@
 					course: 'getCourseList',
 					column: 'getColumnList',
 					flashsale: 'getFlashSale',
-					group: 'getGroup'
+					group: 'getGroup',
+					live: 'getLive'
 				}
 				return this.$api[fun[this.module]]({
 					page: this.page,
 					limit: this.limit
 				}).then(res => {
+					if (this.module == 'live') {
+						res.rows = res.rows.map(o => {
+							let start_time = (new Date(o.start_time)).getTime()
+							let end_time = (new Date(o.end_time)).getTime()
+							let now = Date.now()
+							if (start_time > now) {
+								o.status = '未开始'
+							} else if (end_time < now) {
+								o.status = '已结束'
+							} else {
+								o.status = '直播中'
+							}
+							return o
+						})
+					}
+
+
+
 					// 等于1是刷新，其余是加载更多
 					this.list = page === 1 ? res.rows : [...this.list, ...res.rows]
 					this.loadStatus = res.rows.length < this.limit ? "noMore" : 'more'

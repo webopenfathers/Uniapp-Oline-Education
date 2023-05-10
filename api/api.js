@@ -248,6 +248,11 @@ export default {
 	// 微信支付
 	wxpay(data) {
 		return api.post('/mobile/order/wxpay', data)
+	},
+
+	// 获取直播列表
+	getLive(params) {
+		return api.get('/mobile/live/list', params)
 	}
 
 }

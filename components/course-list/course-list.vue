@@ -9,11 +9,8 @@
 		<view class="flex flex-column flex-shrink" style="width: 380rpx;">
 			<text class="text-ellipsis font-md">{{item.title}}</text>
 			<!-- 插槽 -->
-			<!--<slot name="desc">
-				<view v-if="item.try" class="font-sm text-light-muted my-1" v-html="item.try">
-
-				</view>
-			</slot> -->
+			<slot name="desc">
+			</slot>
 			<view class="flex flex-1 align-end" v-if="item.price">
 				<slot>
 					<text class="font text-danger" v-if="tag">{{tag}}:</text>
