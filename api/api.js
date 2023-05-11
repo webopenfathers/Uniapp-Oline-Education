@@ -263,6 +263,11 @@ export default {
 	// 发送弹幕
 	sendLiveComment(data) {
 		return api.post('/mobile/live_comment/save', data)
+	},
+
+	// 获取弹幕列表
+	getLiveComment(params) {
+		return api.get('/mobile/live_comment', params)
 	}
 
 }

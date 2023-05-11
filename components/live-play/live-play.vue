@@ -52,11 +52,9 @@
 		created() {
 			let res = uni.getSystemInfoSync()
 			this.scrollH = res.windowHeight - uni.upx2px(420) - 50
-		},
-		mounted() {
-			// #ifdef H5
-			this.initH5Video()
-			// #endif
+
+			// 获取弹幕列表
+			this.getData()
 		},
 		beforeDestroy() {
 			// #ifdef H5
@@ -64,7 +62,33 @@
 			// #endif
 		},
 		methods: {
-			initH5Video() {
+			getData() {
+				this.$api.getLiveComment({
+					page: 1,
+					limit: 500,
+					live_id: this.detail.id
+				}).then(res => {
+					// #ifdef H5
+					this.initH5Video(res.rows)
+					// #endif
+				})
+			},
+			initH5Video(comments = []) {
+				comments = comments.map(o => {
+					return {
+						duration: 5000,
+						id: o.id,
+						start: o.time,
+						txt: `${o.name}:${o.content}`,
+						style: {
+							color: o.color,
+							borderRadius: '50px',
+							padding: '5px 5px',
+							backgroundColor: 'rgba(255, 255, 255, 0.1)'
+						}
+					}
+				})
+
 				this.videoContext = new FlvPlayer({
 					id: 'video',
 					url: this.detail.playUrl,
@@ -74,13 +98,13 @@
 					width: window.innerWidth,
 					danmu: {
 						panel: true, //弹幕面板
-						comments: [], //弹幕数组
+						comments, //弹幕数组
 						area: { //弹幕显示区域
 							start: 0, //区域顶部到播放器顶部所占播放器高度的比例
 							end: 1 //区域底部到播放器顶部所占播放器高度的比例
 						},
 						closeDefaultBtn: false, //开启此项后不使用默认提供的弹幕开关，默认使用西瓜播放器提供的开关
-						defaultOff: true //开启此项后弹幕不会初始化，默认初始化弹幕
+						defaultOff: false //开启此项后弹幕不会初始化，默认初始化弹幕
 					}
 				});
 
