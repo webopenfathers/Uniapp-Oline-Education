@@ -258,6 +258,11 @@ export default {
 	// 查看直播间
 	readLive(params) {
 		return api.get('/mobile/live/read', params)
+	},
+
+	// 发送弹幕
+	sendLiveComment(data) {
+		return api.post('/mobile/live_comment/save', data)
 	}
 
 }

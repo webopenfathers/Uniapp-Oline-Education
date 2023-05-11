@@ -3,8 +3,16 @@
 		<!-- #ifdef H5 -->
 		<view id="video"></view>
 		<!-- #endif  -->
-		<scroll-view scroll-y="true" class="bg-danger" :style="'height:'+scrollH+'px;'">
-			<view></view>
+
+
+		<scroll-view scroll-y="true" class="bg-light" :style="'height:'+scrollH+'px;'" :scroll-into-view="scrollInto">
+			<view class="font text-danger p-2">
+				系统提示：直播内容及互动评论必须严格遵守直播规范，严禁传播违法违规，低俗血暴，吸烟酗酒，造谣诈骗等不良有害信息。
+			</view>
+			<view :id="'live_'+item.id" class="p-2 font" v-for="(item,index) in danmuList" :key="index">
+				<text class="text-muted">{{item.name}}：</text>
+				{{item.content}}
+			</view>
 		</scroll-view>
 
 
@@ -35,7 +43,9 @@
 		data() {
 			return {
 				scrollH: 500,
-				videoContext: null
+				videoContext: null,
+				danmuList: [],
+				scrollInto: ''
 			};
 		},
 		created() {
@@ -43,7 +53,9 @@
 			this.scrollH = res.windowHeight - uni.upx2px(420) - 50
 		},
 		mounted() {
+			// #ifdef H5
 			this.initH5Video()
+			// #endif
 		},
 		methods: {
 			initH5Video() {
@@ -70,22 +82,24 @@
 				this.$refs.comment.open()
 			},
 			sendComment(content) {
-				// 一级评论
-				let d = {
-					post_id: this.detail.id,
+				if (content == '') return this.$toast('弹幕内容不能为空')
+				uni.showLoading({
+					title: '发送中...',
+					mask: false
+				});
+				this.$api.sendLiveComment({
+					live_id: this.detail.id,
 					content,
-					reply_id: 0
-				}
+					time: 3000,
+					color: '#FFCCCC'
+				}).then(res => {
+					this.danmuList.push(res)
 
-				if (this.commentForm.reply_user) {
-					d.reply_id = this.commentForm.reply_id
-					d.reply_user = this.commentForm.reply_user
-				}
-				this.$api.replyPost(d).then(res => {
-					this.$toast('评论成功')
-					this.page = 1
-					this.getCommentList()
-					uni.$emit('refreshBbs')
+					setTimeout(() => {
+						this.scrollInto = 'live_' + res.id
+					}, 300)
+				}).finally(() => {
+					uni.hideLoading()
 				})
 			},
 		}
