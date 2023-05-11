@@ -45,7 +45,8 @@
 				scrollH: 500,
 				videoContext: null,
 				danmuList: [],
-				scrollInto: ''
+				scrollInto: '',
+				currentTime: 0
 			};
 		},
 		created() {
@@ -57,11 +58,16 @@
 			this.initH5Video()
 			// #endif
 		},
+		beforeDestroy() {
+			// #ifdef H5
+			this.videoContext.off('timeupdate', this.handleTimeUpdate)
+			// #endif
+		},
 		methods: {
 			initH5Video() {
 				this.videoContext = new FlvPlayer({
 					id: 'video',
-					url: '//sf1-cdn-tos.huoshanstatic.com/obj/media-fe/xgplayer_doc_video/flv/xgplayer-demo-360p.flv',
+					url: this.detail.playUrl,
 					isLive: true,
 					playsinline: true,
 					height: uni.upx2px(420),
@@ -77,6 +83,11 @@
 						defaultOff: true //开启此项后弹幕不会初始化，默认初始化弹幕
 					}
 				});
+
+				this.videoContext.on('timeupdate', this.handleTimeUpdate)
+			},
+			handleTimeUpdate(e) {
+				this.currentTime = e.currentTime
 			},
 			openComment() {
 				this.$refs.comment.open()
@@ -90,18 +101,44 @@
 				this.$api.sendLiveComment({
 					live_id: this.detail.id,
 					content,
-					time: 3000,
-					color: '#FFCCCC'
+					time: parseInt(this.currentTime * 1000),
+					color: this.getRandomColor()
 				}).then(res => {
 					this.danmuList.push(res)
 
 					setTimeout(() => {
 						this.scrollInto = 'live_' + res.id
 					}, 300)
+
+
+					// 同步弹幕到视频中
+					// #ifdef H5
+					this.videoContext.danmu.sendComment({ //发送弹幕
+						duration: 5000,
+						id: res.id,
+						start: res.time,
+						txt: `${res.name}:${res.content}`,
+						style: {
+							color: res.color,
+							borderRadius: '50px',
+							padding: '5px 5px',
+							backgroundColor: 'rgba(255, 255, 255, 0.1)'
+						}
+					})
+					// #endif
 				}).finally(() => {
 					uni.hideLoading()
 				})
 			},
+			getRandomColor: function() {
+				const rgb = []
+				for (let i = 0; i < 3; ++i) {
+					let color = Math.floor(Math.random() * 256).toString(16)
+					color = color.length == 1 ? '0' + color : color
+					rgb.push(color)
+				}
+				return '#' + rgb.join('')
+			}
 		}
 	}
 </script>
