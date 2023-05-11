@@ -1,0 +1,36 @@
+export default MSE;
+declare class MSE {
+    static clearBuffer(buffer: any): void;
+    constructor(configs: any, context: any);
+    _context: any;
+    emit: any;
+    TAG: string;
+    configs: any;
+    container: any;
+    format: any;
+    mediaSource: MediaSource;
+    sourceBuffers: {};
+    preloadTime: any;
+    onSourceOpen(): void;
+    onTimeUpdate(): void;
+    onUpdateEnd(): void;
+    onWaiting(): void;
+    opened: boolean;
+    init(): void;
+    _url: any;
+    resetContext(newCtx: any, keepBuffer: any): void;
+    addSourceBuffers(): any;
+    doAppend(): void;
+    endOfStream(): void;
+    remove(end: any, start?: number): void;
+    _doCleanupSourceBuffer(): void;
+    _doRemoveRanges(_pendingRemoveRanges: any): void;
+    cleanBuffers(): Promise<any[]>;
+    removeBuffers(): Promise<any[]>;
+    destroy(): Promise<void>;
+    set url(arg: any);
+    get url(): any;
+    noaudio: any;
+    novideo: any;
+    get sourceBufferLen(): any;
+}

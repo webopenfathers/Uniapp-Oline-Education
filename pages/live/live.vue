@@ -103,7 +103,7 @@
 					})
 					this.$api.learn({
 						goods_id: this.detail.id,
-						type: 'course'
+						type: 'live'
 					}).then(res => {
 						this.getData()
 					}).finally(() => {
@@ -113,7 +113,7 @@
 				}
 
 				// 创建订单
-				let type = 'course'
+				let type = 'live'
 				let id = this.detail.id
 				this.authJump(`/pages/create-order/create-order?id=${id}&type=${type}`)
 			},

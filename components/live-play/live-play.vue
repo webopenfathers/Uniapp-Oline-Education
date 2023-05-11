@@ -1,7 +1,8 @@
 <template>
 	<view>
-		<view style="width: 100%;height: 420rpx;background: #0E151D;"></view>
-
+		<!-- #ifdef H5 -->
+		<view id="video"></view>
+		<!-- #endif  -->
 		<scroll-view scroll-y="true" class="bg-danger" :style="'height:'+scrollH+'px;'">
 			<view></view>
 		</scroll-view>
@@ -22,6 +23,10 @@
 </template>
 
 <script>
+	// #ifdef H5
+	import 'xgplayer';
+	import FlvPlayer from 'xgplayer-flv';
+	// #endif
 	export default {
 		name: "live-play",
 		props: {
@@ -29,14 +34,38 @@
 		},
 		data() {
 			return {
-				scrollH: 500
+				scrollH: 500,
+				videoContext: null
 			};
 		},
 		created() {
 			let res = uni.getSystemInfoSync()
 			this.scrollH = res.windowHeight - uni.upx2px(420) - 50
 		},
+		mounted() {
+			this.initH5Video()
+		},
 		methods: {
+			initH5Video() {
+				this.videoContext = new FlvPlayer({
+					id: 'video',
+					url: '//sf1-cdn-tos.huoshanstatic.com/obj/media-fe/xgplayer_doc_video/flv/xgplayer-demo-360p.flv',
+					isLive: true,
+					playsinline: true,
+					height: uni.upx2px(420),
+					width: window.innerWidth,
+					danmu: {
+						panel: true, //弹幕面板
+						comments: [], //弹幕数组
+						area: { //弹幕显示区域
+							start: 0, //区域顶部到播放器顶部所占播放器高度的比例
+							end: 1 //区域底部到播放器顶部所占播放器高度的比例
+						},
+						closeDefaultBtn: false, //开启此项后不使用默认提供的弹幕开关，默认使用西瓜播放器提供的开关
+						defaultOff: true //开启此项后弹幕不会初始化，默认初始化弹幕
+					}
+				});
+			},
 			openComment() {
 				this.$refs.comment.open()
 			},
