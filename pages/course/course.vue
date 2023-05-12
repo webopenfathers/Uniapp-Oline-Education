@@ -142,8 +142,9 @@
 			if (e.flashsale_id) {
 				this.flashsale_id = e.flashsale_id
 			}
+		},
+		onShow() {
 			this.getData()
-
 		},
 		beforeDestroy() {
 			this.updateUserHistory()

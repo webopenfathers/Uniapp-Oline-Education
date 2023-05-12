@@ -1,4 +1,40 @@
+import $api from '@/api/api.js'
+
 export default {
+
+	async wxpay(no, success = false, fail = false) {
+		let orderInfo = await $api.wxpay({
+			no,
+			type: 'app'
+		})
+
+		uni.requestPayment({
+			provider: "wxpay",
+			orderInfo: orderInfo,
+			success: (res2) => {
+				uni.showToast({
+					title: '支付成功',
+					icon: 'none'
+				})
+
+				if (success && typeof success == 'function') {
+					success()
+				}
+			},
+			fail: (err) => {
+				if (fail && typeof fail == 'function') {
+					fail(err)
+				}
+
+				uni.showModal({
+					content: '支付失败',
+					showCancel: false
+				});
+			}
+		})
+	},
+
+
 	// kb转GB和MB
 	bytesToSize(bytes) {
 		if (bytes === 0) return '0 KB';

@@ -9,9 +9,9 @@
 				<slot>
 					<text class="font-md text-danger" v-if="item.price==0">免费</text>
 					<text class="font-md text-danger" v-else>￥{{item.price}}</text>
-					<text class="font-sm text-light-muted">￥{{item.t_price}}</text>
+					<text class="font-sm text-light-muted" v-if="item.t_price">￥{{item.t_price}}</text>
 					<view class="border flex align-center justify-center rounded-circle 
-					px-2 py-1 ml-auto text-muted">
+					px-2 py-1 ml-auto text-muted" v-if="issub">
 						{{item.sub_count}}人订阅
 						<text class="iconfont icon-xiayibu ml-1"></text>
 					</view>
@@ -26,6 +26,15 @@
 		name: "book-list",
 		props: {
 			item: Object,
+			disabled: {
+				type: Boolean,
+				default: false
+			}
+		},
+		computed: {
+			issub() {
+				return typeof this.item.sub_count == 'number'
+			}
 		},
 		data() {
 			return {
@@ -34,6 +43,7 @@
 		},
 		methods: {
 			openDetail() {
+				if (this.disabled) return
 				uni.navigateTo({
 					url: '/pages/book-detail/book-detail?id=' + this.item.id,
 				});

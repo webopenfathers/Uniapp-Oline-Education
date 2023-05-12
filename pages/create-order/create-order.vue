@@ -1,6 +1,8 @@
 <template>
 	<view>
-		<course-list :item='detail' type="one"></course-list>
+		<book-list disabled v-if="type=='book'" :item='detail'></book-list>
+		<course-list v-else :item='detail' type="one"></course-list>
+
 
 		<view class="divider"></view>
 
@@ -25,6 +27,7 @@
 </template>
 
 <script>
+	import $tool from '@/common/tool.js'
 	export default {
 		data() {
 			return {
@@ -101,6 +104,16 @@
 					uni.navigateTo({
 						url: `/pages/h5pay/h5pay?no=${res.no}`,
 					});
+					// #endif
+
+
+					// app端支付--微信
+					// #ifdef APP-PLUS
+					$tool.wxpay(res.no, () => {
+						uni.navigateBack({
+							delta: 1
+						})
+					})
 					// #endif
 
 

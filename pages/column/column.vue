@@ -169,6 +169,11 @@
 					})
 					return
 				}
+
+				// 创建订单
+				let type = 'column'
+				let id = this.detail.id
+				this.authJump(`/pages/create-order/create-order?id=${id}&type=${type}`)
 			},
 			openPlay(item) {
 				if (item.price != 0 && !this.detail.isbuy) {

@@ -15,9 +15,14 @@
 						￥{{item.price}}
 					</view>
 				</view>
-				<view slot='actions' class="font-md  font-weight-bold py-2"
+				<view slot='actions' class="font-md flex  font-weight-bold py-2"
 					:class="item.status==='success'?'text-success':'text-dark'">
-					{{item.status==='success'?'交易成功':'等待支付'}}
+					<view class="">
+						{{item.status==='success'?'交易成功':'等待支付'}}
+					</view>
+					<view class="ml-auto">
+						<main-button class="px-1" style="height: 80rpx;" v-if="item.status=='pendding'" @click='pay(item.no)'>立即支付</main-button>
+					</view>
 				</view>
 			</uni-card>
 			<!-- 分割线 -->
@@ -31,6 +36,7 @@
 </template>
 
 <script>
+	import $tool from '@/common/tool.js'
 	export default {
 		data() {
 			return {
@@ -54,6 +60,23 @@
 			this.handleLoadMore()
 		},
 		methods: {
+			pay(no) {
+				// H5支付---条件编译
+				// #ifdef H5
+				uni.navigateTo({
+					url: `/pages/h5pay/h5pay?no=${no}`,
+				});
+				// #endif
+
+
+				// app端支付--微信
+				// #ifdef APP-PLUS
+				$tool.wxpay(no, () => {
+					this.page = 1
+					this.getData()
+				})
+				// #endif
+			},
 			// 上拉加载更多
 			handleLoadMore() {
 				if (this.loadStatus !== 'more') {
