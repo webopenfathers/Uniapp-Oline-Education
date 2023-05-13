@@ -42,6 +42,9 @@
 			<view class="divider"></view>
 			<!-- 3 -->
 			<uni-card title="专栏简介" isFull>
+
+				<group-works v-if="!detail.isbuy" ref="groupWorks" @updateData='getData'></group-works>
+
 				<mp-html :content="detail.content">
 					<view class="flex justify-center py-3 text-light-muted">
 						加载中...
@@ -197,6 +200,7 @@
 							type: 'group',
 							data: res.group
 						}
+						this.$refs.groupWorks.int(this.group_id)
 					}
 
 					if (res.flashsale) {

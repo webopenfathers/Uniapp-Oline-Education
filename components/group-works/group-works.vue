@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<uni-card :title="count+'人在拼单,可直接参与'" isFull>
+		<uni-card v-if="count>0" :title="count+'人在拼单,可直接参与'" isFull>
 			<swiper vertical disable-touch :autoplay="true" :interval="3000" :duration="1000"
 				:style="count>1?'height: 250rpx;':'height: 125rpx;'" :display-multiple-items="count>1?2:1">
 				<swiper-item class="flex align-center border-bottom" v-for="(item,index) in list" :key="index">
@@ -23,7 +23,7 @@
 						</view>
 					</view>
 					<!-- 右边 -->
-					<button class="mx-1" type="primary" size="mini">去拼单</button>
+					<button class="mx-1" type="primary" size="mini" @click="handleGroup(item)">去拼单</button>
 				</swiper-item>
 			</swiper>
 		</uni-card>
@@ -31,17 +31,59 @@
 </template>
 
 <script>
-	import tool from '@/common/tool.js'
+	import $tool from '@/common/tool.js'
 	export default {
 		name: "group-works",
 		data() {
 			return {
 				group_id: 0,
-				count: 1,
+				count: 0,
 				list: []
 			};
 		},
 		methods: {
+			handleGroup(item) {
+				uni.showModal({
+					content: '是否要参与此次拼单',
+					confirmText: '立即参与',
+					success: res => {
+						if (res.cancel) return
+
+						uni.showLoading({
+							title: '发起拼团中...',
+							mask: true
+						})
+
+						this.$api.createOrder({
+							group_id: this.group_id,
+							group_work_id: item.id
+						}, 'group').then(res => {
+
+							// H5支付---条件编译
+							// #ifdef H5
+							uni.navigateTo({
+								url: `/pages/h5pay/h5pay?no=${res.no}`,
+							});
+							// #endif
+
+
+							// app端支付--微信
+							// #ifdef APP-PLUS
+							$tool.wxpay(res.no, () => {
+								this.$emit('updateData')
+							})
+							// #endif
+
+						}).catch(err => {
+							console.log(err);
+						}).finally(() => {
+							uni.hideLoading()
+						})
+
+
+					}
+				});
+			},
 			int(group_id) {
 				this.group_id = group_id
 				this.$api.getGroupWorkList({
@@ -51,7 +93,7 @@
 					this.count = res.count
 					this.list = res.rows.map(o => {
 						let end = (new Date(o.created_time)).getTime() + 24 * 60 * 60 * 1000
-						o.d = tool.dateCount(end)
+						o.d = $tool.dateCount(end)
 						return o
 					})
 				})
