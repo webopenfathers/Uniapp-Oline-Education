@@ -49,7 +49,7 @@
 			<!-- 分割线 -->
 			<view class="divider"></view>
 
-			<group-works></group-works>
+			<group-works ref="groupWorks"></group-works>
 
 			<!-- 3 -->
 			<uni-card :title="(detail.isbuy && detail.type==='media')?'课程内容':'课程简介'" isFull>
@@ -284,6 +284,8 @@
 							type: 'group',
 							data: res.group
 						}
+
+						this.$refs.groupWorks.int(this.group_id)
 					}
 
 					if (res.flashsale) {

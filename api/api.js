@@ -268,6 +268,11 @@ export default {
 	// 获取弹幕列表
 	getLiveComment(params) {
 		return api.get('/mobile/live_comment', params)
+	},
+
+	// 获取当前拼团专栏/课程的可组团列表
+	getGroupWorkList(params) {
+		return api.get('/mobile/group_work/list', params)
 	}
 
 }
