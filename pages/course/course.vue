@@ -48,6 +48,9 @@
 
 			<!-- 分割线 -->
 			<view class="divider"></view>
+
+			<group-works></group-works>
+
 			<!-- 3 -->
 			<uni-card :title="(detail.isbuy && detail.type==='media')?'课程内容':'课程简介'" isFull>
 				<view id="media">
