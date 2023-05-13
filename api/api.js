@@ -241,8 +241,8 @@ export default {
 	},
 
 	// 创建订单
-	createOrder(data) {
-		return api.post('/mobile/order/save', data)
+	createOrder(data, type = 'save') {
+		return api.post(`/mobile/order/${type}`, data)
 	},
 
 	// 微信支付
