@@ -35,7 +35,7 @@
 			</view>
 			<!-- 微信登录图标 -->
 			<view class="flex align-center justify-center wechatlogin">
-				<uni-icons type="weixin" size="25" color="#5ccc84"></uni-icons>
+				<uni-icons type="weixin" size="25" color="#5ccc84" @click="wxLogin"></uni-icons>
 			</view>
 			<!-- 同意协议 -->
 			<checkbox-group v-if="type==='login'" @change='handleCheckboxChange'
@@ -50,6 +50,7 @@
 </template>
 
 <script>
+	import tool from '@/common/tool.js'
 	export default {
 		data() {
 			return {
@@ -62,7 +63,46 @@
 				}
 			}
 		},
+		async onLoad() {
+			let code = tool.getUrlCode('code')
+			if (!code) return
+
+			uni.showLoading({
+				title: '登录中...',
+				mask: false
+			})
+
+
+			// 微信H5登录功能实现
+			this.$api.wxLogin({
+				type: 'h5',
+				code
+			}).then(user => {
+				this.$toast('登录成功')
+				this.$store.dispatch('login', user)
+				if (!user.phone) {
+					uni.redirectTo({
+						url: '/pages/bind-phone/bind-phone',
+					});
+					return
+				}
+				setTimeout(() => {
+					uni.switchTab({
+						url: '/pages//tabbar/home/home'
+					})
+				}, 350)
+
+			}).finally(() => {
+				uni.hideLoading()
+			})
+
+
+		},
 		methods: {
+			wxLogin() {
+				if (!this.beforeLogin()) return
+				tool.getH5Code()
+			},
 			openForget() {
 				uni.navigateTo({
 					url: '../forget/forget',
@@ -88,10 +128,19 @@
 					repassword: ''
 				}
 			},
-			submit() {
+			beforeLogin() {
 				if (!this.confirm && this.type === 'login') {
 					return this.$toast('请先阅读并同意用户协议&隐私声明')
+					return false
 				}
+
+				return true
+			},
+
+			submit() {
+
+				if (!this.beforeLogin()) return
+
 				uni.showLoading({
 					title: `${this.type==='login'?'登录中':'提交中'}...`,
 					mask: false

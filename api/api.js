@@ -273,6 +273,11 @@ export default {
 	// 获取当前拼团专栏/课程的可组团列表
 	getGroupWorkList(params) {
 		return api.get('/mobile/group_work/list', params)
+	},
+
+	// 微信app/小程序/H5登录
+	wxLogin(data) {
+		return api.post('/mobile/weixin_login', data)
 	}
 
 }
