@@ -60,7 +60,7 @@
 	"h5": {
 		"devServer": {
 			"host": "ceshi12.dishait.cn",
-			"port": 81
+			"port": 80
 		}
 	}
 }

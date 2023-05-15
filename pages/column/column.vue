@@ -80,7 +80,7 @@
 		<template v-if="!detail.isbuy && firstLoad">
 			<view class="height:75px"></view>
 			<view class="fixed-bottom p-2 border-top bg-white">
-				<main-button @click='submit'>{{detail.price==0?'立即学习':'立即订购￥'+detail.price}}</main-button>
+				<main-button @click='submit'>{{btn}}</main-button>
 			</view>
 		</template>
 	</view>
@@ -130,6 +130,22 @@
 				flashsale_id: 0
 			}
 		},
+		computed: {
+			btn() {
+				if (this.detail.flashsale) {
+					return '立即秒杀￥' + this.detail.flashsale.price
+				}
+
+				if (this.detail.group) {
+					return '立即拼团￥' + this.detail.group.price
+				}
+				if (this.detail.price == 0) {
+					return '立即学习'
+
+				}
+				return '立即订购￥' + this.detail.price
+			}
+		},
 		// 可以接收参数
 		onLoad(e) {
 			this.detail.id = e.id
@@ -156,6 +172,39 @@
 		},
 		methods: {
 			submit() {
+				// 立即拼团
+				if (this.group_id) {
+					uni.showLoading({
+						title: '发起拼团中...',
+						mask: false
+					});
+
+					this.$api.createOrder({
+						group_id: this.group_id
+					}, 'group').then(res => {
+						// H5支付---条件编译
+						// #ifdef H5
+						uni.navigateTo({
+							url: `/pages/h5pay/h5pay?no=${res.no}`,
+						});
+						// #endif
+
+
+						// app端支付--微信
+						// #ifdef APP-PLUS
+						$tool.wxpay(res.no, () => {
+							this.getData()
+						})
+						// #endif
+					}).catch(err => {
+						console.log(err);
+					}).finally(() => {
+						uni.hideLoading()
+					})
+					return
+				}
+
+
 				// 立即学习
 				if (this.detail.price == 0) {
 					uni.showLoading({
@@ -176,6 +225,13 @@
 				// 创建订单
 				let type = 'column'
 				let id = this.detail.id
+
+				if (this.detail.flashsale) {
+					type = 'flashsale'
+					id = this.flashsale_id
+				}
+
+
 				this.authJump(`/pages/create-order/create-order?id=${id}&type=${type}`)
 			},
 			openPlay(item) {

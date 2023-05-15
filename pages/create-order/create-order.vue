@@ -94,11 +94,24 @@
 					title: '创建订单中...',
 					mask: false
 				})
-				this.$api.createOrder({
+
+
+				let data = {
 					goods_id: this.detail.id,
 					type: this.type,
 					user_coupon_id: this.user_coupon_id
-				}).then(res => {
+				}
+
+				let type = 'save'
+
+				if (this.type == 'flashsale') {
+					data = {
+						flashsale_id: this.id
+					}
+					type = 'flashsale'
+				}
+
+				this.$api.createOrder(data, type).then(res => {
 					// H5支付---条件编译
 					// #ifdef H5
 					uni.navigateTo({

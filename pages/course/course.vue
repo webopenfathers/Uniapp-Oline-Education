@@ -155,6 +155,10 @@
 		},
 		computed: {
 			btn() {
+				if (this.detail.flashsale) {
+					return '立即秒杀￥' + this.detail.flashsale.price
+				}
+
 				if (this.detail.group) {
 					return '立即拼团￥' + this.detail.group.price
 				}
@@ -220,6 +224,12 @@
 				// 创建订单
 				let type = 'course'
 				let id = this.detail.id
+				
+				if (this.detail.flashsale) {
+					type = 'flashsale'
+					id = this.flashsale_id
+				}
+				
 				this.authJump(`/pages/create-order/create-order?id=${id}&type=${type}`)
 			},
 			onAudioProgressUpdate(p) {
