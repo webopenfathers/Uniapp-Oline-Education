@@ -63,45 +63,70 @@
 				}
 			}
 		},
-		async onLoad() {
-			let code = tool.getUrlCode('code')
-			if (!code) return
-
-			uni.showLoading({
-				title: '登录中...',
-				mask: false
-			})
-
-
-			// 微信H5登录功能实现
-			this.$api.wxLogin({
-				type: 'h5',
-				code
-			}).then(user => {
-				this.$toast('登录成功')
-				this.$store.dispatch('login', user)
-				if (!user.phone) {
-					uni.redirectTo({
-						url: '/pages/bind-phone/bind-phone',
-					});
-					return
-				}
-				setTimeout(() => {
-					uni.switchTab({
-						url: '/pages//tabbar/home/home'
-					})
-				}, 350)
-
-			}).finally(() => {
-				uni.hideLoading()
-			})
-
-
+		onLoad() {
+			// #ifndef H5
+			this.handleH5WxLogin()
+			// #endif
 		},
 		methods: {
+			// 微信H5端登录
+			handleH5WxLogin() {
+				let code = tool.getUrlCode('code')
+				if (!code) return
+
+				uni.showLoading({
+					title: '登录中...',
+					mask: false
+				})
+
+
+				// 微信H5登录功能实现
+				this.$api.wxLogin({
+					type: 'h5',
+					code
+				}).then(user => {
+					this.handleLoginSuccess(user)
+				}).finally(() => {
+					uni.hideLoading()
+				})
+			},
 			wxLogin() {
 				if (!this.beforeLogin()) return
+
+
+				// #ifdef H5
 				tool.getH5Code()
+				// #endif
+
+				// #ifdef APP-PLUS
+				this.appWxLogin()
+				// #endif
+			},
+			appWxLogin() {
+				uni.login({
+					provider: 'weixin',
+					success: (res) => {
+						let {
+							access_token,
+							openid
+						} = res.authResult
+
+						uni.showLoading({
+							title: '登录中...',
+							mask: false
+						})
+
+						this.$api.wxLogin({
+							type: 'app',
+							access_token,
+							openid
+						}).then(user => {
+							this.handleLoginSuccess(user)
+						}).finally(() => {
+							uni.hideLoading()
+						})
+					}
+				})
 			},
 			openForget() {
 				uni.navigateTo({
@@ -136,7 +161,31 @@
 
 				return true
 			},
+			handleLoginSuccess(user) {
+				this.$toast('登录成功')
+				this.$store.dispatch('login', user)
+				if (!user.phone) {
+					uni.redirectTo({
+						url: '/pages/bind-phone/bind-phone',
+					});
+					return
+				}
+				setTimeout(() => {
 
+					// 是H5端
+					// #ifdef H5
+					uni.switchTab({
+						url: '/pages//tabbar/home/home'
+					})
+					// #endif
+
+					// 不是H5端
+					// #ifndef H5
+					this.back()
+					// #endif
+
+				}, 350)
+			},
 			submit() {
 
 				if (!this.beforeLogin()) return
@@ -154,17 +203,7 @@
 						this.resetForm()
 						this.changeType()
 					} else {
-						this.$toast('登录成功')
-						this.$store.dispatch('login', user)
-						if (!user.phone) {
-							uni.redirectTo({
-								url: '../bind-phone/bind-phone',
-							});
-							return
-						}
-						setTimeout(() => {
-							this.back()
-						}, 350)
+						this.handleLoginSuccess(user)
 					}
 				}).finally(() => {
 					uni.hideLoading()
