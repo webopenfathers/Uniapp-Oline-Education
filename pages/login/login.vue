@@ -35,7 +35,17 @@
 			</view>
 			<!-- 微信登录图标 -->
 			<view class="flex align-center justify-center wechatlogin">
+				<!-- 微信app端和微信H5端登录 -->
+				<!-- #ifndef MP -->
 				<uni-icons type="weixin" size="25" color="#5ccc84" @click="wxLogin"></uni-icons>
+				<!-- #endif -->
+
+				<!-- 微信小程序端登录 -->
+				<!-- #ifdef MP -->
+				<button type="default" open-type="getUserInfo" @getuserinfo="mpWxLogin">
+					<uni-icons type="weixin" size="25" color="#5ccc84"></uni-icons>
+				</button>
+				<!-- #endif -->
 			</view>
 			<!-- 同意协议 -->
 			<checkbox-group v-if="type==='login'" @change='handleCheckboxChange'
@@ -69,6 +79,30 @@
 			// #endif
 		},
 		methods: {
+			// 微信小程序端登录
+			mpWxLogin(e) {
+				if (!this.beforeLogin()) return
+				let rawData = e.detail.rawData
+				uni.login({
+					provider: 'weixin',
+					success: (res) => {
+						let code = res.code
+						uni.showLoading({
+							title: '登录中...',
+							mask: false
+						})
+						this.$api.wxLogin({
+							type: 'mp',
+							rawData,
+							code
+						}).then(user => {
+							this.handleLoginSuccess(user)
+						}).finally(() => {
+							uni.hideLoading()
+						})
+					}
+				})
+			},
 			// 微信H5端登录
 			handleH5WxLogin() {
 				let code = tool.getUrlCode('code')
@@ -92,8 +126,6 @@
 			},
 			wxLogin() {
 				if (!this.beforeLogin()) return
-
-
 				// #ifdef H5
 				tool.getH5Code()
 				// #endif
@@ -102,6 +134,7 @@
 				this.appWxLogin()
 				// #endif
 			},
+			// 微信app端登陆
 			appWxLogin() {
 				uni.login({
 					provider: 'weixin',
