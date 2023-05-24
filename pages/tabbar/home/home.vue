@@ -89,7 +89,9 @@
 					},
 					{
 						icon: "icon-e-learning-monitor",
-						name: '在学'
+						name: '在学',
+						path: '/pages/tabbar/learn/learn',
+						type: 'switchTab'
 					},
 				]
 			}

@@ -21,6 +21,12 @@
 		},
 		methods: {
 			open(item) {
+				if (item.type == 'webview') {
+					uni.navigateTo({
+						url: '/pages/webview/webview?url=' + encodeURIComponent(item.url)
+					})
+					return
+				}
 				switch (item.module) {
 					case 'test':
 						uni.navigateTo({

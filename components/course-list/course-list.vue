@@ -11,11 +11,11 @@
 			<!-- 插槽 -->
 			<slot name="desc">
 			</slot>
-			<view class="flex flex-1 align-end" v-if="item.price">
+			<view class="flex flex-1 align-end">
 				<slot>
 					<text class="font text-danger" v-if="tag">{{tag}}:</text>
 					<text class="font-md text-danger" v-if="item.price==0">免费</text>
-					<text class="font-md text-danger" v-else>￥{{item.price}}</text>
+					<text class="font-md text-danger" v-else-if='item.price>0'>￥{{item.price}}</text>
 					<text class="font-sm text-light-muted" v-if="item.t_price">￥{{item.t_price}}</text>
 				</slot>
 			</view>
