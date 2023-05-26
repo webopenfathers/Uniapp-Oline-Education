@@ -21,7 +21,8 @@
 						{{item.status==='success'?'交易成功':'等待支付'}}
 					</view>
 					<view class="ml-auto">
-						<main-button class="px-1" style="height: 80rpx;" v-if="item.status=='pendding'" @click='pay(item.no)'>立即支付</main-button>
+						<main-button class="px-1" style="height: 80rpx;" v-if="item.status=='pendding'"
+							@click='pay(item.no)'>立即支付</main-button>
 					</view>
 				</view>
 			</uni-card>
@@ -69,8 +70,8 @@
 				// #endif
 
 
-				// app端支付--微信
-				// #ifdef APP-PLUS
+				// app端支付/微信小程序端支付
+				// #ifdef APP-PLUS || MP
 				$tool.wxpay(no, () => {
 					this.page = 1
 					this.getData()

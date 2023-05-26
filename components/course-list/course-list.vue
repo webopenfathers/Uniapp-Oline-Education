@@ -1,5 +1,5 @@
 <template>
-	<view class="scroll-row-item course " :class="'course-'+this.type" @click="openDetail">
+	<view class="scroll-row-item course " :class="'course-'+type" @click="openDetail">
 		<view class="position-relative">
 			<image :src="item.cover"></image>
 			<view class="text-white font-sm">

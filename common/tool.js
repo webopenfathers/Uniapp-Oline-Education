@@ -3,6 +3,8 @@ import $api from '@/api/api.js'
 export default {
 
 	async wxpay(no, success = false, fail = false) {
+		// app端支付
+		// #ifdef APP-PLUS
 		let orderInfo = await $api.wxpay({
 			no,
 			type: 'app'
@@ -32,6 +34,57 @@ export default {
 				});
 			}
 		})
+		// #endif
+
+
+		// 小程序端支付
+		// #ifdef MP
+		let [err, e] = await uni.login({
+			provider: 'weixin'
+		})
+		if (err) {
+			return uni.showModal({
+				content: '支付失败，原因是：' + err.errMsg,
+				showCancel: false
+			})
+		}
+
+		let code = e.code
+		let orderInfo = await $api.wxpay({
+			no,
+			type: 'MP',
+			code
+		})
+
+		// 微信小程序支付
+		uni.requestPayment({
+			provider: 'wxpay',
+			timeStamp: orderInfo.timeStamp,
+			nonceStr: orderInfo.nonceStr,
+			package: orderInfo.package,
+			signType: orderInfo.signType,
+			paySign: orderInfo.paySign,
+			success: (res) => {
+				uni.showToast({
+					title: '支付成功',
+					icon: 'none'
+				})
+
+				if (success && typeof success == 'function') {
+					success()
+				}
+			},
+			fail: (err) => {
+				uni.showModal({
+					content: '支付失败，原因是：' + err.errMsg,
+					showCancel: false
+				})
+			}
+		});
+		// #endif
+
+
+
 	},
 
 

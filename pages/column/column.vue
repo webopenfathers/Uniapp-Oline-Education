@@ -190,8 +190,8 @@
 						// #endif
 
 
-						// app端支付--微信
-						// #ifdef APP-PLUS
+						// app端支付/微信小程序端支付
+						// #ifdef APP-PLUS || MP
 						$tool.wxpay(res.no, () => {
 							this.getData()
 						})

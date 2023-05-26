@@ -189,8 +189,8 @@
 						// #endif
 
 
-						// app端支付--微信
-						// #ifdef APP-PLUS
+						// app端支付/微信小程序端支付
+						// #ifdef APP-PLUS || MP
 						$tool.wxpay(res.no, () => {
 							this.getData()
 						})
@@ -224,12 +224,12 @@
 				// 创建订单
 				let type = 'course'
 				let id = this.detail.id
-				
+
 				if (this.detail.flashsale) {
 					type = 'flashsale'
 					id = this.flashsale_id
 				}
-				
+
 				this.authJump(`/pages/create-order/create-order?id=${id}&type=${type}`)
 			},
 			onAudioProgressUpdate(p) {
