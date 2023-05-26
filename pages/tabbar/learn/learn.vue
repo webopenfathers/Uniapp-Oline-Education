@@ -60,7 +60,8 @@
 					},
 					{
 						icon: "icon-shoucang1",
-						name: '电子书'
+						name: '电子书',
+						path: '/pages/my-book/my-book'
 					},
 				]
 			}

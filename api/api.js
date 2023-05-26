@@ -278,6 +278,10 @@ export default {
 	// 微信app/小程序/H5登录
 	wxLogin(data) {
 		return api.post('/mobile/weixin_login', data)
-	}
+	},
 
+	// 我的电子书列表
+	getMyBookList(params) {
+		return api.get('/mobile/mybook', params)
+	}
 }

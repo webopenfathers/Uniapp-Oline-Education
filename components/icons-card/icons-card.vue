@@ -27,7 +27,7 @@
 				if (!item.path) {
 					return
 				}
-				if (iem.type == 'switchTab') {
+				if (item.type == 'switchTab') {
 					// tabbar跳转方式
 					uni.switchTab({
 						url: item.path

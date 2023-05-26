@@ -323,6 +323,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/my-book/my-book",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "我的电子书",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

@@ -22,9 +22,7 @@
 		methods: {
 			open(item) {
 				if (item.type == 'webview') {
-					uni.navigateTo({
-						url: '/pages/webview/webview?url=' + encodeURIComponent(item.url)
-					})
+					this.$openWebview(item.url)
 					return
 				}
 				switch (item.module) {

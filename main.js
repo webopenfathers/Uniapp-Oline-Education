@@ -11,6 +11,13 @@ import store from '@/store/index.js'
 Vue.prototype.$store = store
 
 
+Vue.prototype.$openWebview = function(url) {
+	uni.navigateTo({
+		url: '/pages/webview/webview?url=' + encodeURIComponent(url)
+	})
+}
+
+
 Vue.prototype.$toast = function(msg) {
 	uni.showToast({
 		title: msg,

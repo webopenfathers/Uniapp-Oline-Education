@@ -12,7 +12,8 @@
 				<!-- 轮播图 -->
 				<swiper v-else-if="item.type==='swiper'" style="310rpx" :indicator-dots="true" :autoplay="true"
 					:interval="3000" :duration="1000">
-					<swiper-item class="flex justify-center" v-for="(s,sI) in item.data" :key="sI">
+					<swiper-item class="flex justify-center" v-for="(s,sI) in item.data" :key="sI"
+						@click="swiperClick(s)">
 						<image style="width: 720rpx;height: 300rpx;" class="rounded shadow" :src="s.src"
 							mode="aspectFill">
 						</image>
@@ -46,7 +47,8 @@
 				<!-- 广告位 -->
 				<view v-else-if="item.type==='imageAd'">
 					<view class="divider"></view>
-					<image :src="item.data" mode="aspectFill" style="width: 750rpx;height: 360rpx;">
+					<image :src="item.data" mode="aspectFill" style="width: 750rpx;height: 360rpx;"
+						@click="imageAdClick(item)">
 					</image>
 				</view>
 			</block>
@@ -87,6 +89,19 @@
 			uni.$off('userLogout', this.refreshCouponList)
 		},
 		methods: {
+			imageAdClick(item) {
+				console.log(item);
+			},
+			swiperClick(s) {
+				if (s.type == 'webview') {
+					// 打开webView页面
+					this.$openWebview(s.url)
+				} else if (s.type == 'course') {
+					uni.navigateTo({
+						url: '/pages/course/course?id=' + s.course_id,
+					});
+				}
+			},
 			refreshCouponList() {
 				if (this.$refs.couponList && this.$refs.couponList[0]) {
 					this.$refs.couponList[0].getData()
