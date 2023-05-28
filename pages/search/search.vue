@@ -1,5 +1,9 @@
 <template>
 	<view>
+		<!-- #ifdef MP-->
+		<search-bar v-model="keyword" @confirm='handleSearchEvent()'></search-bar>
+		<!-- #endif -->
+
 		<view v-if="list.length">
 			<view class="flex align-center px-2 py-3 justify-between">
 				<text class="font-md font-weight-bold">历史记录</text>

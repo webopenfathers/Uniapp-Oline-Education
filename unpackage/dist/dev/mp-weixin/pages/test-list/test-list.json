@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "考场列表",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "uni-card": "/components/uni-card/uni-card",
+    "main-button": "/components/main-button/main-button",
+    "uni-load-more": "/uni_modules/uni-load-more/components/uni-load-more/uni-load-more"
+  }
+}

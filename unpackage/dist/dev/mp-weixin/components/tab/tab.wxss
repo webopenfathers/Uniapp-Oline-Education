@@ -1,0 +1,24 @@
+
+.tab-item {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	flex: 1;
+	padding: 20rpx;
+	color: #888;
+}
+.tab-line {
+	width: 50rpx;
+	height: 10rpx;
+	background-color: #00cf8a;
+	border-radius: 10rpx;
+	position: absolute;
+	bottom: 0;
+}
+.tab-item-active {
+	color: #00cf8a;
+	font-weight: bold;
+}
+

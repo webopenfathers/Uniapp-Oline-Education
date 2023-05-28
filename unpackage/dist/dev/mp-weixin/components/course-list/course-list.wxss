@@ -1,0 +1,36 @@
+
+.course {}
+.course-two {
+	width: 340rpx;
+	margin-left: 20rpx;
+	margin-bottom: 20rpx;
+}
+.course-two>view:last-child>text:first-child {
+	margin-top: 10rpx;
+}
+.course-two image,
+.course-two>view:first-child {
+	width: 340rpx;
+	height: 180rpx;
+}
+.course>view:first-child>view {
+	position: absolute;
+	right: 10rpx;
+	bottom: 10rpx;
+	background-color: rgba(0, 0, 0, 0.4);
+	padding: 0 10rpx;
+}
+.course-one {
+	display: flex !important;
+	padding: 20rpx 20rpx;
+}
+.course-one>view:first-child {
+	margin-right: 20rpx;
+}
+.course-one image,
+.course-one>view:first-child {
+	width: 300rpx;
+	height: 170rpx;
+	flex-shrink: 1;
+}
+

@@ -1,0 +1,1 @@
+<view><text data-event-opts="{{[['tap',[['handleCollect',['$event']]]]]}}" class="{{['iconfont','icon-shoucang1',(isfava)?'text-main':'']}}" style="font-size:25px;" bindtap="__e"></text></view>

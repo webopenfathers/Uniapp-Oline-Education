@@ -1,0 +1,1 @@
+<view class="onLogin"><image style="width:350rpx;height:350rpx;" src="/static/noLogin.png" mode></image><text class="text-muted my-2 font">登陆后才可以查看我的学习哦</text><button type="default" size="mini" plain="{{true}}" data-event-opts="{{[['tap',[['navigateTo',['/pages/login/login']]]]]}}" bindtap="__e">立即登录</button></view>

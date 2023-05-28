@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "学习进度",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "icons-card": "/components/icons-card/icons-card",
+    "tab": "/components/tab/tab",
+    "course-list": "/components/course-list/course-list",
+    "uni-load-more": "/uni_modules/uni-load-more/components/uni-load-more/uni-load-more",
+    "no-login": "/components/no-login/no-login"
+  }
+}

@@ -1,0 +1,22 @@
+
+.test-actions {
+	display: flex;
+	position: fixed;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: #fff;
+	height: 50px;
+	z-index: 100;
+}
+.test-actions>view {
+	flex: 1;
+	flex-direction: column;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.test-actions .iconfont {
+	font-size: 20px;
+}
+

@@ -1,0 +1,70 @@
+{
+  "pages": [
+    "pages/tabbar/index/index",
+    "pages/tabbar/learn/learn",
+    "pages/tabbar/home/home",
+    "pages/login/login",
+    "pages/bind-phone/bind-phone",
+    "pages/forget/forget",
+    "pages/setting/setting",
+    "pages/my-coupon/my-coupon",
+    "pages/user-safe/user-safe",
+    "pages/user-info/user-info",
+    "pages/order-list/order-list",
+    "pages/search/search",
+    "pages/search-result/search-result",
+    "pages/course/course",
+    "pages/column/column",
+    "pages/test-list/test-list",
+    "pages/test-detail/test-detail",
+    "pages/my-test/my-test",
+    "pages/bbs/bbs",
+    "pages/add-post/add-post",
+    "pages/post-detail/post-detail",
+    "pages/my-post/my-post",
+    "pages/book-list/book-list",
+    "pages/book-detail/book-detail",
+    "pages/book/book",
+    "pages/msg-list/msg-list",
+    "pages/fava-list/fava-list",
+    "pages/list/list",
+    "pages/create-order/create-order",
+    "pages/h5pay/h5pay",
+    "pages/live/live",
+    "pages/webview/webview",
+    "pages/my-book/my-book"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "uniapp在线教育",
+    "navigationBarBackgroundColor": "#FFF",
+    "backgroundColor": "#FFF"
+  },
+  "tabBar": {
+    "color": "#BBBAC7",
+    "selectedColor": "#2C2C2C",
+    "borderStyle": "black",
+    "list": [
+      {
+        "iconPath": "static/tabbar/index1.png",
+        "pagePath": "pages/tabbar/index/index",
+        "selectedIconPath": "static/tabbar/index1_selected.png",
+        "text": "首页"
+      },
+      {
+        "iconPath": "static/tabbar/learn.png",
+        "pagePath": "pages/tabbar/learn/learn",
+        "selectedIconPath": "static/tabbar/learn_selected.png",
+        "text": "学习"
+      },
+      {
+        "iconPath": "static/tabbar/home.png",
+        "pagePath": "pages/tabbar/home/home",
+        "selectedIconPath": "static/tabbar/home_selected.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "usingComponents": {}
+}

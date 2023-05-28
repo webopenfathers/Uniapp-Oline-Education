@@ -1,0 +1,1 @@
+<view class="{{[getClass]}}" style="{{'background-color:rgb(245, 245, 241);'+(getStyle)}}"></view>

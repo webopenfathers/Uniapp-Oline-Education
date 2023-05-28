@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "列表页",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "course-list": "/components/course-list/course-list",
+    "uni-load-more": "/uni_modules/uni-load-more/components/uni-load-more/uni-load-more"
+  }
+}

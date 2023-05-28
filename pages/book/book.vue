@@ -28,7 +28,7 @@
 
 
 		<!-- 底部操作条 -->
-		<test-actions :current='current' :showSubmit='false' :total='menus.length' @open='handleOpenLeft'
+		<test-actions :current='current' :showSubmit='false' :total='total' @open='handleOpenLeft'
 			@on-page='onPage'></test-actions>
 	</view>
 </template>
@@ -57,6 +57,11 @@
 			this.book_id = parseInt(book_id)
 			this.activeId = parseInt(id)
 			this.getData()
+		},
+		computed: {
+			total() {
+				return this.menus.length
+			}
 		},
 		methods: {
 			close() {
@@ -97,8 +102,16 @@
 					uni.setNavigationBarTitle({
 						title: res.title
 					})
+					if (this.content == '') this.content = '暂无内容'
 				}).catch(err => {
-
+					this.content = err
+					if (err == '请先购买该电子书') {
+						setTimeout(() => {
+							uni.navigateBack({
+								delta: 1
+							});
+						}, 500)
+					}
 				})
 			},
 			changeCurrent(index) {

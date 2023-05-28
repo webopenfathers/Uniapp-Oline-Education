@@ -1,0 +1,25 @@
+
+.f-audio-slider {
+	position: relative;
+}
+.f-audio-slider text {
+	position: absolute;
+	top: 35rpx;
+	font-size: 12px;
+}
+.f-audio-slider .current-time {
+	left: 30rpx;
+}
+.f-audio-slider .duration {
+	right: 30rpx;
+}
+.f-audio-btn text:first-child,
+.f-audio-btn text:last-child {
+	font-size: 30px;
+	color: #bbb;
+}
+.f-audio-btn text:nth-child(2) {
+	font-size: 50px;
+	color: rgb(92, 204, 132);
+}
+

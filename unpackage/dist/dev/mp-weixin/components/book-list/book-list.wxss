@@ -1,0 +1,25 @@
+
+.course>view:first-child>view {
+	position: absolute;
+	right: 10rpx;
+	bottom: 10rpx;
+	background-color: rgba(0, 0, 0, 0.4);
+	padding: 0 10rpx;
+}
+.course-one {
+	display: flex !important;
+	padding: 20rpx;
+}
+.course-one>view:first-child {
+	margin-right: 20rpx;
+}
+.course-one image,
+.course-one>view:first-child {
+	width: 185rpx;
+	height: 235rpx;
+	flex-shrink: 1;
+}
+.course-one>view:last-child {
+	width: 500rpx;
+}
+

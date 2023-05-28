@@ -1,0 +1,11 @@
+{
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "f-search-bar": "/components/f-search-bar/f-search-bar",
+    "icon-nav": "/components/icon-nav/icon-nav",
+    "coupon-list": "/components/coupon-list/coupon-list",
+    "active-list": "/components/active-list/active-list",
+    "course-list": "/components/course-list/course-list",
+    "index-skeleton": "/pages/tabbar/index/index-skeleton"
+  }
+}

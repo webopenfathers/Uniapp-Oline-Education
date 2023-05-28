@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "我的帖子",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "post-list": "/components/post-list/post-list",
+    "uni-load-more": "/uni_modules/uni-load-more/components/uni-load-more/uni-load-more"
+  }
+}

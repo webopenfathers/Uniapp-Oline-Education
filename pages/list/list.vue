@@ -39,6 +39,7 @@
 			uni.setNavigationBarTitle({
 				title: t[this.module] + '列表'
 			})
+			this.getData()
 		},
 		computed: {
 			tag() {
@@ -48,9 +49,6 @@
 
 				return this.module == 'group' ? '拼团价' : '秒杀价'
 			}
-		},
-		created() {
-			this.getData()
 		},
 		// 下拉刷新
 		onPullDownRefresh() {

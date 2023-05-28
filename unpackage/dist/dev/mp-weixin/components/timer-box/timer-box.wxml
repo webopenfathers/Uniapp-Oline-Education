@@ -1,0 +1,1 @@
+<view><view class="timer-box">{{'考试时间 '+$root.f0+''}}</view><view style="height:85rpx;"></view></view>

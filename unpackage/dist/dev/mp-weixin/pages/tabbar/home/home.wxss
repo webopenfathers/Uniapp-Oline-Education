@@ -1,0 +1,12 @@
+
+.home-bg {
+	background-color: #5ccc84;
+	height: 350rpx;
+	width: 750rpx;
+	border-bottom-left-radius: 100rpx;
+	border-bottom-right-radius: 100rpx;
+	position: fixed;
+	left: 0;
+	right: 0;
+}
+

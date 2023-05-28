@@ -8,6 +8,13 @@
         {
             "playground" : "standard",
             "type" : "uni-app:app-ios"
-        }
+        },
+	{
+		"mp-weixin" : 
+		{
+			"launchtype" : "local"
+		},
+		"type" : "uniCloud"
+	}
     ]
 }

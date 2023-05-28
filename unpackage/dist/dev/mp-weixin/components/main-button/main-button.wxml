@@ -1,0 +1,1 @@
+<view class="{{['bg-main','main-btn',bClass+' '+(disabled?'bg-main-disable':'')]}}" style="{{(bStyle)}}" hover-class="bg-main-hover" data-event-opts="{{[['tap',[['onClick',['$event']]]]]}}" bindtap="__e"><slot></slot></view>

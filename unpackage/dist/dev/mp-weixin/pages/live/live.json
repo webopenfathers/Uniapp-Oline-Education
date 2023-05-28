@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "直播详情页",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "uni-load-more": "/uni_modules/uni-load-more/components/uni-load-more/uni-load-more",
+    "uni-card": "/components/uni-card/uni-card",
+    "mp-html": "/uni_modules/mp-html/components/mp-html/mp-html",
+    "main-button": "/components/main-button/main-button",
+    "live-play": "/components/live-play/live-play"
+  }
+}

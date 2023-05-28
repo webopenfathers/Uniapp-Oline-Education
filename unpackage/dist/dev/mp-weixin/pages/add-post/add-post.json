@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "新增帖子",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "uni-card": "/components/uni-card/uni-card",
+    "upload-image": "/components/upload-image/upload-image",
+    "main-button": "/components/main-button/main-button"
+  }
+}

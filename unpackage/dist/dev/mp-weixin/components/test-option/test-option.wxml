@@ -1,0 +1,1 @@
+<view data-event-opts="{{[['tap',[['$emit',['click','$0'],['index']]]]]}}" class="{{['border','rounded','px-3','py-2','mb-2','flex','align-start','',checked?'border-main text-main':'']}}" bindtap="__e"><text class="mr-2">{{$root.f0}}</text><view><mp-html vue-id="016d1f20-1" content="{{label}}" bind:__l="__l"></mp-html></view></view>

@@ -1,9 +1,11 @@
 <template>
 	<view>
-		<!-- 按钮 -->
+		<!-- #ifndef MP-->
 		<view class="login-back" @click="back">
 			<uni-icons type="arrowleft" size="20" color="#FFF"></uni-icons>
 		</view>
+		<!-- #endif -->
+
 		<!-- 顶部颜色 -->
 		<view class="login-bg"></view>
 		<!--  -->

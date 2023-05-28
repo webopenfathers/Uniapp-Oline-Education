@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "uni-drawer": "/uni_modules/uni-drawer/components/uni-drawer/uni-drawer",
+    "menu-item": "/components/menu-item/menu-item",
+    "uni-card": "/components/uni-card/uni-card",
+    "mp-html": "/uni_modules/mp-html/components/mp-html/mp-html",
+    "test-actions": "/components/test-actions/test-actions"
+  }
+}

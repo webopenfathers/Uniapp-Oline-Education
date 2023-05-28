@@ -1,0 +1,27 @@
+
+.comment-list {
+	display: flex;
+	flex-wrap: nowrap;
+	width: 100%;
+	padding: 20rpx 0;
+}
+.comment-list .face {
+	border-radius: 100%;
+	width: 70rpx;
+	height: 70rpx;
+	flex-shrink: 0;
+	margin-right: 20rpx;
+	background-color: #eee;
+}
+.comment-list .top {
+	color: #007aff;
+	font-size: 24rpx;
+}
+.comment-list .content {
+	padding: 8rpx 0;
+}
+.comment-list .date {
+	color: #666;
+	font-size: 24rpx;
+}
+

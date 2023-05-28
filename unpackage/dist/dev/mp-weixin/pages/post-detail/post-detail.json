@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "帖子详情",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "post-list": "/components/post-list/post-list",
+    "comment-popup": "/components/comment-popup/comment-popup"
+  }
+}

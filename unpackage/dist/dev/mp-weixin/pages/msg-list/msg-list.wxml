@@ -1,0 +1,1 @@
+<view class="p-2"><block wx:for="{{list}}" wx:for-item="item" wx:for-index="index" wx:key="index"><view class="bg-white rounded p-2"><view>{{item.content}}</view><text class="text-muted font-sm">{{item.created_time}}</text></view></block><uni-load-more vue-id="b3286800-1" status="{{loadStatus}}" bind:__l="__l"></uni-load-more></view>

@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "我的电子书",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "book-list": "/components/book-list/book-list",
+    "uni-load-more": "/uni_modules/uni-load-more/components/uni-load-more/uni-load-more"
+  }
+}

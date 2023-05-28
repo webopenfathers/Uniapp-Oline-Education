@@ -1,0 +1,1 @@
+<view class="code-btn bg-main" hover-class="bg-main-hover" data-event-opts="{{[['tap',[['sendCode',['$event']]]]]}}" bindtap="__e">{{''+(time>0?time+'s':'发送')+''}}</view>

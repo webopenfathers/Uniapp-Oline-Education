@@ -1,0 +1,1 @@
+<view class="flex align-center p-3 border-bottom" hover-class="bg-light" data-event-opts="{{[['tap',[['$emit',['click']]]]]}}" bindtap="__e"><text class="{{['flex-shrink',active?'text-main':'text-muted']}}" style="width:90rpx;">{{$root.f0}}</text><view class="{{['flex','flex-column','','align-start',active?'text-main':'text-muted']}}">{{''+title+''}}<slot></slot></view></view>
