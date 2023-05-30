@@ -98,8 +98,11 @@ __webpack_require__.r(__webpack_exports__);
 var components
 try {
   components = {
+    searchBar: function () {
+      return __webpack_require__.e(/*! import() | components/search-bar/search-bar */ "components/search-bar/search-bar").then(__webpack_require__.bind(null, /*! @/components/search-bar/search-bar.vue */ 358))
+    },
     uniBadge: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-badge/components/uni-badge/uni-badge */ "uni_modules/uni-badge/components/uni-badge/uni-badge").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-badge/components/uni-badge/uni-badge.vue */ 358))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-badge/components/uni-badge/uni-badge */ "uni_modules/uni-badge/components/uni-badge/uni-badge").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-badge/components/uni-badge/uni-badge.vue */ 363))
     },
   }
 } catch (e) {
@@ -171,6 +174,10 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
+//
+//
+//
+//
 //
 //
 //

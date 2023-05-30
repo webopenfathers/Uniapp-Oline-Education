@@ -98,11 +98,20 @@ __webpack_require__.r(__webpack_exports__);
 var components
 try {
   components = {
+    searchBar: function () {
+      return __webpack_require__.e(/*! import() | components/search-bar/search-bar */ "components/search-bar/search-bar").then(__webpack_require__.bind(null, /*! @/components/search-bar/search-bar.vue */ 358))
+    },
+    fixedBtn: function () {
+      return __webpack_require__.e(/*! import() | components/fixed-btn/fixed-btn */ "components/fixed-btn/fixed-btn").then(__webpack_require__.bind(null, /*! @/components/fixed-btn/fixed-btn.vue */ 429))
+    },
+    uniIcons: function () {
+      return Promise.all(/*! import() | uni_modules/uni-icons/components/uni-icons/uni-icons */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-icons/components/uni-icons/uni-icons")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-icons/components/uni-icons/uni-icons.vue */ 331))
+    },
     uniLoadMore: function () {
       return Promise.all(/*! import() | uni_modules/uni-load-more/components/uni-load-more/uni-load-more */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-load-more/components/uni-load-more/uni-load-more")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-load-more/components/uni-load-more/uni-load-more.vue */ 299))
     },
     postList: function () {
-      return __webpack_require__.e(/*! import() | components/post-list/post-list */ "components/post-list/post-list").then(__webpack_require__.bind(null, /*! @/components/post-list/post-list.vue */ 419))
+      return __webpack_require__.e(/*! import() | components/post-list/post-list */ "components/post-list/post-list").then(__webpack_require__.bind(null, /*! @/components/post-list/post-list.vue */ 424))
     },
   }
 } catch (e) {
@@ -199,6 +208,13 @@ var _toConsumableArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 var _default = {
   data: function data() {
     return {
@@ -242,9 +258,7 @@ var _default = {
   },
   // 监听按钮点击
   onNavigationBarButtonTap: function onNavigationBarButtonTap() {
-    uni.navigateTo({
-      url: '/pages/add-post/add-post'
-    });
+    this.authJump('/pages/add-post/add-post');
   },
   methods: {
     handleSupport: function handleSupport(id) {

@@ -1,8 +1,16 @@
 <template>
 	<view>
+		<!-- H5端直播间 -->
 		<!-- #ifdef H5 -->
 		<view id="video"></view>
 		<!-- #endif  -->
+
+
+		<!-- 微信小程序端直播间 -->
+		<!-- #ifdef MP -->
+		<live-player :src="detail.playUrl" autoplay @statechange="statechange" @error="error"
+			style="width: 750rpx; height: 420rpx;" />
+		<!-- #endif -->
 
 
 		<scroll-view scroll-y="true" class="bg-light" :style="'height:'+scrollH+'px;'" :scroll-into-view="scrollInto">
@@ -62,6 +70,15 @@
 			// #endif
 		},
 		methods: {
+			// #ifndef MP
+			statechange(e) {
+				console.log('live-player code:', e.detail.code)
+			},
+			error(e) {
+				console.error('live-player error:', e.detail.errMsg)
+			},
+			// #endif
+
 			getData() {
 				this.$api.getLiveComment({
 					page: 1,

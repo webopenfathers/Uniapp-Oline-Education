@@ -99,22 +99,22 @@ var components
 try {
   components = {
     timerBox: function () {
-      return __webpack_require__.e(/*! import() | components/timer-box/timer-box */ "components/timer-box/timer-box").then(__webpack_require__.bind(null, /*! @/components/timer-box/timer-box.vue */ 400))
+      return __webpack_require__.e(/*! import() | components/timer-box/timer-box */ "components/timer-box/timer-box").then(__webpack_require__.bind(null, /*! @/components/timer-box/timer-box.vue */ 405))
     },
     uniCard: function () {
       return __webpack_require__.e(/*! import() | components/uni-card/uni-card */ "components/uni-card/uni-card").then(__webpack_require__.bind(null, /*! @/components/uni-card/uni-card.vue */ 351))
     },
     mpHtml: function () {
-      return Promise.all(/*! import() | uni_modules/mp-html/components/mp-html/mp-html */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/mp-html/components/mp-html/mp-html")]).then(__webpack_require__.bind(null, /*! @/uni_modules/mp-html/components/mp-html/mp-html.vue */ 387))
+      return Promise.all(/*! import() | uni_modules/mp-html/components/mp-html/mp-html */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/mp-html/components/mp-html/mp-html")]).then(__webpack_require__.bind(null, /*! @/uni_modules/mp-html/components/mp-html/mp-html.vue */ 392))
     },
     mainButton: function () {
       return __webpack_require__.e(/*! import() | components/main-button/main-button */ "components/main-button/main-button").then(__webpack_require__.bind(null, /*! @/components/main-button/main-button.vue */ 346))
     },
     testOption: function () {
-      return __webpack_require__.e(/*! import() | components/test-option/test-option */ "components/test-option/test-option").then(__webpack_require__.bind(null, /*! @/components/test-option/test-option.vue */ 407))
+      return __webpack_require__.e(/*! import() | components/test-option/test-option */ "components/test-option/test-option").then(__webpack_require__.bind(null, /*! @/components/test-option/test-option.vue */ 412))
     },
     testActions: function () {
-      return __webpack_require__.e(/*! import() | components/test-actions/test-actions */ "components/test-actions/test-actions").then(__webpack_require__.bind(null, /*! @/components/test-actions/test-actions.vue */ 412))
+      return __webpack_require__.e(/*! import() | components/test-actions/test-actions */ "components/test-actions/test-actions").then(__webpack_require__.bind(null, /*! @/components/test-actions/test-actions.vue */ 417))
     },
   }
 } catch (e) {

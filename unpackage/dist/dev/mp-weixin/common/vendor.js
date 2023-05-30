@@ -975,7 +975,7 @@ function populateParameters(result) {
   // wx.getAccountInfoSync
 
   var parameters = {
-    appId: "",
+    appId: "__UNI__3FD65D2",
     appName: "uniapp在线教育",
     appVersion: "1.0.0",
     appVersionCode: "100",
@@ -1074,7 +1074,7 @@ var getAppBaseInfo = {
     var _hostName = getHostName(result);
     var hostLanguage = language.replace('_', '-');
     result = sortObject(Object.assign(result, {
-      appId: "",
+      appId: "__UNI__3FD65D2",
       appName: "uniapp在线教育",
       appVersion: "1.0.0",
       appVersionCode: "100",
@@ -12306,7 +12306,7 @@ module.exports = index_cjs;
 
 /***/ }),
 
-/***/ 392:
+/***/ 397:
 /*!***********************************************************************************************************!*\
   !*** C:/Users/zbw/Documents/HBuilderProjects/uniapp在线教育/uni_modules/mp-html/components/mp-html/parser.js ***!
   \***********************************************************************************************************/
@@ -13535,7 +13535,7 @@ module.exports = _interopRequireDefault, module.exports.__esModule = true, modul
 
 /***/ }),
 
-/***/ 429:
+/***/ 441:
 /*!************************************************************************************************!*\
   !*** C:/Users/zbw/Documents/HBuilderProjects/uniapp在线教育/components/upload-image/permission.js ***!
   \************************************************************************************************/
@@ -13784,7 +13784,7 @@ module.exports = permission;
 
 /***/ }),
 
-/***/ 461:
+/***/ 473:
 /*!*********************************************************************************************************************************!*\
   !*** C:/Users/zbw/Documents/HBuilderProjects/uniapp在线教育/uni_modules/uni-swipe-action/components/uni-swipe-action-item/mpwxs.js ***!
   \*********************************************************************************************************************************/
@@ -13862,7 +13862,7 @@ exports.default = _default;
 
 /***/ }),
 
-/***/ 462:
+/***/ 474:
 /*!************************************************************************************************************************************!*\
   !*** C:/Users/zbw/Documents/HBuilderProjects/uniapp在线教育/uni_modules/uni-swipe-action/components/uni-swipe-action-item/bindingx.js ***!
   \************************************************************************************************************************************/
@@ -13882,7 +13882,7 @@ exports.default = _default;
 
 /***/ }),
 
-/***/ 463:
+/***/ 475:
 /*!***********************************************************************************************************************************!*\
   !*** C:/Users/zbw/Documents/HBuilderProjects/uniapp在线教育/uni_modules/uni-swipe-action/components/uni-swipe-action-item/mpother.js ***!
   \***********************************************************************************************************************************/
@@ -13902,7 +13902,7 @@ exports.default = _default;
 
 /***/ }),
 
-/***/ 483:
+/***/ 495:
 /*!***************************************************************************************************************************!*\
   !*** C:/Users/zbw/Documents/HBuilderProjects/uniapp在线教育/uni_modules/uni-countdown/components/uni-countdown/i18n/index.js ***!
   \***************************************************************************************************************************/
@@ -13917,9 +13917,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _en = _interopRequireDefault(__webpack_require__(/*! ./en.json */ 484));
-var _zhHans = _interopRequireDefault(__webpack_require__(/*! ./zh-Hans.json */ 485));
-var _zhHant = _interopRequireDefault(__webpack_require__(/*! ./zh-Hant.json */ 486));
+var _en = _interopRequireDefault(__webpack_require__(/*! ./en.json */ 496));
+var _zhHans = _interopRequireDefault(__webpack_require__(/*! ./zh-Hans.json */ 497));
+var _zhHant = _interopRequireDefault(__webpack_require__(/*! ./zh-Hant.json */ 498));
 var _default = {
   en: _en.default,
   'zh-Hans': _zhHans.default,
@@ -13929,7 +13929,7 @@ exports.default = _default;
 
 /***/ }),
 
-/***/ 484:
+/***/ 496:
 /*!**************************************************************************************************************************!*\
   !*** C:/Users/zbw/Documents/HBuilderProjects/uniapp在线教育/uni_modules/uni-countdown/components/uni-countdown/i18n/en.json ***!
   \**************************************************************************************************************************/
@@ -13940,7 +13940,7 @@ module.exports = JSON.parse("{\"uni-countdown.day\":\"day\",\"uni-countdown.h\":
 
 /***/ }),
 
-/***/ 485:
+/***/ 497:
 /*!*******************************************************************************************************************************!*\
   !*** C:/Users/zbw/Documents/HBuilderProjects/uniapp在线教育/uni_modules/uni-countdown/components/uni-countdown/i18n/zh-Hans.json ***!
   \*******************************************************************************************************************************/
@@ -13951,7 +13951,7 @@ module.exports = JSON.parse("{\"uni-countdown.day\":\"天\",\"uni-countdown.h\":
 
 /***/ }),
 
-/***/ 486:
+/***/ 498:
 /*!*******************************************************************************************************************************!*\
   !*** C:/Users/zbw/Documents/HBuilderProjects/uniapp在线教育/uni_modules/uni-countdown/components/uni-countdown/i18n/zh-Hant.json ***!
   \*******************************************************************************************************************************/
@@ -13980,7 +13980,7 @@ module.exports = _slicedToArray, module.exports.__esModule = true, module.export
 
 /***/ }),
 
-/***/ 510:
+/***/ 522:
 /*!**********************************************************************************************************************************!*\
   !*** C:/Users/zbw/Documents/HBuilderProjects/uniapp在线教育/uni_modules/uni-transition/components/uni-transition/createAnimation.js ***!
   \**********************************************************************************************************************************/

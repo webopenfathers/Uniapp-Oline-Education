@@ -98,11 +98,17 @@ __webpack_require__.r(__webpack_exports__);
 var components
 try {
   components = {
+    fixedBtn: function () {
+      return __webpack_require__.e(/*! import() | components/fixed-btn/fixed-btn */ "components/fixed-btn/fixed-btn").then(__webpack_require__.bind(null, /*! @/components/fixed-btn/fixed-btn.vue */ 429))
+    },
+    uniIcons: function () {
+      return Promise.all(/*! import() | uni_modules/uni-icons/components/uni-icons/uni-icons */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-icons/components/uni-icons/uni-icons")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-icons/components/uni-icons/uni-icons.vue */ 331))
+    },
     uniCard: function () {
       return __webpack_require__.e(/*! import() | components/uni-card/uni-card */ "components/uni-card/uni-card").then(__webpack_require__.bind(null, /*! @/components/uni-card/uni-card.vue */ 351))
     },
     uploadImage: function () {
-      return Promise.all(/*! import() | components/upload-image/upload-image */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/upload-image/upload-image")]).then(__webpack_require__.bind(null, /*! @/components/upload-image/upload-image.vue */ 424))
+      return Promise.all(/*! import() | components/upload-image/upload-image */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/upload-image/upload-image")]).then(__webpack_require__.bind(null, /*! @/components/upload-image/upload-image.vue */ 436))
     },
     mainButton: function () {
       return __webpack_require__.e(/*! import() | components/main-button/main-button */ "components/main-button/main-button").then(__webpack_require__.bind(null, /*! @/components/main-button/main-button.vue */ 346))
@@ -168,6 +174,13 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //

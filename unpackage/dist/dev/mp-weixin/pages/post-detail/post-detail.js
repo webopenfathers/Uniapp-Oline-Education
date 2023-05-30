@@ -101,10 +101,10 @@ var components
 try {
   components = {
     postList: function () {
-      return __webpack_require__.e(/*! import() | components/post-list/post-list */ "components/post-list/post-list").then(__webpack_require__.bind(null, /*! @/components/post-list/post-list.vue */ 419))
+      return __webpack_require__.e(/*! import() | components/post-list/post-list */ "components/post-list/post-list").then(__webpack_require__.bind(null, /*! @/components/post-list/post-list.vue */ 424))
     },
     commentPopup: function () {
-      return __webpack_require__.e(/*! import() | components/comment-popup/comment-popup */ "components/comment-popup/comment-popup").then(__webpack_require__.bind(null, /*! @/components/comment-popup/comment-popup.vue */ 432))
+      return __webpack_require__.e(/*! import() | components/comment-popup/comment-popup */ "components/comment-popup/comment-popup").then(__webpack_require__.bind(null, /*! @/components/comment-popup/comment-popup.vue */ 444))
     },
   }
 } catch (e) {

@@ -99,19 +99,19 @@ var components
 try {
   components = {
     uniDrawer: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-drawer/components/uni-drawer/uni-drawer */ "uni_modules/uni-drawer/components/uni-drawer/uni-drawer").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-drawer/components/uni-drawer/uni-drawer.vue */ 444))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-drawer/components/uni-drawer/uni-drawer */ "uni_modules/uni-drawer/components/uni-drawer/uni-drawer").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-drawer/components/uni-drawer/uni-drawer.vue */ 456))
     },
     menuItem: function () {
-      return __webpack_require__.e(/*! import() | components/menu-item/menu-item */ "components/menu-item/menu-item").then(__webpack_require__.bind(null, /*! @/components/menu-item/menu-item.vue */ 395))
+      return __webpack_require__.e(/*! import() | components/menu-item/menu-item */ "components/menu-item/menu-item").then(__webpack_require__.bind(null, /*! @/components/menu-item/menu-item.vue */ 400))
     },
     uniCard: function () {
       return __webpack_require__.e(/*! import() | components/uni-card/uni-card */ "components/uni-card/uni-card").then(__webpack_require__.bind(null, /*! @/components/uni-card/uni-card.vue */ 351))
     },
     mpHtml: function () {
-      return Promise.all(/*! import() | uni_modules/mp-html/components/mp-html/mp-html */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/mp-html/components/mp-html/mp-html")]).then(__webpack_require__.bind(null, /*! @/uni_modules/mp-html/components/mp-html/mp-html.vue */ 387))
+      return Promise.all(/*! import() | uni_modules/mp-html/components/mp-html/mp-html */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/mp-html/components/mp-html/mp-html")]).then(__webpack_require__.bind(null, /*! @/uni_modules/mp-html/components/mp-html/mp-html.vue */ 392))
     },
     testActions: function () {
-      return __webpack_require__.e(/*! import() | components/test-actions/test-actions */ "components/test-actions/test-actions").then(__webpack_require__.bind(null, /*! @/components/test-actions/test-actions.vue */ 412))
+      return __webpack_require__.e(/*! import() | components/test-actions/test-actions */ "components/test-actions/test-actions").then(__webpack_require__.bind(null, /*! @/components/test-actions/test-actions.vue */ 417))
     },
   }
 } catch (e) {

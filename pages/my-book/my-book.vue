@@ -2,8 +2,7 @@
 	<view>
 		<view v-for="(item,index) in list" :key="index">
 			<book-list :item="item">
-				<view class="border flex align-center justify-center rounded-circle
-				px-2 py-1 ml-auto text-muted">
+				<view class="border flex align-center justify-center rounded-circle px-2 py-1 ml-auto text-muted">
 					立即学习
 					<text class="iconfont icon-xiayibu ml-1"></text>
 				</view>

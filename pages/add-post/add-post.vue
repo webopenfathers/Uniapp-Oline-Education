@@ -1,5 +1,12 @@
 <template>
 	<view>
+		<!-- #ifdef MP -->
+		<fixed-btn @click='submit()'>
+			<uni-icons type="paperplane" color="#fff" size="20"></uni-icons>
+		</fixed-btn>
+		<!-- #endif -->
+
+
 		<!--选择社区 -->
 		<picker mode="selector" :range="menus" @change="handleChange">
 			<view class="p-2">

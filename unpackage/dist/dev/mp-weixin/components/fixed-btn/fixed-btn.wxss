@@ -1,0 +1,13 @@
+
+.fixed-btn {
+	position: fixed;
+	right: 40rpx;
+	bottom: 150rpx;
+	width: 100rpx;
+	height: 100rpx;
+	border-radius: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+

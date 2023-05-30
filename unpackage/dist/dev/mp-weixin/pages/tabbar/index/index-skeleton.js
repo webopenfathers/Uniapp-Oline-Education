@@ -78,7 +78,7 @@ var components
 try {
   components = {
     skeleton: function () {
-      return __webpack_require__.e(/*! import() | components/skeleton/skeleton */ "components/skeleton/skeleton").then(__webpack_require__.bind(null, /*! @/components/skeleton/skeleton.vue */ 473))
+      return __webpack_require__.e(/*! import() | components/skeleton/skeleton */ "components/skeleton/skeleton").then(__webpack_require__.bind(null, /*! @/components/skeleton/skeleton.vue */ 485))
     },
   }
 } catch (e) {

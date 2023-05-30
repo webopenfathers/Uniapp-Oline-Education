@@ -2,11 +2,11 @@
 	<view>
 		<view class="fixed-top bg-white">
 			<!-- 手机状态栏 -->
-			<view style="height: 20px;"></view>
+			<view style="height: 50px;"></view>
 			<!-- 导航栏 -->
 			<view class="flex align-center" style="44px">
 				<!-- 按钮 -->
-				<view class="flex align-center justify-center" style="height: 44px;height: 44px;">
+				<view class="flex align-center justify-center" style="height: 44px;height: 44px;" @click="back">
 					<uni-icons type="arrowleft" size="20"></uni-icons>
 				</view>
 				<!-- 搜索框 -->
@@ -16,7 +16,7 @@
 			</view>
 		</view>
 		<!-- 占位 -->
-		<view class="" style="height: 64px;"></view>
+		<view class="" style="height: 94px;"></view>
 
 	</view>
 </template>
@@ -38,6 +38,13 @@
 			return {
 
 			};
+		},
+		methods: {
+			back() {
+				uni.navigateBack({
+					delta: 1
+				});
+			}
 		}
 	}
 </script>

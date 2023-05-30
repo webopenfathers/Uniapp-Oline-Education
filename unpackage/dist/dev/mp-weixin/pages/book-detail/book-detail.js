@@ -107,10 +107,10 @@ try {
       return __webpack_require__.e(/*! import() | components/uni-card/uni-card */ "components/uni-card/uni-card").then(__webpack_require__.bind(null, /*! @/components/uni-card/uni-card.vue */ 351))
     },
     mpHtml: function () {
-      return Promise.all(/*! import() | uni_modules/mp-html/components/mp-html/mp-html */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/mp-html/components/mp-html/mp-html")]).then(__webpack_require__.bind(null, /*! @/uni_modules/mp-html/components/mp-html/mp-html.vue */ 387))
+      return Promise.all(/*! import() | uni_modules/mp-html/components/mp-html/mp-html */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/mp-html/components/mp-html/mp-html")]).then(__webpack_require__.bind(null, /*! @/uni_modules/mp-html/components/mp-html/mp-html.vue */ 392))
     },
     menuItem: function () {
-      return __webpack_require__.e(/*! import() | components/menu-item/menu-item */ "components/menu-item/menu-item").then(__webpack_require__.bind(null, /*! @/components/menu-item/menu-item.vue */ 395))
+      return __webpack_require__.e(/*! import() | components/menu-item/menu-item */ "components/menu-item/menu-item").then(__webpack_require__.bind(null, /*! @/components/menu-item/menu-item.vue */ 400))
     },
     mainButton: function () {
       return __webpack_require__.e(/*! import() | components/main-button/main-button */ "components/main-button/main-button").then(__webpack_require__.bind(null, /*! @/components/main-button/main-button.vue */ 346))

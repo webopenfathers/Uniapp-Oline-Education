@@ -3,6 +3,7 @@
   "enablePullDownRefresh": false,
   "navigationStyle": "custom",
   "usingComponents": {
+    "search-bar": "/components/search-bar/search-bar",
     "uni-badge": "/uni_modules/uni-badge/components/uni-badge/uni-badge"
   }
 }

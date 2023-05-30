@@ -1,0 +1,1 @@
+<view data-event-opts="{{[['tap',[['$emit',['click']]]]]}}" class="fixed-btn bg-main" bindtap="__e"><slot></slot></view>

@@ -1,5 +1,12 @@
 <template>
 	<view>
+		<!-- #ifdef MP -->
+		<search-bar v-model="listQuery.keyword" @confirm='refresh()'></search-bar>
+		<fixed-btn @click="authJump('../add-post/add-post')">
+			<uni-icons type="plus" color="#fff" size="20"></uni-icons>
+		</fixed-btn>
+		<!-- #endif -->
+
 		<scroll-view scroll-x="true" class="px-1 pt-2 scroll-row" @scrolltolower="handleBbsLoadMore">
 			<view v-for="(item,index) in bbs" :key="index" class="border px-3 py-1 scroll-row-item  rounded mx-1 mb-2"
 				:class="activeIndex===index?'bg-main text-white':'bg-light text-muted'" @click="changeBbs(index)">
@@ -75,9 +82,7 @@
 		},
 		// 监听按钮点击
 		onNavigationBarButtonTap() {
-			uni.navigateTo({
-				url: '/pages/add-post/add-post',
-			});
+			this.authJump('/pages/add-post/add-post')
 		},
 		methods: {
 			handleSupport(id) {

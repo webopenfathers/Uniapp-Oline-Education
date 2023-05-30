@@ -105,13 +105,13 @@ try {
       return __webpack_require__.e(/*! import() | components/uni-card/uni-card */ "components/uni-card/uni-card").then(__webpack_require__.bind(null, /*! @/components/uni-card/uni-card.vue */ 351))
     },
     mpHtml: function () {
-      return Promise.all(/*! import() | uni_modules/mp-html/components/mp-html/mp-html */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/mp-html/components/mp-html/mp-html")]).then(__webpack_require__.bind(null, /*! @/uni_modules/mp-html/components/mp-html/mp-html.vue */ 387))
+      return Promise.all(/*! import() | uni_modules/mp-html/components/mp-html/mp-html */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/mp-html/components/mp-html/mp-html")]).then(__webpack_require__.bind(null, /*! @/uni_modules/mp-html/components/mp-html/mp-html.vue */ 392))
     },
     mainButton: function () {
       return __webpack_require__.e(/*! import() | components/main-button/main-button */ "components/main-button/main-button").then(__webpack_require__.bind(null, /*! @/components/main-button/main-button.vue */ 346))
     },
     livePlay: function () {
-      return __webpack_require__.e(/*! import() | components/live-play/live-play */ "components/live-play/live-play").then(__webpack_require__.bind(null, /*! @/components/live-play/live-play.vue */ 468))
+      return __webpack_require__.e(/*! import() | components/live-play/live-play */ "components/live-play/live-play").then(__webpack_require__.bind(null, /*! @/components/live-play/live-play.vue */ 480))
     },
   }
 } catch (e) {

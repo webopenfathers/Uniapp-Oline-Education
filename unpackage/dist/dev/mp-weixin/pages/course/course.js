@@ -99,22 +99,22 @@ var components
 try {
   components = {
     fAudio: function () {
-      return __webpack_require__.e(/*! import() | components/f-audio/f-audio */ "components/f-audio/f-audio").then(__webpack_require__.bind(null, /*! @/components/f-audio/f-audio.vue */ 365))
+      return __webpack_require__.e(/*! import() | components/f-audio/f-audio */ "components/f-audio/f-audio").then(__webpack_require__.bind(null, /*! @/components/f-audio/f-audio.vue */ 370))
     },
     activeBar: function () {
-      return Promise.all(/*! import() | components/active-bar/active-bar */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/active-bar/active-bar")]).then(__webpack_require__.bind(null, /*! @/components/active-bar/active-bar.vue */ 372))
+      return Promise.all(/*! import() | components/active-bar/active-bar */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/active-bar/active-bar")]).then(__webpack_require__.bind(null, /*! @/components/active-bar/active-bar.vue */ 377))
     },
     collectBtn: function () {
-      return __webpack_require__.e(/*! import() | components/collect-btn/collect-btn */ "components/collect-btn/collect-btn").then(__webpack_require__.bind(null, /*! @/components/collect-btn/collect-btn.vue */ 377))
+      return __webpack_require__.e(/*! import() | components/collect-btn/collect-btn */ "components/collect-btn/collect-btn").then(__webpack_require__.bind(null, /*! @/components/collect-btn/collect-btn.vue */ 382))
     },
     groupWorks: function () {
-      return Promise.all(/*! import() | components/group-works/group-works */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/group-works/group-works")]).then(__webpack_require__.bind(null, /*! @/components/group-works/group-works.vue */ 382))
+      return Promise.all(/*! import() | components/group-works/group-works */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/group-works/group-works")]).then(__webpack_require__.bind(null, /*! @/components/group-works/group-works.vue */ 387))
     },
     uniCard: function () {
       return __webpack_require__.e(/*! import() | components/uni-card/uni-card */ "components/uni-card/uni-card").then(__webpack_require__.bind(null, /*! @/components/uni-card/uni-card.vue */ 351))
     },
     mpHtml: function () {
-      return Promise.all(/*! import() | uni_modules/mp-html/components/mp-html/mp-html */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/mp-html/components/mp-html/mp-html")]).then(__webpack_require__.bind(null, /*! @/uni_modules/mp-html/components/mp-html/mp-html.vue */ 387))
+      return Promise.all(/*! import() | uni_modules/mp-html/components/mp-html/mp-html */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/mp-html/components/mp-html/mp-html")]).then(__webpack_require__.bind(null, /*! @/uni_modules/mp-html/components/mp-html/mp-html.vue */ 392))
     },
     mainButton: function () {
       return __webpack_require__.e(/*! import() | components/main-button/main-button */ "components/main-button/main-button").then(__webpack_require__.bind(null, /*! @/components/main-button/main-button.vue */ 346))

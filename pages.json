@@ -200,9 +200,12 @@
 						"float": "right"
 					}]
 				}
+			},
+			// 只在微信小程序中生效，取消原生导航，手写
+			"mp-weixin": {
+				"navigationStyle": "custom"
 			}
 		}
-
 	}, {
 		"path": "pages/add-post/add-post",
 		"style": {

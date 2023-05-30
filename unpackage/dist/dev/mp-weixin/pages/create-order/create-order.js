@@ -99,7 +99,7 @@ var components
 try {
   components = {
     bookList: function () {
-      return __webpack_require__.e(/*! import() | components/book-list/book-list */ "components/book-list/book-list").then(__webpack_require__.bind(null, /*! @/components/book-list/book-list.vue */ 437))
+      return __webpack_require__.e(/*! import() | components/book-list/book-list */ "components/book-list/book-list").then(__webpack_require__.bind(null, /*! @/components/book-list/book-list.vue */ 449))
     },
     courseList: function () {
       return __webpack_require__.e(/*! import() | components/course-list/course-list */ "components/course-list/course-list").then(__webpack_require__.bind(null, /*! @/components/course-list/course-list.vue */ 275))
