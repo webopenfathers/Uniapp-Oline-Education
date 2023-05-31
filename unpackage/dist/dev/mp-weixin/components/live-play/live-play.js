@@ -181,6 +181,14 @@ exports.default = void 0;
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 var _default = {
   name: "live-play",
   props: {
@@ -192,7 +200,9 @@ var _default = {
       videoContext: null,
       danmuList: [],
       scrollInto: '',
-      currentTime: 0
+      currentTime: 0,
+      appDanmuList: [],
+      showAppVideo: false
     };
   },
   created: function created() {
@@ -210,6 +220,21 @@ var _default = {
         limit: 500,
         live_id: this.detail.id
       }).then(function (res) {});
+    },
+    initAppVideo: function initAppVideo() {
+      var _this = this;
+      var comments = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+      this.appDanmuList = comments.map(function (o) {
+        return {
+          text: "".concat(o.name, ":").concat(o.content),
+          color: o.color,
+          time: parseInt(o.time / 1000)
+        };
+      });
+      this.showAppVideo = true;
+      this.$nextTick(function () {
+        _this.videoContext = uni.createVideoContext('video', _this);
+      });
     },
     initH5Video: function initH5Video() {
       var comments = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
@@ -261,7 +286,7 @@ var _default = {
       this.$refs.comment.open();
     },
     sendComment: function sendComment(content) {
-      var _this = this;
+      var _this2 = this;
       if (content == '') return this.$toast('弹幕内容不能为空');
       uni.showLoading({
         title: '发送中...',
@@ -273,10 +298,12 @@ var _default = {
         time: parseInt(this.currentTime * 1000),
         color: this.getRandomColor()
       }).then(function (res) {
-        _this.danmuList.push(res);
+        _this2.danmuList.push(res);
         setTimeout(function () {
-          _this.scrollInto = 'live_' + res.id;
+          _this2.scrollInto = 'live_' + res.id;
         }, 300);
+
+        // 同步弹幕到视频中
 
         // 同步弹幕到视频中
       }).finally(function () {

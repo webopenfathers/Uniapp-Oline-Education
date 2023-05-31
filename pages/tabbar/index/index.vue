@@ -1,5 +1,9 @@
 <template>
 	<view>
+		<!-- #ifdef APP-PLUS -->
+		<uni-status-bar :bg-color="#FFF"></uni-status-bar>
+		<!-- #endif -->
+
 		<!-- 骨架屏 -->
 		<indexSkeleton v-if="loading" />
 

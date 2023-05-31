@@ -235,15 +235,14 @@ var _default = {
       });
     },
     startTest: function startTest(id) {
+      var _this = this;
       uni.showModal({
         content: '是否要开始考试',
         success: function success(res) {
           if (res.cancel) {
             return;
           }
-          uni.navigateTo({
-            url: '/pages/test-detail/test-detail?id=' + id
-          });
+          _this.authJump('/pages/test-detail/test-detail?id=' + id);
         }
       });
     },
@@ -256,18 +255,18 @@ var _default = {
       this.getData();
     },
     getData: function getData() {
-      var _this = this;
+      var _this2 = this;
       var page = this.page;
       return this.$api.getTestList({
         page: this.page,
         limit: this.limit
       }).then(function (res) {
         // 等于1是刷新，其余是加载更多
-        _this.list = page === 1 ? res.rows : [].concat((0, _toConsumableArray2.default)(_this.list), (0, _toConsumableArray2.default)(res.rows)), _this.loadStatus = res.rows.length < _this.limit ? "noMore" : 'more';
+        _this2.list = page === 1 ? res.rows : [].concat((0, _toConsumableArray2.default)(_this2.list), (0, _toConsumableArray2.default)(res.rows)), _this2.loadStatus = res.rows.length < _this2.limit ? "noMore" : 'more';
       }).catch(function (err) {
-        _this.loadStatus = 'more';
+        _this2.loadStatus = 'more';
         if (page > 1) {
-          _this.page = _this.page - 1;
+          _this2.page = _this2.page - 1;
         }
       });
     }

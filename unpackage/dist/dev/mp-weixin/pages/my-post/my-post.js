@@ -99,7 +99,7 @@ var components
 try {
   components = {
     postList: function () {
-      return __webpack_require__.e(/*! import() | components/post-list/post-list */ "components/post-list/post-list").then(__webpack_require__.bind(null, /*! @/components/post-list/post-list.vue */ 424))
+      return __webpack_require__.e(/*! import() | components/post-list/post-list */ "components/post-list/post-list").then(__webpack_require__.bind(null, /*! @/components/post-list/post-list.vue */ 431))
     },
     uniLoadMore: function () {
       return Promise.all(/*! import() | uni_modules/uni-load-more/components/uni-load-more/uni-load-more */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-load-more/components/uni-load-more/uni-load-more")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-load-more/components/uni-load-more/uni-load-more.vue */ 299))

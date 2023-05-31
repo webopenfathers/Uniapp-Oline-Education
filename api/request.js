@@ -31,7 +31,7 @@ export default {
 						title: msg,
 						icon: 'none'
 					})
-					if (res.data.data == 'Token 令牌不合法，请重新登录') {
+					if (res.data.data == 'Token 令牌不合法，请重新登录' || res.data.data == '您没有权限访问该接口!') {
 						// 清除本地token
 						store.dispatch('logout')
 						setTimeout(() => {

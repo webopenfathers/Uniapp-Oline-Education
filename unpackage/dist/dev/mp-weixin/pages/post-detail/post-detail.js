@@ -101,7 +101,7 @@ var components
 try {
   components = {
     postList: function () {
-      return __webpack_require__.e(/*! import() | components/post-list/post-list */ "components/post-list/post-list").then(__webpack_require__.bind(null, /*! @/components/post-list/post-list.vue */ 424))
+      return __webpack_require__.e(/*! import() | components/post-list/post-list */ "components/post-list/post-list").then(__webpack_require__.bind(null, /*! @/components/post-list/post-list.vue */ 431))
     },
     commentPopup: function () {
       return __webpack_require__.e(/*! import() | components/comment-popup/comment-popup */ "components/comment-popup/comment-popup").then(__webpack_require__.bind(null, /*! @/components/comment-popup/comment-popup.vue */ 444))

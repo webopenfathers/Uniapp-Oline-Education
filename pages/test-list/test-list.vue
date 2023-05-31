@@ -70,9 +70,7 @@
 						if (res.cancel) {
 							return
 						}
-						uni.navigateTo({
-							url: '/pages/test-detail/test-detail?id=' + id,
-						});
+						this.authJump('/pages/test-detail/test-detail?id=' + id)
 					}
 				});
 

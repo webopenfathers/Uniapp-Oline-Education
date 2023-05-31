@@ -12,6 +12,14 @@
 			style="width: 750rpx; height: 420rpx;" />
 		<!-- #endif -->
 
+		<!-- #ifdef APP-PLUS -->
+		<video id="video" v-if="showAppVideo" :src="detail.playUrl" controls autoplay
+			style="width: 750rpx; height: 420rpx;" danmu-btn enable-danmu :danmu-list='appDanmuList'></video>
+		<view v-else class="flex justify-center align-center bg-dark" style="width: 750rpx; height: 420rpx;">
+			<text class="text-white">加载中...</text>
+		</view>
+		<!-- #endif -->
+
 
 		<scroll-view scroll-y="true" class="bg-light" :style="'height:'+scrollH+'px;'" :scroll-into-view="scrollInto">
 			<view class="font text-danger p-2">
@@ -54,7 +62,9 @@
 				videoContext: null,
 				danmuList: [],
 				scrollInto: '',
-				currentTime: 0
+				currentTime: 0,
+				appDanmuList: [],
+				showAppVideo: false
 			};
 		},
 		created() {
@@ -88,6 +98,23 @@
 					// #ifdef H5
 					this.initH5Video(res.rows)
 					// #endif
+
+					// #ifdef APP-PLUS
+					this.initAppVideo(res.rows)
+					// #endif
+				})
+			},
+			initAppVideo(comments = []) {
+				this.appDanmuList = comments.map(o => {
+					return {
+						text: `${o.name}:${o.content}`,
+						color: o.color,
+						time: parseInt(o.time / 1000),
+					}
+				})
+				this.showAppVideo = true
+				this.$nextTick(() => {
+					this.videoContext = uni.createVideoContext('video', this)
 				})
 			},
 			initH5Video(comments = []) {
@@ -165,6 +192,14 @@
 							padding: '5px 5px',
 							backgroundColor: 'rgba(255, 255, 255, 0.1)'
 						}
+					})
+					// #endif
+
+					// 同步弹幕到视频中
+					// #ifdef APP-PLUS
+					this.videoContext.sendDanmu({
+						text: `${res.name}:${res.content}`
+						color: res.color
 					})
 					// #endif
 				}).finally(() => {
