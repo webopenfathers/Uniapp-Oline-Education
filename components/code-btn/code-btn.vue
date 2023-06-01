@@ -21,6 +21,7 @@
 		},
 		methods: {
 			sendCode() {
+				console.log(999999);
 				if (this.time > 0) {
 					return
 				}

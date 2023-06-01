@@ -17,7 +17,7 @@
 				</view>
 			</view>
 
-			<view class="flex align-center p-3" v-else @click="authJump('/pages/user-info/user-info')">
+			<view class="flex align-center p-3" v-else @click="authJump('/pages-user/user-info/user-info')">
 				<!-- 头像部分 -->
 				<image :src="user.avatar" style="width: 120rpx;height: 120rpx" class="rounded-circle bg-light">
 				</image>
@@ -41,7 +41,7 @@
 			<view class="px-3">
 				<uni-list :border="false">
 					<uni-list-item :border="false" clickable title="我的优惠券" show-arrow
-						@click="authJump('/pages/my-coupon/my-coupon')">
+						@click="authJump('/pages-user/my-coupon/my-coupon')">
 						<text slot="header" class="iconfont icon-9 mr-2" style="font-size: 20px;color:#4396ec ;"></text>
 					</uni-list-item>
 					<uni-list-item :border="false" clickable title="常见问题" show-arrow>
@@ -49,7 +49,7 @@
 							style="font-size: 20px;color:#4396ec ;"></text>
 					</uni-list-item>
 					<uni-list-item :border="false" clickable title="设置" show-arrow
-						@click="navigateTo('/pages/setting/setting')">
+						@click="navigateTo('/pages-user/setting/setting')">
 						<text slot="header" class="iconfont icon-leimupinleifenleileibie mr-2"
 							style="font-size: 20px;color:#4396ec ;"></text>
 					</uni-list-item>
@@ -75,17 +75,17 @@
 				icons: [{
 						icon: "icon-OrderHistory",
 						name: '订单',
-						path: '/pages/order-list/order-list'
+						path: '/pages-order/order-list/order-list'
 					},
 					{
 						icon: "icon-pinglun2",
 						name: '消息',
-						path: '/pages/msg-list/msg-list'
+						path: '/pages-user/msg-list/msg-list'
 					},
 					{
 						icon: "icon-shoucang1",
 						name: '收藏',
-						path: '/pages/fava-list/fava-list'
+						path: '/pages-user/fava-list/fava-list'
 					},
 					{
 						icon: "icon-e-learning-monitor",
@@ -97,7 +97,7 @@
 			}
 		},
 		onNavigationBarButtonTap() {
-			this.navigateTo('/pages/setting/setting')
+			this.navigateTo('/pages-user/setting/setting')
 		},
 		methods: {
 

@@ -1,0 +1,12 @@
+{
+  "navigationBarTitleText": "开始考试",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "timer-box": "/components/timer-box/timer-box",
+    "uni-card": "/components/uni-card/uni-card",
+    "mp-html": "/uni_modules/mp-html/components/mp-html/mp-html",
+    "main-button": "/components/main-button/main-button",
+    "test-option": "/components/test-option/test-option",
+    "test-actions": "/components/test-actions/test-actions"
+  }
+}

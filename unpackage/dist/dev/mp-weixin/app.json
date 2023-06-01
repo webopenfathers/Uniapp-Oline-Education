@@ -4,37 +4,68 @@
     "pages/tabbar/learn/learn",
     "pages/tabbar/home/home",
     "pages/login/login",
-    "pages/bind-phone/bind-phone",
-    "pages/forget/forget",
-    "pages/setting/setting",
-    "pages/my-coupon/my-coupon",
-    "pages/user-safe/user-safe",
-    "pages/user-info/user-info",
-    "pages/order-list/order-list",
     "pages/search/search",
     "pages/search-result/search-result",
-    "pages/course/course",
-    "pages/column/column",
-    "pages/test-list/test-list",
-    "pages/test-detail/test-detail",
-    "pages/my-test/my-test",
-    "pages/bbs/bbs",
-    "pages/add-post/add-post",
-    "pages/post-detail/post-detail",
-    "pages/my-post/my-post",
-    "pages/book-list/book-list",
-    "pages/book-detail/book-detail",
-    "pages/book/book",
-    "pages/msg-list/msg-list",
-    "pages/fava-list/fava-list",
     "pages/list/list",
-    "pages/create-order/create-order",
-    "pages/h5pay/h5pay",
-    "pages/live/live",
-    "pages/webview/webview",
-    "pages/my-book/my-book"
+    "pages/webview/webview"
   ],
-  "subPackages": [],
+  "subPackages": [
+    {
+      "root": "pages-test",
+      "pages": [
+        "test-list/test-list",
+        "test-detail/test-detail",
+        "my-test/my-test"
+      ]
+    },
+    {
+      "root": "pages-media",
+      "pages": [
+        "live/live",
+        "column/column",
+        "course/course"
+      ]
+    },
+    {
+      "root": "pages-bbs",
+      "pages": [
+        "bbs/bbs",
+        "add-post/add-post",
+        "post-detail/post-detail",
+        "my-post/my-post"
+      ]
+    },
+    {
+      "root": "pages-book",
+      "pages": [
+        "my-book/my-book",
+        "book-list/book-list",
+        "book-detail/book-detail",
+        "book/book"
+      ]
+    },
+    {
+      "root": "pages-user",
+      "pages": [
+        "msg-list/msg-list",
+        "fava-list/fava-list",
+        "bind-phone/bind-phone",
+        "forget/forget",
+        "setting/setting",
+        "my-coupon/my-coupon",
+        "user-safe/user-safe",
+        "user-info/user-info"
+      ]
+    },
+    {
+      "root": "pages-order",
+      "pages": [
+        "create-order/create-order",
+        "h5pay/h5pay",
+        "order-list/order-list"
+      ]
+    }
+  ],
   "window": {
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "uniapp在线教育",
@@ -66,5 +97,14 @@
       }
     ]
   },
+  "preloadRule": {
+    "pages-test/test-list/test-list": {
+      "network": "all",
+      "packages": [
+        "__APP__"
+      ]
+    }
+  },
+  "lazyCodeLoading": "requiredComponents",
   "usingComponents": {}
 }

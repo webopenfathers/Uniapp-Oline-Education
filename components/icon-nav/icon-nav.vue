@@ -28,17 +28,17 @@
 				switch (item.module) {
 					case 'test':
 						uni.navigateTo({
-							url: '/pages/test-list/test-list'
+							url: '/pages-test/test-list/test-list'
 						})
 						break;
 					case 'bbs':
 						uni.navigateTo({
-							url: '/pages/bbs/bbs'
+							url: '/pages-bbs/bbs/bbs'
 						})
 						break;
 					case 'book':
 						uni.navigateTo({
-							url: '/pages/book-list/book-list'
+							url: '/pages-book/book-list/book-list'
 						})
 						break;
 					default:

@@ -45,7 +45,7 @@
 			openDetail() {
 				if (this.disabled) return
 				uni.navigateTo({
-					url: '/pages/book-detail/book-detail?id=' + this.item.id,
+					url: '/pages-book/book-detail/book-detail?id=' + this.item.id,
 				});
 			}
 		}

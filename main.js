@@ -42,7 +42,7 @@ Vue.prototype.authJump = function(url) {
 	//  token 存在但是手机号不存在跳转-绑定手机号
 	if (!store.state.user.phone) {
 		return uni.navigateTo({
-			url: '/pages/bind-phone/bind-phone',
+			url: '/pages-user/bind-phone/bind-phone',
 		});
 	}
 

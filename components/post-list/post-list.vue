@@ -85,7 +85,7 @@
 		methods: {
 			open() {
 				uni.navigateTo({
-					url: '/pages/post-detail/post-detail?id=' + this.item.id,
+					url: '/pages-bbs/post-detail/post-detail?id=' + this.item.id,
 				});
 			}
 		}

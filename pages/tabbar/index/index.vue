@@ -102,7 +102,7 @@
 					this.$openWebview(s.url)
 				} else if (s.type == 'course') {
 					uni.navigateTo({
-						url: '/pages/course/course?id=' + s.course_id,
+						url: '/pages-media/course/course?id=' + s.course_id,
 					});
 				}
 			},

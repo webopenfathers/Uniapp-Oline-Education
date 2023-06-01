@@ -45,62 +45,6 @@
 		}
 
 	}, {
-		"path": "pages/bind-phone/bind-phone",
-		"style": {
-			"navigationBarTitleText": "",
-			"enablePullDownRefresh": false,
-			"app-plus": {
-				// 取消原生导航栏
-				"titleNView": false
-			}
-		}
-
-	}, {
-		"path": "pages/forget/forget",
-		"style": {
-			"navigationBarTitleText": "",
-			"enablePullDownRefresh": false,
-			"app-plus": {
-				// 取消原生导航栏
-				"titleNView": false
-			}
-		}
-	}, {
-		"path": "pages/setting/setting",
-		"style": {
-			"navigationBarTitleText": "我的设置",
-			"enablePullDownRefresh": false
-		}
-
-	}, {
-		"path": "pages/my-coupon/my-coupon",
-		"style": {
-			"navigationBarTitleText": "我的优惠券",
-			"enablePullDownRefresh": true
-		}
-
-	}, {
-		"path": "pages/user-safe/user-safe",
-		"style": {
-			"navigationBarTitleText": "修改密码",
-			"enablePullDownRefresh": false
-		}
-
-	}, {
-		"path": "pages/user-info/user-info",
-		"style": {
-			"navigationBarTitleText": "编辑资料",
-			"enablePullDownRefresh": false
-		}
-
-	}, {
-		"path": "pages/order-list/order-list",
-		"style": {
-			"navigationBarTitleText": "我的订单",
-			"enablePullDownRefresh": true
-		}
-
-	}, {
 		"path": "pages/search/search",
 		"style": {
 			"navigationBarTitleText": "",
@@ -144,158 +88,10 @@
 		}
 
 	}, {
-		"path": "pages/course/course",
-		"style": {
-			"navigationBarTitleText": "",
-			"enablePullDownRefresh": false
-		}
-
-	}, {
-		"path": "pages/column/column",
-		"style": {
-			"navigationBarTitleText": "",
-			"enablePullDownRefresh": false
-		}
-
-	}, {
-		"path": "pages/test-list/test-list",
-		"style": {
-			"navigationBarTitleText": "考场列表",
-			"enablePullDownRefresh": true
-		}
-
-	}, {
-		"path": "pages/test-detail/test-detail",
-		"style": {
-			"navigationBarTitleText": "开始考试",
-			"enablePullDownRefresh": false
-		}
-
-	}, {
-		"path": "pages/my-test/my-test",
-		"style": {
-			"navigationBarTitleText": "我的考试记录",
-			"enablePullDownRefresh": true
-		}
-
-	}, {
-		"path": "pages/bbs/bbs",
-		"style": {
-			"navigationBarTitleText": "",
-			"enablePullDownRefresh": true,
-			"app-plus": {
-				"titleNView": {
-					"searchInput": {
-						"align": "center",
-						"backgroundColor": "#f5f5f4",
-						"placeholder": "输入搜索帖子",
-						"placeholderColor": "#999",
-						"borderRadius": "3px",
-						"disabled": false
-					},
-					"buttons": [{
-						"fontSrc": "/static/iconfont.ttf",
-						"text": "\ue682",
-						"fontSize": "20px",
-						"float": "right"
-					}]
-				}
-			},
-			// 只在微信小程序中生效，取消原生导航，手写
-			"mp-weixin": {
-				"navigationStyle": "custom"
-			}
-		}
-	}, {
-		"path": "pages/add-post/add-post",
-		"style": {
-			"navigationBarTitleText": "新增帖子",
-			"enablePullDownRefresh": false,
-			"app-plus": {
-				"titleNView": {
-					"buttons": [{
-						"text": "发布",
-						"fontSize": "14px"
-					}]
-				}
-			}
-		}
-
-	}, {
-		"path": "pages/post-detail/post-detail",
-		"style": {
-			"navigationBarTitleText": "帖子详情",
-			"enablePullDownRefresh": false
-		}
-
-	}, {
-		"path": "pages/my-post/my-post",
-		"style": {
-			"navigationBarTitleText": "我的帖子",
-			"enablePullDownRefresh": true
-		}
-
-	}, {
-		"path": "pages/book-list/book-list",
-		"style": {
-			"navigationBarTitleText": "电子书列表",
-			"enablePullDownRefresh": true
-		}
-
-	}, {
-		"path": "pages/book-detail/book-detail",
-		"style": {
-			"navigationBarTitleText": "电子书详情",
-			"enablePullDownRefresh": false
-		}
-
-	}, {
-		"path": "pages/book/book",
-		"style": {
-			"navigationBarTitleText": "",
-			"enablePullDownRefresh": false
-		}
-
-	}, {
-		"path": "pages/msg-list/msg-list",
-		"style": {
-			"navigationBarTitleText": "消息列表",
-			"enablePullDownRefresh": true
-		}
-
-	}, {
-		"path": "pages/fava-list/fava-list",
-		"style": {
-			"navigationBarTitleText": "收藏列表",
-			"enablePullDownRefresh": true
-		}
-
-	}, {
 		"path": "pages/list/list",
 		"style": {
 			"navigationBarTitleText": "列表页",
 			"enablePullDownRefresh": true
-		}
-
-	}, {
-		"path": "pages/create-order/create-order",
-		"style": {
-			"navigationBarTitleText": "创建订单",
-			"enablePullDownRefresh": false
-		}
-
-	}, {
-		"path": "pages/h5pay/h5pay",
-		"style": {
-			"navigationBarTitleText": "微信H5支付",
-			"enablePullDownRefresh": false
-		}
-
-	}, {
-		"path": "pages/live/live",
-		"style": {
-			"navigationBarTitleText": "直播详情页",
-			"enablePullDownRefresh": false
 		}
 
 	}, {
@@ -305,14 +101,255 @@
 			"enablePullDownRefresh": false
 		}
 
-	}, {
-		"path": "pages/my-book/my-book",
-		"style": {
-			"navigationBarTitleText": "我的电子书",
-			"enablePullDownRefresh": false
-		}
-
 	}],
+
+	"subPackages": [{
+			"root": "pages-test",
+			"pages": [{
+				"path": "test-list/test-list",
+				"style": {
+					"navigationBarTitleText": "考场列表",
+					"enablePullDownRefresh": true
+				}
+
+			}, {
+				"path": "test-detail/test-detail",
+				"style": {
+					"navigationBarTitleText": "开始考试",
+					"enablePullDownRefresh": false
+				}
+
+			}, {
+				"path": "my-test/my-test",
+				"style": {
+					"navigationBarTitleText": "我的考试记录",
+					"enablePullDownRefresh": true
+				}
+
+			}]
+		},
+		{
+			"root": "pages-media",
+			"pages": [{
+					"path": "live/live",
+					"style": {
+						"navigationBarTitleText": "直播详情页",
+						"enablePullDownRefresh": false
+					}
+
+				}, {
+					"path": "column/column",
+					"style": {
+						"navigationBarTitleText": "",
+						"enablePullDownRefresh": false
+					}
+
+				},
+				{
+					"path": "course/course",
+					"style": {
+						"navigationBarTitleText": "",
+						"enablePullDownRefresh": false
+					}
+
+				}
+			]
+		}, {
+			"root": "pages-bbs",
+			"pages": [{
+					"path": "bbs/bbs",
+					"style": {
+						"navigationBarTitleText": "",
+						"enablePullDownRefresh": true,
+						"app-plus": {
+							"titleNView": {
+								"searchInput": {
+									"align": "center",
+									"backgroundColor": "#f5f5f4",
+									"placeholder": "输入搜索帖子",
+									"placeholderColor": "#999",
+									"borderRadius": "3px",
+									"disabled": false
+								},
+								"buttons": [{
+									"fontSrc": "/static/iconfont.ttf",
+									"text": "\ue682",
+									"fontSize": "20px",
+									"float": "right"
+								}]
+							}
+						},
+						// 只在微信小程序中生效，取消原生导航，手写
+						"mp-weixin": {
+							"navigationStyle": "custom"
+						}
+					}
+				},
+				{
+					"path": "add-post/add-post",
+					"style": {
+						"navigationBarTitleText": "新增帖子",
+						"enablePullDownRefresh": false,
+						"app-plus": {
+							"titleNView": {
+								"buttons": [{
+									"text": "发布",
+									"fontSize": "14px"
+								}]
+							}
+						}
+					}
+
+				}, {
+					"path": "post-detail/post-detail",
+					"style": {
+						"navigationBarTitleText": "帖子详情",
+						"enablePullDownRefresh": false
+					}
+
+				}, {
+					"path": "my-post/my-post",
+					"style": {
+						"navigationBarTitleText": "我的帖子",
+						"enablePullDownRefresh": true
+					}
+
+				}
+			]
+		}, {
+			"root": "pages-book",
+			"pages": [{
+					"path": "my-book/my-book",
+					"style": {
+						"navigationBarTitleText": "我的电子书",
+						"enablePullDownRefresh": false
+					}
+
+				},
+				{
+					"path": "book-list/book-list",
+					"style": {
+						"navigationBarTitleText": "电子书列表",
+						"enablePullDownRefresh": true
+					}
+
+				}, {
+					"path": "book-detail/book-detail",
+					"style": {
+						"navigationBarTitleText": "电子书详情",
+						"enablePullDownRefresh": false
+					}
+
+				}, {
+					"path": "book/book",
+					"style": {
+						"navigationBarTitleText": "",
+						"enablePullDownRefresh": false
+					}
+
+				}
+			]
+		},
+		{
+			"root": "pages-user",
+			"pages": [{
+				"path": "msg-list/msg-list",
+				"style": {
+					"navigationBarTitleText": "消息列表",
+					"enablePullDownRefresh": true
+				}
+
+			}, {
+				"path": "fava-list/fava-list",
+				"style": {
+					"navigationBarTitleText": "收藏列表",
+					"enablePullDownRefresh": true
+				}
+
+			}, {
+				"path": "bind-phone/bind-phone",
+				"style": {
+					"navigationBarTitleText": "",
+					"enablePullDownRefresh": false,
+					"app-plus": {
+						// 取消原生导航栏
+						"titleNView": false
+					}
+				}
+
+			}, {
+				"path": "forget/forget",
+				"style": {
+					"navigationBarTitleText": "",
+					"enablePullDownRefresh": false,
+					"app-plus": {
+						// 取消原生导航栏
+						"titleNView": false
+					}
+				}
+			}, {
+				"path": "setting/setting",
+				"style": {
+					"navigationBarTitleText": "我的设置",
+					"enablePullDownRefresh": false
+				}
+
+			}, {
+				"path": "my-coupon/my-coupon",
+				"style": {
+					"navigationBarTitleText": "我的优惠券",
+					"enablePullDownRefresh": true
+				}
+
+			}, {
+				"path": "user-safe/user-safe",
+				"style": {
+					"navigationBarTitleText": "修改密码",
+					"enablePullDownRefresh": false
+				}
+
+			}, {
+				"path": "user-info/user-info",
+				"style": {
+					"navigationBarTitleText": "编辑资料",
+					"enablePullDownRefresh": false
+				}
+
+			}]
+		},
+		{
+			"root": "pages-order",
+			"pages": [{
+				"path": "create-order/create-order",
+				"style": {
+					"navigationBarTitleText": "创建订单",
+					"enablePullDownRefresh": false
+				}
+
+			}, {
+				"path": "h5pay/h5pay",
+				"style": {
+					"navigationBarTitleText": "微信H5支付",
+					"enablePullDownRefresh": false
+				}
+
+			}, {
+				"path": "order-list/order-list",
+				"style": {
+					"navigationBarTitleText": "我的订单",
+					"enablePullDownRefresh": true
+				}
+
+			}]
+		}
+	],
+	// 分包预载
+	"preloadRule": {
+		"pages-test/test-list/test-list": {
+			"network": "all",
+			"packages": ["__APP__"]
+		}
+	},
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uniapp在线教育",

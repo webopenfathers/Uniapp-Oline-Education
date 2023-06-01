@@ -51,17 +51,17 @@
 				icons: [{
 						icon: "icon-OrderHistory",
 						name: '帖子',
-						path: '/pages/my-post/my-post'
+						path: '/pages-bbs/my-post/my-post'
 					},
 					{
 						icon: "icon-pinglun2",
 						name: '考试',
-						path: '/pages/my-test/my-test'
+						path: '/pages-test/my-test/my-test'
 					},
 					{
 						icon: "icon-shoucang1",
 						name: '电子书',
-						path: '/pages/my-book/my-book'
+						path: '/pages-book/my-book/my-book'
 					},
 				]
 			}

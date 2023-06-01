@@ -165,7 +165,7 @@
 			},
 			openForget() {
 				uni.navigateTo({
-					url: '../forget/forget',
+					url: '/pages-user/forget/forget',
 				});
 			},
 			handleCheckboxChange(e) {
@@ -201,7 +201,7 @@
 				this.$store.dispatch('login', user)
 				if (!user.phone) {
 					uni.redirectTo({
-						url: '/pages/bind-phone/bind-phone',
+						url: '/pages-user/bind-phone/bind-phone',
 					});
 					return
 				}
@@ -210,7 +210,7 @@
 					// 是H5端
 					// #ifdef H5
 					uni.switchTab({
-						url: '/pages//tabbar/home/home'
+						url: '/pages/tabbar/home/home'
 					})
 					// #endif
 

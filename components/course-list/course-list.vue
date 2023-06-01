@@ -65,12 +65,12 @@
 					params += `&flashsale_id=${this.item.flashsale_id}`
 				}
 
-				let url = '/pages/course/course?' + params
+				let url = '/pages-media/course/course?' + params
 				if (!this.item.type || this.item.type === 'column') {
-					url = '/pages/column/column?' + params
+					url = '/pages-media/column/column?' + params
 				}
 				if (this.item.type === 'live') {
-					url = '/pages/live/live?' + params
+					url = '/pages-media/live/live?' + params
 				}
 
 				uni.navigateTo({

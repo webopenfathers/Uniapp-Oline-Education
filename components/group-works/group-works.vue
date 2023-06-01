@@ -62,7 +62,7 @@
 							// H5支付---条件编译
 							// #ifdef H5
 							uni.navigateTo({
-								url: `/pages/h5pay/h5pay?no=${res.no}`,
+								url: `/pages-order/h5pay/h5pay?no=${res.no}`,
 							});
 							// #endif
 
