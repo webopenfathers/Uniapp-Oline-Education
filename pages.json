@@ -347,7 +347,7 @@
 	"preloadRule": {
 		"pages-test/test-list/test-list": {
 			"network": "all",
-			"packages": ["__APP__"]
+			"packages": ["pages-test"]
 		}
 	},
 	"globalStyle": {

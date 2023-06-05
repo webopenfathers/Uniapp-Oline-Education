@@ -25,7 +25,7 @@
     "packNpmRelationList": [],
     "minifyWXSS": true,
     "disableUseStrict": false,
-    "ignoreUploadUnusedFiles": true,
+    "ignoreUploadUnusedFiles": false,
     "checkInvalidKey": true,
     "babelSetting": {
       "ignore": [],
@@ -37,7 +37,7 @@
     "useCompilerPlugins": false
   },
   "compileType": "miniprogram",
-  "libVersion": "2.30.2",
+  "libVersion": "2.31.0",
   "appid": "wx1d1bb849ae284d82",
   "projectname": "uniapp在线教育",
   "condition": {},

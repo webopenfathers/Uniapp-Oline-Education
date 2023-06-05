@@ -70,7 +70,7 @@
 						if (res.cancel) {
 							return
 						}
-						this.authJump('/pages-tset/test-detail/test-detail?id=' + id)
+						this.authJump('/pages-test/test-detail/test-detail?id=' + id)
 					}
 				});
 
